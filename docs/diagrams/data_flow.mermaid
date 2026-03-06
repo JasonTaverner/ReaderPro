@@ -1,0 +1,48 @@
+%% ReaderPro - TTS Data Flow
+%% Shows the complete flow from user action to audio output
+
+graph TD
+    subgraph UI["UI Layer"]
+        A[ProjectDetailView] -->|"tap Generate"| B[EditorPresenter]
+        B -->|"buildVoiceConfig()"| B
+    end
+
+    subgraph App["Application Layer"]
+        B -->|"execute(request)"| C[GenerateAudioForEntryUseCase]
+        C -->|"find project"| D[ProjectRepositoryPort]
+        C -->|"synthesize(text, voiceConfig)"| E[TTSPort]
+        C -->|"save(audio)"| F[AudioStoragePort]
+    end
+
+    subgraph Infra["Infrastructure Layer"]
+        E --> G{TTSAdapterProxy}
+        G -->|"Kokoro ONNX"| H[KokoroONNXAdapter]
+        G -->|"Kokoro Server"| I[KokoroTTSAdapter]
+        G -->|"Qwen3"| J[Qwen3TTSAdapter]
+
+        H --> H1[EspeakPhonemizer]
+        H1 --> H2[KokoroTokenizer]
+        H2 --> H3[VoiceEmbeddingStore]
+        H3 --> H4[KokoroONNXEngine]
+        H4 --> H5[AudioTrimmer]
+        H5 --> H6[WAVEncoder]
+
+        I -->|"POST /synthesize"| K[kokoro_server.py :8880]
+        J -->|"POST /synthesize"| L[qwen3_mlx_server.py :8890]
+        J -->|"POST /clone"| L
+
+        D --> M[FileSystemProjectRepository]
+        F --> N[FileSystemAudioStorage]
+        M -->|"project.json"| O[(File System)]
+        N -->|"XXX.wav"| O
+    end
+
+    subgraph Domain["Domain Layer"]
+        C -->|"markAudioGenerated()"| P[Project Aggregate]
+        P -->|"emit"| Q[AudioGeneratedEvent]
+    end
+
+    H6 --> R[AudioData]
+    K --> R
+    L --> R
+    R -->|"WAV bytes + duration"| C

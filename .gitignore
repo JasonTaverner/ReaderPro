@@ -1,0 +1,14 @@
+.DS_Store
+.idea/
+*.DS_Store
+**/.DS_Store
+.idea/*
+ReaderPro.xcodeproj/
+ReaderPro.xcodeproj/*
+.claude/
+.claude/*
+
+# PyInstaller build artifacts
+scripts/pyinstaller/dist/
+scripts/pyinstaller/build/
+scripts/pyinstaller/*.spec

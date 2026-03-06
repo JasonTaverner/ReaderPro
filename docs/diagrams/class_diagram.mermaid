@@ -1,0 +1,158 @@
+%% ReaderPro - Core Domain Class Diagram
+
+classDiagram
+    class Project {
+        +ProjectId id
+        +ProjectName name
+        +TextContent? text
+        +VoiceConfiguration voiceConfiguration
+        +Voice voice
+        +String? audioPath
+        +ProjectStatus status
+        +AudioEntry[] entries
+        +String? coverImagePath
+        +Date createdAt
+        +Date updatedAt
+        +DomainEvent[] domainEvents
+        +updateText(TextContent)
+        +rename(ProjectName)
+        +updateVoiceConfiguration(VoiceConfiguration)
+        +markGenerating()
+        +markAudioGenerated(String)
+        +markError()
+        +addEntry(AudioEntry)
+        +removeEntry(EntryId)
+        +updateEntry(AudioEntry)
+        +setCoverImage(String)
+        +clearEvents()
+    }
+
+    class AudioEntry {
+        +EntryId id
+        +TextContent text
+        +String? audioPath
+        +String? imagePath
+        +Date createdAt
+        +hasAudio: Bool
+        +hasImage: Bool
+        +setAudioPath(String)
+        +setImagePath(String)
+    }
+
+    class Voice {
+        +String id
+        +String name
+        +String language
+        +TTSProvider provider
+        +Bool isDefault
+    }
+
+    class VoiceConfiguration {
+        +String voiceId
+        +Speed speed
+        +Pitch pitch
+        +String? instruct
+        +URL? referenceAudioURL
+        +String? voiceDesignInstruct
+        +String? voiceDesignLanguage
+    }
+
+    class TextContent {
+        +String value
+        +wordCount: Int
+        +estimatedDuration: TimeInterval
+    }
+
+    class ProjectName {
+        +String value
+        +fromText(TextContent)$ ProjectName
+    }
+
+    class Identifier~T~ {
+        +UUID value
+    }
+
+    class ProjectStatus {
+        <<enumeration>>
+        draft
+        generating
+        ready
+        error
+    }
+
+    class TTSProvider {
+        <<enumeration>>
+        native
+        kokoro
+        qwen3
+    }
+
+    class VoiceAccent {
+        <<enumeration>>
+        spanishSpain
+        spanishMexico
+        spanishArgentina
+        french
+        german
+        italian
+        portugueseBrazil
+        portuguesePortugal
+        russian
+        +voiceDesignInstruct(VoiceGender, String?) String
+    }
+
+    class SpeechEmotion {
+        <<enumeration>>
+        neutral
+        happy
+        sad
+        angry
+        whisper
+        excited
+        calm
+        fearful
+    }
+
+    Project "1" *-- "*" AudioEntry : entries
+    Project "1" --> "1" Voice : voice
+    Project "1" --> "1" VoiceConfiguration : voiceConfiguration
+    Project "1" --> "1" ProjectName : name
+    Project "1" --> "1" ProjectStatus : status
+    AudioEntry --> TextContent : text
+    Voice --> TTSProvider : provider
+    VoiceConfiguration --> VoiceAccent : accent (indirect)
+    VoiceConfiguration --> SpeechEmotion : emotion (indirect)
+
+    class TTSPort {
+        <<interface>>
+        +isAvailable: Bool
+        +provider: TTSProvider
+        +availableVoices() Voice[]
+        +synthesize(TextContent, VoiceConfiguration, Voice) AudioData
+    }
+
+    class ProjectRepositoryPort {
+        <<interface>>
+        +save(Project)
+        +findById(ProjectId) Project?
+        +findAll() Project[]
+        +delete(ProjectId)
+        +search(String) Project[]
+    }
+
+    class AudioPlayerPort {
+        <<interface>>
+        +load(String)
+        +play()
+        +pause()
+        +stop()
+        +seek(TimeInterval)
+        +setRate(Float)
+    }
+
+    TTSPort <|.. TTSAdapterProxy
+    TTSPort <|.. KokoroONNXAdapter
+    TTSPort <|.. KokoroTTSAdapter
+    TTSPort <|.. Qwen3TTSAdapter
+    ProjectRepositoryPort <|.. FileSystemProjectRepository
+    AudioPlayerPort <|.. AVAudioPlayerAdapter

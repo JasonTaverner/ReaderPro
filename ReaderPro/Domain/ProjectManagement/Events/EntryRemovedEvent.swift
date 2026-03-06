@@ -1,0 +1,14 @@
+import Foundation
+
+/// Evento emitido cuando se elimina una entrada de un proyecto
+struct EntryRemovedEvent: DomainEvent {
+    let projectId: Identifier<Project>
+    let entryId: EntryId
+    let occurredAt: Date
+
+    init(projectId: Identifier<Project>, entryId: EntryId) {
+        self.projectId = projectId
+        self.entryId = entryId
+        self.occurredAt = Date()
+    }
+}

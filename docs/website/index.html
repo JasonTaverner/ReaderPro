@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReaderPro Docs</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+        id="hljs-theme-dark">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+        id="hljs-theme-light" disabled>
+
+    <style>
+        /* FORZAR VISIBILIDAD DEL CÓDIGO (Bypassea la caché) */
+        [data-theme="dark"] pre,
+        [data-theme="dark"] code,
+        [data-theme="dark"] .hljs {
+            color: #e6edf3 !important;
+            /* Blanco suave IMPERATIVO */
+            background-color: #161b22 !important;
+            /* Fondo GitHub Dark */
+        }
+
+        /* Asegurar que las palabras clave de sintaxis también sean visibles */
+        [data-theme="dark"] .hljs-keyword,
+        [data-theme="dark"] .hljs-selector-tag,
+        [data-theme="dark"] .hljs-built_in,
+        [data-theme="dark"] .hljs-name,
+        [data-theme="dark"] .hljs-tag {
+            color: #ff7b72 !important;
+            /* Rojo suave */
+        }
+
+        [data-theme="dark"] .hljs-string,
+        [data-theme="dark"] .hljs-title,
+        [data-theme="dark"] .hljs-section,
+        [data-theme="dark"] .hljs-attribute,
+        [data-theme="dark"] .hljs-literal,
+        [data-theme="dark"] .hljs-template-variable,
+        [data-theme="dark"] .hljs-template-tag,
+        [data-theme="dark"] .hljs-type,
+        [data-theme="dark"] .hljs-addition {
+            color: #a5d6ff !important;
+            /* Azul claro */
+        }
+    </style>
+</head>
+
+<body>
+    <header id="mobile-header">
+        <button id="menu-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <span class="mobile-title">ReaderPro Docs</span>
+        <button id="theme-toggle-mobile" aria-label="Toggle theme">🌙</button>
+    </header>
+
+    <div id="sidebar-overlay"></div>
+
+    <aside id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">📖</span>
+                <span class="logo-text">ReaderPro</span>
+                <span class="logo-badge">Docs</span>
+            </div>
+            <button id="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light theme">🌙</button>
+        </div>
+
+        <div class="search-container">
+            <input type="search" id="search" placeholder="Search docs..." autocomplete="off" spellcheck="false">
+            <kbd class="search-shortcut">/</kbd>
+        </div>
+
+        <nav id="nav-tree" role="navigation" aria-label="Documentation"></nav>
+
+        <div class="sidebar-footer">
+            <a href="https://github.com" target="_blank" rel="noopener">ReaderPro</a>
+            <span class="version">v1.0</span>
+        </div>
+    </aside>
+
+    <main id="main">
+        <div id="breadcrumbs" aria-label="Breadcrumbs"></div>
+
+        <div id="content-wrapper">
+            <article id="markdown-content" role="main"></article>
+            <nav id="toc" aria-label="Table of contents">
+                <div class="toc-title">On this page</div>
+                <ul id="toc-list"></ul>
+            </nav>
+        </div>
+    </main>
+
+    <div id="loading" class="hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/swift.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

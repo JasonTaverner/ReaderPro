@@ -1,0 +1,18 @@
+# Kokoro TTS Server Dependencies
+# Install with: pip install -r requirements.txt
+
+# Web server
+flask>=2.3.0
+
+# Kokoro TTS (ONNX version for CPU)
+kokoro-onnx>=0.2.0
+
+# Audio processing
+soundfile>=0.12.0
+numpy>=1.24.0
+
+# Audio transcription (for /transcribe endpoint)
+mlx-whisper>=0.4.0
+
+# Optional: for faster inference on Apple Silicon
+# onnxruntime-silicon  # Uncomment for M1/M2/M3 Macs
