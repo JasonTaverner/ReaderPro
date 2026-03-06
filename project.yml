@@ -11,6 +11,9 @@ packages:
   ZIPFoundation:
     url: https://github.com/weichsel/ZIPFoundation
     from: "0.9.19"
+  onnxruntime:
+    url: https://github.com/microsoft/onnxruntime-swift-package-manager
+    from: "1.20.0"
 
 settings:
   base:
@@ -40,6 +43,8 @@ targets:
       - path: ReaderPro/Resources
     dependencies:
       - package: ZIPFoundation
+      - package: onnxruntime
+        product: onnxruntime
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.readerpro.ReaderPro
