@@ -113,9 +113,13 @@ final class Qwen3ServerManager: ObservableObject {
         healthTimer = nil
 
         if let process = serverProcess {
+            let pid = process.processIdentifier
             if process.isRunning {
-                process.terminate()
-                print("[Qwen3Server] Process terminated")
+                // SIGINT first (Flask handles Ctrl+C cleanly)
+                process.interrupt()
+                // Kill the entire process group to catch child processes
+                kill(-pid, SIGTERM)
+                print("[Qwen3Server] Process interrupted (pid: \(pid))")
             }
             serverProcess = nil
         }
@@ -360,27 +364,27 @@ final class Qwen3ServerManager: ObservableObject {
                 .deletingLastPathComponent()  // Contents/
                 .deletingLastPathComponent()  // .app
                 .deletingLastPathComponent()  // containing dir
-            paths.append(appBundlePath.appendingPathComponent("scripts").path)
+            paths.append(appBundlePath.appendingPathComponent("_scripts").path)
         }
 
         // Source root from build (Xcode sets this)
         if let sourceRoot = ProcessInfo.processInfo.environment["SOURCE_ROOT"] {
-            paths.append((sourceRoot as NSString).appendingPathComponent("scripts"))
+            paths.append((sourceRoot as NSString).appendingPathComponent("_scripts"))
         }
 
         // scripts/ relative to the project (development)
         let homeDir = FileManager.default.homeDirectoryForCurrentUser.path
-        paths.append((homeDir as NSString).appendingPathComponent("repos2/ReaderPro/scripts"))
-        paths.append((homeDir as NSString).appendingPathComponent("repos/ReaderPro/scripts"))
-        paths.append((homeDir as NSString).appendingPathComponent("Developer/ReaderPro/scripts"))
+        paths.append((homeDir as NSString).appendingPathComponent("repos2/ReaderPro/_scripts"))
+        paths.append((homeDir as NSString).appendingPathComponent("repos/ReaderPro/_scripts"))
+        paths.append((homeDir as NSString).appendingPathComponent("Developer/ReaderPro/_scripts"))
 
         // Current working directory
         let cwd = FileManager.default.currentDirectoryPath
-        paths.append((cwd as NSString).appendingPathComponent("scripts"))
+        paths.append((cwd as NSString).appendingPathComponent("_scripts"))
 
         // Parent of current working directory
         let parentCwd = (cwd as NSString).deletingLastPathComponent
-        paths.append((parentCwd as NSString).appendingPathComponent("scripts"))
+        paths.append((parentCwd as NSString).appendingPathComponent("_scripts"))
 
         return paths
     }

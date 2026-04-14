@@ -17,7 +17,7 @@ final class DependencyContainer {
         if let existing = _ttsCoordinator { return existing }
 
         // Read persisted default provider from UserDefaults
-        let providerRaw = UserDefaults.standard.string(forKey: SettingsPresenter.defaultProviderKey) ?? "kokoro"
+        let providerRaw = UserDefaults.standard.string(forKey: "defaultTTSProvider") ?? "kokoro"
         let defaultProvider = Voice.TTSProvider(rawValue: providerRaw) ?? .kokoro
 
         let coordinator = TTSServerCoordinator(
@@ -32,7 +32,7 @@ final class DependencyContainer {
         )
 
         // Apply persisted Kokoro mode if provider is Kokoro
-        let modeRaw = UserDefaults.standard.string(forKey: SettingsPresenter.defaultKokoroModeKey) ?? "localONNX"
+        let modeRaw = UserDefaults.standard.string(forKey: "defaultKokoroMode") ?? "localONNX"
         if defaultProvider == .kokoro && modeRaw == "remoteServer" {
             coordinator.kokoroMode = .remoteServer
         }
@@ -48,7 +48,7 @@ final class DependencyContainer {
     @MainActor
     var kokoroServerManager: KokoroServerManager {
         if let existing = _kokoroServerManager { return existing }
-        let urlString = UserDefaults.standard.string(forKey: SettingsPresenter.kokoroServerURLKey) ?? "http://127.0.0.1:8880"
+        let urlString = UserDefaults.standard.string(forKey: "kokoroServerURL") ?? "http://127.0.0.1:8880"
         let url = URL(string: urlString) ?? URL(string: "http://127.0.0.1:8880")!
         let manager = KokoroServerManager(baseURL: url)
         _kokoroServerManager = manager
@@ -60,7 +60,7 @@ final class DependencyContainer {
     @MainActor
     var qwen3ServerManager: Qwen3ServerManager {
         if let existing = _qwen3ServerManager { return existing }
-        let urlString = UserDefaults.standard.string(forKey: SettingsPresenter.qwen3ServerURLKey) ?? "http://127.0.0.1:8890"
+        let urlString = UserDefaults.standard.string(forKey: "qwen3ServerURL") ?? "http://127.0.0.1:8890"
         let url = URL(string: urlString) ?? URL(string: "http://127.0.0.1:8890")!
         let manager = Qwen3ServerManager(baseURL: url)
         _qwen3ServerManager = manager
@@ -99,13 +99,13 @@ final class DependencyContainer {
     }()
 
     private lazy var kokoroTTSAdapter: KokoroTTSAdapter = {
-        let urlString = UserDefaults.standard.string(forKey: SettingsPresenter.kokoroServerURLKey) ?? "http://127.0.0.1:8880"
+        let urlString = UserDefaults.standard.string(forKey: "kokoroServerURL") ?? "http://127.0.0.1:8880"
         let url = URL(string: urlString) ?? URL(string: "http://127.0.0.1:8880")!
         return KokoroTTSAdapter(baseURL: url)
     }()
 
     private lazy var qwen3TTSAdapter: Qwen3TTSAdapter = {
-        let urlString = UserDefaults.standard.string(forKey: SettingsPresenter.qwen3ServerURLKey) ?? "http://127.0.0.1:8890"
+        let urlString = UserDefaults.standard.string(forKey: "qwen3ServerURL") ?? "http://127.0.0.1:8890"
         let url = URL(string: urlString) ?? URL(string: "http://127.0.0.1:8890")!
         return Qwen3TTSAdapter(baseURL: url)
     }()

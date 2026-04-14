@@ -79,7 +79,7 @@ final class EditorPresenter: ObservableObject {
         audioStorage: AudioStoragePort,
         ttsCoordinator: TTSServerCoordinator? = nil,
         clonedVoiceRepository: ClonedVoiceRepositoryPort? = nil,
-        generationManager: GenerationManager = .shared
+        generationManager: GenerationManager? = nil
     ) {
         self.createProjectUseCase = createProjectUseCase
         self.getProjectUseCase = getProjectUseCase
@@ -97,7 +97,7 @@ final class EditorPresenter: ObservableObject {
         self.audioStorage = audioStorage
         self.ttsCoordinator = ttsCoordinator
         self.clonedVoiceRepository = clonedVoiceRepository
-        self.generationManager = generationManager
+        self.generationManager = generationManager ?? .shared
 
         // Propagar cambios del viewModel anidado al presenter
         // Esto soluciona el problema de SwiftUI con ObservableObjects anidados
@@ -133,7 +133,7 @@ final class EditorPresenter: ObservableObject {
 
         // Bridge GenerationManager.isActive → viewModel.isGenerating for backward compat.
         // Only update when the value actually changes to avoid cascading objectWillChange.
-        generationCancellable = generationManager.objectWillChange
+        generationCancellable = self.generationManager.objectWillChange
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }

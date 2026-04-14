@@ -9,8 +9,11 @@ protocol ProcessProtocol: AnyObject {
     var isRunning: Bool { get }
     var terminationStatus: Int32 { get }
 
+    var processIdentifier: Int32 { get }
+
     func run() throws
     func terminate()
+    func interrupt()
 }
 
 /// Factory protocol para crear procesos (inyectable para testing)
@@ -66,11 +69,23 @@ final class ProcessWrapper: ProcessProtocol {
         process.terminationStatus
     }
 
+    var processIdentifier: Int32 {
+        process.processIdentifier
+    }
+
     func run() throws {
+        // Create a new process group so we can kill all children with kill(-pgid)
+        process.qualityOfService = .utility
         try process.run()
+        // Set the process as its own process group leader
+        setpgid(process.processIdentifier, process.processIdentifier)
     }
 
     func terminate() {
         process.terminate()
+    }
+
+    func interrupt() {
+        process.interrupt()
     }
 }

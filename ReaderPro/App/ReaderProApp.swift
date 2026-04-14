@@ -46,8 +46,21 @@ struct ReaderProApp: App {
 /// App delegate para manejar eventos del ciclo de vida de la aplicación
 final class AppDelegate: NSObject, NSApplicationDelegate {
 
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        // Arrancar el servidor TTS del proveedor activo al iniciar la app
+        Task { @MainActor in
+            await DependencyContainer.shared.ttsCoordinator.startActiveServer()
+        }
+    }
+
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        // Punto de limpieza más fiable que applicationWillTerminate en SwiftUI
+        DependencyContainer.shared.ttsCoordinator.stopAllServers()
+        return .terminateNow
+    }
+
     func applicationWillTerminate(_ notification: Notification) {
-        // Detener todos los servidores TTS al cerrar la app
+        // Segundo intento de limpieza por si applicationShouldTerminate no se llamó
         DependencyContainer.shared.ttsCoordinator.stopAllServers()
     }
 }
