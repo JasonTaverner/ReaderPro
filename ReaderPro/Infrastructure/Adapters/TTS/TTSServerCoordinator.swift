@@ -63,6 +63,7 @@ final class TTSServerCoordinator: ObservableObject {
     private let kokoroAdapter: KokoroTTSAdapter
     private let kokoroONNXAdapter: KokoroONNXAdapter?
     private let qwen3Adapter: Qwen3TTSAdapter
+    private let voxcpmAdapter: VoxCPMTTSAdapter
     private let adapterProxy: TTSAdapterProxy
 
     // MARK: - Internal
@@ -78,6 +79,7 @@ final class TTSServerCoordinator: ObservableObject {
         kokoroAdapter: KokoroTTSAdapter,
         kokoroONNXAdapter: KokoroONNXAdapter?,
         qwen3Adapter: Qwen3TTSAdapter,
+        voxcpmAdapter: VoxCPMTTSAdapter,
         adapterProxy: TTSAdapterProxy,
         initialProvider: Voice.TTSProvider = .kokoro
     ) {
@@ -87,6 +89,7 @@ final class TTSServerCoordinator: ObservableObject {
         self.kokoroAdapter = kokoroAdapter
         self.kokoroONNXAdapter = kokoroONNXAdapter
         self.qwen3Adapter = qwen3Adapter
+        self.voxcpmAdapter = voxcpmAdapter
         self.adapterProxy = adapterProxy
         self.activeProvider = initialProvider
 
@@ -103,6 +106,8 @@ final class TTSServerCoordinator: ObservableObject {
             }
         case .qwen3:
             adapterProxy.current = qwen3Adapter
+        case .voxcpm:
+            adapterProxy.current = voxcpmAdapter
         case .native:
             adapterProxy.current = nativeAdapter
         }
@@ -133,7 +138,8 @@ final class TTSServerCoordinator: ObservableObject {
             }
             await kokoroManager.startServer()
             isKokoroServerEnabled = true
-        case .qwen3:
+        case .qwen3, .voxcpm:
+            // VoxCPM2 corre en el mismo servidor MLX que Qwen3
             await qwen3Manager.startServer()
             isQwen3ServerEnabled = true
         case .native:
@@ -153,6 +159,10 @@ final class TTSServerCoordinator: ObservableObject {
     func switchProvider(to provider: Voice.TTSProvider) async {
         activeProvider = provider
 
+        // Persistir: la elección hecha en cualquier selector (toolbar, proyecto,
+        // onboarding) se mantiene como proveedor activo en el próximo arranque
+        UserDefaults.standard.set(provider.rawValue, forKey: "defaultTTSProvider")
+
         // Liberar el modelo Kokoro ONNX in-process (~500 MB) si el nuevo
         // proveedor no lo usa; se recarga solo en la siguiente sintesis
         if provider != .kokoro {
@@ -165,6 +175,7 @@ final class TTSServerCoordinator: ObservableObject {
     /// Cambia el modo de Kokoro (local ONNX vs servidor)
     func switchKokoroMode(to mode: KokoroMode) async {
         kokoroMode = mode
+        UserDefaults.standard.set(mode == .localONNX ? "localONNX" : "remoteServer", forKey: "defaultKokoroMode")
         if activeProvider == .kokoro && mode == .remoteServer {
             await kokoroManager.startServer()
             isKokoroServerEnabled = true
@@ -259,6 +270,8 @@ final class TTSServerCoordinator: ObservableObject {
             }
         case .qwen3:
             adapterProxy.current = qwen3Adapter
+        case .voxcpm:
+            adapterProxy.current = voxcpmAdapter
         case .native:
             adapterProxy.current = nativeAdapter
         }
@@ -304,7 +317,7 @@ final class TTSServerCoordinator: ObservableObject {
                         self?.activeStatus = newStatus
                     }
             }
-        case .qwen3:
+        case .qwen3, .voxcpm:
             activeStatus = qwen3Manager.status
             statusCancellable = qwen3Manager.$status
                 .receive(on: RunLoop.main)

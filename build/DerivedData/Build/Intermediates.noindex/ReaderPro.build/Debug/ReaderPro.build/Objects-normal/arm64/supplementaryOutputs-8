@@ -1,4 +1,11 @@
 {
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/App/ReaderProApp.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ReaderProApp.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ReaderProApp.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ReaderProApp.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ReaderProApp.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ReaderProApp.swiftdeps"
+  },
   "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ListProjects/ProjectSummary+UI.swift" : {
     "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectSummary+UI.swiftconstvalues",
     "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectSummary+UI.d",
@@ -6,19 +13,89 @@
     "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectSummary+UI.o",
     "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectSummary+UI.swiftdeps"
   },
-  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/ProjectRenamedEvent.swift" : {
-    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectRenamedEvent.swiftconstvalues",
-    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectRenamedEvent.d",
-    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectRenamedEvent.dia",
-    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectRenamedEvent.o",
-    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectRenamedEvent.swiftdeps"
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ListProjects/ProjectSummary.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectSummary.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectSummary.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectSummary.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectSummary.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectSummary.swiftdeps"
   },
-  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/ValueObjects/ProjectName.swift" : {
-    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectName.swiftconstvalues",
-    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectName.d",
-    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectName.dia",
-    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectName.o",
-    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectName.swiftdeps"
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ManageFolders/RenameFolderUseCase.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/RenameFolderUseCase.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/RenameFolderUseCase.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/RenameFolderUseCase.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/RenameFolderUseCase.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/RenameFolderUseCase.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/SaveAudioEntry/SaveAudioEntryRequest.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryRequest.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryRequest.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryRequest.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryRequest.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryRequest.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/SaveAudioEntry/SaveAudioEntryResponse.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryResponse.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryResponse.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryResponse.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryResponse.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryResponse.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/SaveAudioEntry/SaveAudioEntryUseCase.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryUseCase.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryUseCase.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryUseCase.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryUseCase.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryUseCase.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/Ports/ScreenCapturePort.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCapturePort.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCapturePort.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCapturePort.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCapturePort.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCapturePort.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/ValueObjects/RecognizedText.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/RecognizedText.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/RecognizedText.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/RecognizedText.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/RecognizedText.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/RecognizedText.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/ProjectTextUpdatedEvent.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectTextUpdatedEvent.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectTextUpdatedEvent.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectTextUpdatedEvent.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectTextUpdatedEvent.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectTextUpdatedEvent.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Ports/ProjectRepositoryPort.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectRepositoryPort.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectRepositoryPort.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectRepositoryPort.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectRepositoryPort.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectRepositoryPort.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/ValueObjects/ProjectStatus.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectStatus.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectStatus.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectStatus.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectStatus.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ProjectStatus.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/DocumentProcessing/ScreenCaptureError.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCaptureError.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCaptureError.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCaptureError.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCaptureError.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCaptureError.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/DocumentProcessing/ScreenCaptureService.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCaptureService.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCaptureService.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCaptureService.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCaptureService.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ScreenCaptureService.swiftdeps"
   },
   "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/Qwen3ServerManager.swift" : {
     "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/Qwen3ServerManager.swiftconstvalues",
@@ -26,5 +103,26 @@
     "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/Qwen3ServerManager.dia",
     "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/Qwen3ServerManager.o",
     "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/Qwen3ServerManager.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/Qwen3TTSAdapter.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/Qwen3TTSAdapter.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/Qwen3TTSAdapter.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/Qwen3TTSAdapter.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/Qwen3TTSAdapter.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/Qwen3TTSAdapter.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/SaveCloneProfileSheet.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveCloneProfileSheet.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveCloneProfileSheet.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveCloneProfileSheet.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveCloneProfileSheet.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/SaveCloneProfileSheet.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/ServerSetupView.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ServerSetupView.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ServerSetupView.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ServerSetupView.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ServerSetupView.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ServerSetupView.swiftdeps"
   }
 }

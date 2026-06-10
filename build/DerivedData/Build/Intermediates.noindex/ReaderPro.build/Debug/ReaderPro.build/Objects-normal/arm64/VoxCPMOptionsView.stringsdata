@@ -1,0 +1,88 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/VoxCPMOptionsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Speed does not affect VoxCPM2 generation — adjust playback speed in the player.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 67
+        }
+      },
+      {
+        "comment": "",
+        "key": "VoxCPM2 Options",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "Style instructions (optional)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Try \"Habla más despacio\" if the voice sounds rushed.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "E.g.: Habla pausadamente, con tono calmado",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lower = more expressive, higher = more stable and faithful",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
+        "key": "Voice stability",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 36
+        }
+      },
+      {
+        "comment": "",
+        "key": "Higher = better quality, slower generation (default 10)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Audio quality (diffusion steps)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 53
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 57
+        }
+      }
+    ]
+  },
+  "version": 1
+}

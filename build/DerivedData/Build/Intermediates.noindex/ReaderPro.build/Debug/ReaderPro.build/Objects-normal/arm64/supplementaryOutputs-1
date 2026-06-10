@@ -1,10 +1,52 @@
 {
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/DTOs/AudioEntryDTO.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEntryDTO.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEntryDTO.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEntryDTO.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEntryDTO.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEntryDTO.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/Errors/ApplicationError.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ApplicationError.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ApplicationError.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ApplicationError.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ApplicationError.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/ApplicationError.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/CaptureAndProcess/CaptureAndProcessRequest.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessRequest.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessRequest.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessRequest.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessRequest.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessRequest.swiftdeps"
+  },
   "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ManageFolders/AssignProjectToFolderUseCase.swift" : {
     "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AssignProjectToFolderUseCase.swiftconstvalues",
     "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AssignProjectToFolderUseCase.d",
     "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AssignProjectToFolderUseCase.dia",
     "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AssignProjectToFolderUseCase.o",
     "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AssignProjectToFolderUseCase.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioEditing/Entities/AudioSegment.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioSegment.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioSegment.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioSegment.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioSegment.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioSegment.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioEditing/Ports/AudioEditorPort.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEditorPort.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEditorPort.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEditorPort.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEditorPort.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEditorPort.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioEditing/Ports/AudioPlayerPort.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioPlayerPort.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioPlayerPort.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioPlayerPort.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioPlayerPort.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioPlayerPort.swiftdeps"
   },
   "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/ValueObjects/AudioData.swift" : {
     "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioData.swiftconstvalues",
@@ -26,5 +68,68 @@
     "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioGeneratedEvent.dia",
     "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioGeneratedEvent.o",
     "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioGeneratedEvent.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Shared/Ports/AudioStoragePort.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioStoragePort.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioStoragePort.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioStoragePort.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioStoragePort.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioStoragePort.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Shared/ValueObjects/AudioFormat.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioFormat.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioFormat.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioFormat.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioFormat.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioFormat.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Shared/ValueObjects/AudioQuality.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioQuality.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioQuality.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioQuality.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioQuality.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioQuality.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Audio/AVAudioPlayerAdapter.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AVAudioPlayerAdapter.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AVAudioPlayerAdapter.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AVAudioPlayerAdapter.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AVAudioPlayerAdapter.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AVAudioPlayerAdapter.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Audio/AVFoundationEditorAdapter.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AVFoundationEditorAdapter.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AVFoundationEditorAdapter.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AVFoundationEditorAdapter.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AVFoundationEditorAdapter.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AVFoundationEditorAdapter.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/AudioTrimmer.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioTrimmer.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioTrimmer.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioTrimmer.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioTrimmer.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioTrimmer.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Theme/AppColors.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AppColors.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AppColors.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AppColors.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AppColors.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AppColors.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/AccentSelectorView.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AccentSelectorView.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AccentSelectorView.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AccentSelectorView.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AccentSelectorView.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AccentSelectorView.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/AudioEntryCard.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEntryCard.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEntryCard.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEntryCard.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEntryCard.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/Objects-normal/arm64/AudioEntryCard.swiftdeps"
   }
 }

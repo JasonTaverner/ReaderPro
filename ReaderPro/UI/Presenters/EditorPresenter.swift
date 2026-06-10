@@ -47,6 +47,9 @@ final class EditorPresenter: ObservableObject {
 
     static let cloneFastModeKey = "cloneFastMode"
     static let cloneFastModelKey = "cloneFastModel"
+    static let voxcpmInstructKey = "voxcpmInstruct"
+    static let voxcpmCfgKey = "voxcpmCfgValue"
+    static let voxcpmStepsKey = "voxcpmSteps"
 
     /// Timer para actualizar el estado de reproducción
     private var updateTimer: Timer?
@@ -1274,9 +1277,22 @@ final class EditorPresenter: ObservableObject {
         }
 
         let speed = try VoiceConfiguration.Speed(viewModel.speed)
+        let isVoxCPM = voiceDTO.provider == Voice.TTSProvider.voxcpm.rawValue
 
         // Build instruct from emotion preset or custom text
+        // (para VoxCPM2, las instrucciones de estilo vienen de su propio panel)
         let instruct: String? = {
+            if isVoxCPM {
+                // Acento (preset) + instrucciones de estilo libres, combinados
+                var parts: [String] = []
+                if let accentInstruct = viewModel.cloneTargetAccent?.instruct {
+                    parts.append(accentInstruct)
+                }
+                if !viewModel.voxcpmInstruct.isEmpty {
+                    parts.append(viewModel.voxcpmInstruct)
+                }
+                return parts.isEmpty ? nil : parts.joined(separator: " ")
+            }
             if !viewModel.customInstruct.isEmpty {
                 return viewModel.customInstruct
             }
@@ -1313,6 +1329,9 @@ final class EditorPresenter: ObservableObject {
         // Persist clone optimization settings
         UserDefaults.standard.set(viewModel.cloneFastMode, forKey: Self.cloneFastModeKey)
         UserDefaults.standard.set(viewModel.cloneFastModel, forKey: Self.cloneFastModelKey)
+        UserDefaults.standard.set(viewModel.voxcpmInstruct, forKey: Self.voxcpmInstructKey)
+        UserDefaults.standard.set(viewModel.voxcpmCfgValue, forKey: Self.voxcpmCfgKey)
+        UserDefaults.standard.set(viewModel.voxcpmSteps, forKey: Self.voxcpmStepsKey)
 
         let voiceConfig = VoiceConfiguration(
             voiceId: voiceId,
@@ -1324,7 +1343,9 @@ final class EditorPresenter: ObservableObject {
             voiceDesignLanguage: useCloning ? nil : voiceDesignLanguage,
             cloneFastMode: useCloning ? viewModel.cloneFastMode : false,
             cloneFastModel: useCloning ? viewModel.cloneFastModel : false,
-            cloneAccentInstruct: useCloning ? viewModel.cloneTargetAccent?.instruct : nil
+            cloneAccentInstruct: useCloning ? viewModel.cloneTargetAccent?.instruct : nil,
+            voxcpmCfgValue: isVoxCPM ? viewModel.voxcpmCfgValue : nil,
+            voxcpmSteps: isVoxCPM ? Int(viewModel.voxcpmSteps) : nil
         )
 
         let voice = Voice(
@@ -1351,6 +1372,13 @@ final class EditorPresenter: ObservableObject {
         // Clone optimization settings
         viewModel.cloneFastMode = UserDefaults.standard.bool(forKey: Self.cloneFastModeKey)
         viewModel.cloneFastModel = UserDefaults.standard.bool(forKey: Self.cloneFastModelKey)
+        viewModel.voxcpmInstruct = UserDefaults.standard.string(forKey: Self.voxcpmInstructKey) ?? ""
+        if UserDefaults.standard.object(forKey: Self.voxcpmCfgKey) != nil {
+            viewModel.voxcpmCfgValue = UserDefaults.standard.double(forKey: Self.voxcpmCfgKey)
+        }
+        if UserDefaults.standard.object(forKey: Self.voxcpmStepsKey) != nil {
+            viewModel.voxcpmSteps = UserDefaults.standard.double(forKey: Self.voxcpmStepsKey)
+        }
 
         // Qwen3 voice defaults
         if let accent = UserDefaults.standard.string(forKey: SettingsPresenter.defaultQwen3AccentKey) {

@@ -7,7 +7,7 @@
         "key": "Voice Cloning",
         "location": {
           "startingColumn": 19,
-          "startingLine": 35
+          "startingLine": 38
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "Enable voice cloning",
         "location": {
           "startingColumn": 20,
-          "startingLine": 39
+          "startingLine": 42
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "Performance",
         "location": {
           "startingColumn": 26,
-          "startingLine": 216
+          "startingLine": 220
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "Fast cloning (less accurate, 2-3x faster)",
         "location": {
           "startingColumn": 28,
-          "startingLine": 220
+          "startingLine": 224
         }
       },
       {
@@ -39,7 +39,7 @@
         "key": "Lightweight model (0.6B, faster but lower quality)",
         "location": {
           "startingColumn": 28,
-          "startingLine": 224
+          "startingLine": 228
         }
       },
       {
@@ -47,7 +47,7 @@
         "key": "Saved Voice:",
         "location": {
           "startingColumn": 34,
-          "startingLine": 48
+          "startingLine": 51
         }
       },
       {
@@ -55,7 +55,7 @@
         "key": "",
         "location": {
           "startingColumn": 36,
-          "startingLine": 52
+          "startingLine": 55
         }
       },
       {
@@ -63,7 +63,7 @@
         "key": "Delete this saved voice profile",
         "location": {
           "startingColumn": 39,
-          "startingLine": 81
+          "startingLine": 84
         }
       },
       {
@@ -71,7 +71,7 @@
         "key": "New (manual)",
         "location": {
           "startingColumn": 38,
-          "startingLine": 56
+          "startingLine": 59
         }
       },
       {
@@ -79,7 +79,7 @@
         "key": "(Deleted profile)",
         "location": {
           "startingColumn": 42,
-          "startingLine": 62
+          "startingLine": 65
         }
       },
       {
@@ -87,7 +87,7 @@
         "key": "%@ (%@)",
         "location": {
           "startingColumn": 42,
-          "startingLine": 65
+          "startingLine": 68
         }
       },
       {
@@ -95,7 +95,7 @@
         "key": "3+ seconds WAV/MP3/M4A",
         "location": {
           "startingColumn": 30,
-          "startingLine": 92
+          "startingLine": 95
         }
       },
       {
@@ -103,7 +103,7 @@
         "key": "Select Audio File...",
         "location": {
           "startingColumn": 32,
-          "startingLine": 87
+          "startingLine": 90
         }
       },
       {
@@ -111,7 +111,7 @@
         "key": "(%@s)",
         "location": {
           "startingColumn": 38,
-          "startingLine": 110
+          "startingLine": 113
         }
       },
       {
@@ -119,7 +119,7 @@
         "key": "What is said in the audio? (Highly recommended):",
         "location": {
           "startingColumn": 34,
-          "startingLine": 138
+          "startingLine": 141
         }
       },
       {
@@ -127,7 +127,7 @@
         "key": "Transcribing...",
         "location": {
           "startingColumn": 63,
-          "startingLine": 155
+          "startingLine": 158
         }
       },
       {
@@ -135,7 +135,7 @@
         "key": "Transcribe",
         "location": {
           "startingColumn": 83,
-          "startingLine": 155
+          "startingLine": 158
         }
       },
       {
@@ -143,7 +143,7 @@
         "key": "Save as Voice Profile",
         "location": {
           "startingColumn": 35,
-          "startingLine": 186
+          "startingLine": 189
         }
       },
       {
@@ -151,7 +151,7 @@
         "key": "Target Accent",
         "location": {
           "startingColumn": 30,
-          "startingLine": 197
+          "startingLine": 201
         }
       },
       {
@@ -159,7 +159,7 @@
         "key": "Steers pronunciation without changing the cloned voice timbre.",
         "location": {
           "startingColumn": 30,
-          "startingLine": 209
+          "startingLine": 213
         }
       },
       {
@@ -167,7 +167,7 @@
         "key": "Accent",
         "location": {
           "startingColumn": 32,
-          "startingLine": 201
+          "startingLine": 205
         }
       },
       {
@@ -175,7 +175,7 @@
         "key": "Automatic (from audio)",
         "location": {
           "startingColumn": 34,
-          "startingLine": 202
+          "startingLine": 206
         }
       },
       {
@@ -183,7 +183,7 @@
         "key": "%@ %@",
         "location": {
           "startingColumn": 38,
-          "startingLine": 204
+          "startingLine": 208
         }
       }
     ]

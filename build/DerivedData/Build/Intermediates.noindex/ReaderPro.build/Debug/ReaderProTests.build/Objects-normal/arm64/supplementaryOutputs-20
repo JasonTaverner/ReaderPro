@@ -1,4 +1,11 @@
 {
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Application/UseCases/UpdateProjectUseCaseTests.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/UpdateProjectUseCaseTests.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/UpdateProjectUseCaseTests.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/UpdateProjectUseCaseTests.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/UpdateProjectUseCaseTests.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/UpdateProjectUseCaseTests.swiftdeps"
+  },
   "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Domain/AudioGeneration/Entities/VoiceTests.swift" : {
     "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VoiceTests.swiftconstvalues",
     "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VoiceTests.d",
@@ -19,6 +26,13 @@
     "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VoiceConfigurationTests.dia",
     "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VoiceConfigurationTests.o",
     "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VoiceConfigurationTests.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Infrastructure/DocumentProcessing/VisionOCRAdapterTests.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VisionOCRAdapterTests.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VisionOCRAdapterTests.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VisionOCRAdapterTests.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VisionOCRAdapterTests.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VisionOCRAdapterTests.swiftdeps"
   },
   "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Infrastructure/TTS/KokoroONNX/VoiceEmbeddingStoreTests.swift" : {
     "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/VoiceEmbeddingStoreTests.swiftconstvalues",

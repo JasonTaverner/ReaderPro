@@ -33,12 +33,13 @@ Criterios para añadir un modelo:
 - [x] Empaquetado autocontenido + descarga automática de modelos Kokoro
       (`KokoroModelStore`, `_scripts/package_app.sh`) (10-6-2026).
 - [ ] Probar síntesis Kokoro end-to-end desde la app (generar audio de una entrada en español).
-- [ ] **Generalizar el servidor MLX** (prerrequisito de todo lo demás):
-      renombrar `qwen3_mlx_server.py` → `tts_mlx_server.py` con un registro
-      `model_id → loader` y endpoint `/models` dinámico, de modo que añadir un modelo
-      nuevo sea una entrada en un diccionario y no un servidor nuevo.
-      El `Qwen3ServerManager`/adaptador Swift apenas cambian (mismo puerto y API).
-      Esfuerzo: 1–2 días.
+- [x] **Generalizar el servidor MLX** (10-6-2026): `MODEL_REGISTRY` declarativo en
+      `qwen3_mlx_server.py` (se mantuvo el nombre del fichero por compatibilidad con
+      las rutas de búsqueda del manager Swift), `/models` dinámico, `/synthesize`
+      acepta `mode=voxcpm` y `/clone` acepta `model=base|base_fast|voxcpm`.
+      Añadir un modelo nuevo = una entrada en el diccionario (+ rama de kwargs si
+      su familia los necesita). mlx-audio actualizado 0.3.1 → 0.4.4 (verificado
+      que la clonación Qwen3 sigue funcionando).
 
 ## Fase 1 — VoxCPM2: el más potente con el mejor español viable
 
@@ -48,12 +49,27 @@ Criterios para añadir un modelo:
 - **Por qué**: Apache-2.0; español excelente (WER 1,44 %, 30 idiomas); salida **48 kHz**
   (Kokoro y Qwen3 van a 24 kHz — diferencia audible en lectura larga); clonación de voz
   y diseño de voz por descripción; **soporte oficial en mlx-audio** → integración casi trivial.
-- **Riesgo a validar**: velocidad en M4 base (~1× tiempo real estimado; en Pro/Max sobra).
-  Usar el endpoint `/benchmark` existente. Si RTF < 1, probar la variante 4-bit.
-- **Tareas**: añadir al registro del servidor MLX → benchmark → A/B es-ES vs Qwen3-TTS →
-  exponer en UI como proveedor "VoxCPM2 (48 kHz)" → probar clonación con perfiles existentes.
-- **Esfuerzo**: 2–4 días. Fuentes: github.com/OpenBMB/VoxCPM ·
-  huggingface.co/mlx-community/VoxCPM2-8bit
+- **Benchmark REAL en el M4 16 GB (10-6-2026)**: carga 3,3 s; salida 48 kHz ✓;
+  **RTF 0,36–0,49× — más lento que tiempo real**. La variante 4-bit NO acelera
+  (RTF 0,45-0,49, el cuello es el módulo de difusión) → usar la 8-bit.
+  **Decisión**: VoxCPM2 no vale como voz interactiva por defecto en M4 base;
+  posicionarlo como "máxima calidad para generación en lote/exportación de
+  audiolibros" (ReaderPro pre-genera el audio, así que la espera 2× es asumible).
+  Pendiente: valorar el español escuchando /tmp/voxcpm_test/*.wav.
+- **Estado (10-6-2026, tarde): PROVEEDOR DE PRIMERA CLASE.** VoxCPM2 aparece junto a
+  Kokoro/Qwen3 en los selectores de proveedor (proyecto y Ajustes) con panel propio:
+  instrucciones de estilo en texto libre (p. ej. "Habla pausadamente" — remedio al
+  ritmo acelerado que notó el usuario), estabilidad de voz (cfg 1.0-3.0), calidad de
+  difusión (5-30 pasos) y clonación con perfiles guardados (sin opciones Qwen).
+  `VoxCPMTTSAdapter` nuevo; comparte servidor MLX y gestión de memoria con Qwen3.
+  Nota: el modelo ignora `speed` en generación; la velocidad se ajusta en reproducción.
+- Integración previa (mañana): Registro en el servidor ✓, benchmark ✓, español
+  validado por el usuario ("me gusta mucho el resultado") ✓, clonación end-to-end vía
+  `/clone` con `model=voxcpm` verificada (48 kHz) sin regresión del camino Qwen3 ✓,
+  y UI: toggle **"Maximum quality (VoxCPM2, 48 kHz)"** en la sección de clonación
+  (persistido en UserDefaults, deshabilita los toggles de velocidad).
+  Pendiente menor: probar con sus perfiles clonados reales y textos largos.
+- Fuentes: github.com/OpenBMB/VoxCPM · huggingface.co/mlx-community/VoxCPM2-8bit
 
 ## Fase 2 — MOSS-TTS-Local 1.7B: el de los textos más largos
 

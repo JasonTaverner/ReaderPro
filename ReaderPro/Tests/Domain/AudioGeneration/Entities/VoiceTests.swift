@@ -65,15 +65,16 @@ final class VoiceTests: XCTestCase {
         XCTAssertEqual(provider.rawValue, "qwen3")
     }
 
-    func test_provider_allCases_shouldContainThreeProviders() {
+    func test_provider_allCases_shouldContainAllProviders() {
         // Act
         let allCases = Voice.TTSProvider.allCases
 
         // Assert
-        XCTAssertEqual(allCases.count, 3)
+        XCTAssertEqual(allCases.count, 4)
         XCTAssertTrue(allCases.contains(.native))
         XCTAssertTrue(allCases.contains(.kokoro))
         XCTAssertTrue(allCases.contains(.qwen3))
+        XCTAssertTrue(allCases.contains(.voxcpm))
     }
 
     func test_provider_displayName_native_shouldReturnCorrectString() {

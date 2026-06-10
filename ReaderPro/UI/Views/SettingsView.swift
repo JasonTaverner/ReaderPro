@@ -123,6 +123,7 @@ struct SettingsView: View {
                 Text("System (macOS)").tag("native")
                 Text("Kokoro").tag("kokoro")
                 Text("Qwen3").tag("qwen3")
+                Text("VoxCPM2").tag("voxcpm")
             }
             .pickerStyle(.segmented)
 
@@ -138,6 +139,12 @@ struct SettingsView: View {
 
             if presenter.viewModel.defaultProvider == "native" {
                 Text("Uses built-in macOS voices. No server required.")
+                    .font(.caption)
+                    .foregroundColor(Color.appTextSecondary)
+            }
+
+            if presenter.viewModel.defaultProvider == "voxcpm" {
+                Text("Maximum quality (48 kHz), ~2x slower than real time. Runs on the same local MLX server as Qwen3.")
                     .font(.caption)
                     .foregroundColor(Color.appTextSecondary)
             }
@@ -258,6 +265,12 @@ struct SettingsView: View {
 
             Picker("Saved Voice", selection: defaultCloneProfileIdBinding) {
                 Text("None (manual)").tag("")
+                // Tag para el perfil guardado si aún no está cargado o fue borrado:
+                // sin él, el Picker recibe una selección UUID sin tag asociado
+                if !presenter.viewModel.defaultCloneProfileId.isEmpty,
+                   !presenter.viewModel.clonedVoiceProfiles.contains(where: { $0.id == presenter.viewModel.defaultCloneProfileId }) {
+                    Text("(Saved profile)").tag(presenter.viewModel.defaultCloneProfileId)
+                }
                 ForEach(presenter.viewModel.clonedVoiceProfiles) { profile in
                     Text("\(profile.name) (\(profile.formattedDuration))").tag(profile.id)
                 }

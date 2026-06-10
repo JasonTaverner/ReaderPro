@@ -77,13 +77,52 @@ MODEL_TYPE_VOICE_DESIGN = "voice_design"
 MODEL_TYPE_BASE = "base"
 MODEL_TYPE_BASE_FAST = "base_fast"
 
-# Maps model type to HuggingFace model ID
-MODEL_TYPE_TO_ID = {
-    MODEL_TYPE_CUSTOM_VOICE: CUSTOM_VOICE_MODEL_ID,
-    MODEL_TYPE_VOICE_DESIGN: VOICE_DESIGN_MODEL_ID,
-    MODEL_TYPE_BASE: BASE_MODEL_ID,
-    MODEL_TYPE_BASE_FAST: BASE_MODEL_FAST_ID,
+MODEL_TYPE_VOXCPM = "voxcpm"
+VOXCPM_MODEL_ID = "mlx-community/VoxCPM2-8bit"
+
+# Registro declarativo de modelos (ver docs/GESTION_MEMORIA.md y ROADMAP_IA.md).
+# Para añadir un modelo nuevo: una entrada aquí + (si su familia necesita kwargs
+# distintos) una rama en synthesize_speech/clone_voice. Nada más.
+MODEL_REGISTRY = {
+    MODEL_TYPE_CUSTOM_VOICE: {
+        "id": CUSTOM_VOICE_MODEL_ID,
+        "family": "qwen3",
+        "sample_rate": 24000,
+        "capabilities": ["speaker", "instruct", "emotion", "accent"],
+        "usage": "Preset premium voices with emotion tags",
+    },
+    MODEL_TYPE_VOICE_DESIGN: {
+        "id": VOICE_DESIGN_MODEL_ID,
+        "family": "qwen3",
+        "sample_rate": 24000,
+        "capabilities": ["voice_design"],
+        "usage": "Voice from free-text description",
+    },
+    MODEL_TYPE_BASE: {
+        "id": BASE_MODEL_ID,
+        "family": "qwen3",
+        "sample_rate": 24000,
+        "capabilities": ["clone"],
+        "usage": "Voice cloning (ICL mode)",
+    },
+    MODEL_TYPE_BASE_FAST: {
+        "id": BASE_MODEL_FAST_ID,
+        "family": "qwen3",
+        "sample_rate": 24000,
+        "capabilities": ["clone"],
+        "usage": "Voice cloning fast (0.6B, lower quality)",
+    },
+    MODEL_TYPE_VOXCPM: {
+        "id": VOXCPM_MODEL_ID,
+        "family": "voxcpm",
+        "sample_rate": 48000,
+        "capabilities": ["clone", "default_voice"],
+        "usage": "Premium 2B model: top Spanish quality, hi-fi output, zero-shot cloning",
+    },
 }
+
+# Maps model type to HuggingFace model ID (derivado del registro)
+MODEL_TYPE_TO_ID = {k: v["id"] for k, v in MODEL_REGISTRY.items()}
 
 
 class ModelManager:
@@ -346,6 +385,8 @@ def synthesize_speech(
     instruct: str | None = None,
     speed: float = 1.0,
     mode: str = "custom_voice",
+    cfg_value: float | None = None,
+    inference_timesteps: int | None = None,
 ) -> bytes:
     """
     Synthesize speech from text using Qwen3-TTS via MLX.
@@ -372,6 +413,47 @@ def synthesize_speech(
     _progress.start(1, mode)
 
     try:
+        if mode == "voxcpm":
+            # VoxCPM: síntesis directa con la voz por defecto del modelo
+            # (sin speaker ni instruct; para clonar, usar /clone con model=voxcpm)
+            logger.info(f"[DIAG] VoxCPM request: lang={lang}, speed={speed}, text={len(text)} chars")
+            model = _model_manager.get_model(MODEL_TYPE_VOXCPM)
+            start_time = time.time()
+
+            voxcpm_kwargs = {}
+            if instruct:
+                voxcpm_kwargs["instruct"] = instruct
+            if cfg_value is not None:
+                voxcpm_kwargs["cfg_value"] = float(cfg_value)
+            if inference_timesteps is not None:
+                voxcpm_kwargs["inference_timesteps"] = int(inference_timesteps)
+
+            with tempfile.TemporaryDirectory() as tmpdir:
+                _capture = TqdmCapture(_progress, sys.stderr)
+                sys.stderr = _capture
+                try:
+                    generate_audio(
+                        text=text,
+                        model=model,
+                        speed=speed,
+                        output_path=tmpdir,
+                        file_prefix="speech",
+                        audio_format="wav",
+                        join_audio=True,
+                        verbose=True,
+                        play=False,
+                        **voxcpm_kwargs,
+                    )
+                finally:
+                    sys.stderr = _capture._original
+
+                wav_data = _read_wav_from_dir(tmpdir, "speech")
+
+            elapsed = time.time() - start_time
+            logger.info(f"VoxCPM synthesis completed in {elapsed:.2f}s")
+            _progress.finish()
+            return wav_data
+
         if mode == "voice_design":
             # VoiceDesign mode: instruct is REQUIRED and describes the voice completely
             # No speaker needed - the model generates a voice from the description
@@ -648,6 +730,9 @@ def clone_voice(
     x_vector_only: bool = False,
     fast_model: bool = False,
     accent_instruct: str | None = None,
+    model_type: str | None = None,
+    cfg_value: float | None = None,
+    inference_timesteps: int | None = None,
 ) -> bytes:
     """
     Synthesize speech using a cloned voice from reference audio.
@@ -676,8 +761,12 @@ def clone_voice(
     """
     from mlx_audio.tts.generate import generate_audio
 
-    # Voice cloning requires the Base model (ICL mode)
-    model_type = MODEL_TYPE_BASE_FAST if fast_model else MODEL_TYPE_BASE
+    # Voice cloning model: explicit model_type wins; legacy fast_model flag as fallback
+    if model_type is None:
+        model_type = MODEL_TYPE_BASE_FAST if fast_model else MODEL_TYPE_BASE
+    if model_type not in MODEL_REGISTRY or "clone" not in MODEL_REGISTRY[model_type]["capabilities"]:
+        raise ValueError(f"Model '{model_type}' does not support cloning")
+    family = MODEL_REGISTRY[model_type]["family"]
     model = _model_manager.get_model(model_type)
 
     # Optimize reference audio (trim, mono, resample) — cached per file hash
@@ -699,7 +788,10 @@ def clone_voice(
         logger.warning("If this fails with 'Processor not found', you MUST provide the 'ref_text' field.")
 
     # Try to pre-compute and cache the voice prompt for multi-segment efficiency
-    cached_prompt = _get_cached_voice_prompt(model, reference_audio_path, ref_text)
+    # (mecanismo específico de Qwen3/ICL; otras familias usan ref_audio directamente)
+    cached_prompt = None
+    if family == "qwen3":
+        cached_prompt = _get_cached_voice_prompt(model, reference_audio_path, ref_text)
 
     # Split text into manageable segments.
     # The ICL generation path does NOT split text internally — it processes
@@ -714,8 +806,9 @@ def clone_voice(
     all_audio_samples: list[np.ndarray] = []
     sample_rate = DEFAULT_SAMPLE_RATE
 
-    # Small silence gap between segments (0.3s at 24kHz)
-    silence_gap = np.zeros(int(DEFAULT_SAMPLE_RATE * 0.3), dtype=np.float32)
+    # Small silence gap between segments (0.3s at the model's sample rate)
+    model_sample_rate = MODEL_REGISTRY[model_type]["sample_rate"]
+    silence_gap = np.zeros(int(model_sample_rate * 0.3), dtype=np.float32)
 
     try:
         for seg_idx, segment in enumerate(segments):
@@ -755,18 +848,31 @@ def clone_voice(
                         max_new_tokens=max_tokens,
                     )
 
-                    # Accent instruct: steer pronunciation without changing voice timbre
-                    if accent_instruct:
-                        gen_kwargs["instruct"] = accent_instruct
+                    if family == "voxcpm":
+                        # VoxCPM2: instrucciones de estilo + control de calidad.
+                        # (speed lo ignora el modelo: la velocidad se aplica en reproducción)
+                        if accent_instruct:
+                            gen_kwargs["instruct"] = accent_instruct
+                        if cfg_value is not None:
+                            gen_kwargs["cfg_value"] = float(cfg_value)
+                        if inference_timesteps is not None:
+                            gen_kwargs["inference_timesteps"] = int(inference_timesteps)
 
-                    # If we have a cached prompt, use it instead of ref_audio
-                    if cached_prompt is not None:
-                        gen_kwargs["voice_clone_prompt"] = cached_prompt
-                        # Still keep ref_audio/ref_text as fallback context
+                    # kwargs específicos de la familia qwen3: otras familias
+                    # (p. ej. voxcpm) no los entienden y fallarían
+                    if family == "qwen3":
+                        # Accent instruct: steer pronunciation without changing voice timbre
+                        if accent_instruct:
+                            gen_kwargs["instruct"] = accent_instruct
 
-                    # x_vector_only_mode: faster cloning (skips full conditioning)
-                    if x_vector_only:
-                        gen_kwargs["x_vector_only_mode"] = True
+                        # If we have a cached prompt, use it instead of ref_audio
+                        if cached_prompt is not None:
+                            gen_kwargs["voice_clone_prompt"] = cached_prompt
+                            # Still keep ref_audio/ref_text as fallback context
+
+                        # x_vector_only_mode: faster cloning (skips full conditioning)
+                        if x_vector_only:
+                            gen_kwargs["x_vector_only_mode"] = True
 
                     _capture = TqdmCapture(_progress, sys.stderr)
                     sys.stderr = _capture
@@ -955,24 +1061,15 @@ def list_models():
         "loaded_model_id": status["loaded_model_id"],
         "load_count": status["load_count"],
         "available": {
-            "custom_voice": {
-                "id": CUSTOM_VOICE_MODEL_ID,
-                "loaded": loaded == MODEL_TYPE_CUSTOM_VOICE,
-            },
-            "voice_design": {
-                "id": VOICE_DESIGN_MODEL_ID,
-                "loaded": loaded == MODEL_TYPE_VOICE_DESIGN,
-            },
-            "base": {
-                "id": BASE_MODEL_ID,
-                "loaded": loaded == MODEL_TYPE_BASE,
-                "usage": "Voice cloning (ICL mode)",
-            },
-            "base_fast": {
-                "id": BASE_MODEL_FAST_ID,
-                "loaded": loaded == MODEL_TYPE_BASE_FAST,
-                "usage": "Voice cloning fast (0.6B, lower quality)",
-            },
+            model_type: {
+                "id": info["id"],
+                "family": info["family"],
+                "sample_rate": info["sample_rate"],
+                "capabilities": info["capabilities"],
+                "usage": info["usage"],
+                "loaded": loaded == model_type,
+            }
+            for model_type, info in MODEL_REGISTRY.items()
         },
     })
 
@@ -1048,8 +1145,8 @@ def synthesize():
     logger.info(f"[DIAG] /synthesize text ({len(text)} chars): {text[:80]!r}")
 
     # Validate mode
-    if mode not in ("custom_voice", "voice_design"):
-        return jsonify({"error": f"Invalid mode '{mode}'. Must be 'custom_voice' or 'voice_design'"}), 400
+    if mode not in ("custom_voice", "voice_design", "voxcpm"):
+        return jsonify({"error": f"Invalid mode '{mode}'. Must be 'custom_voice', 'voice_design' or 'voxcpm'"}), 400
 
     # VoiceDesign requires instruct
     if mode == "voice_design" and not instruct:
@@ -1068,6 +1165,8 @@ def synthesize():
             instruct=instruct,
             speed=speed,
             mode=mode,
+            cfg_value=data.get("cfg_value"),
+            inference_timesteps=data.get("inference_timesteps"),
         )
 
         return Response(
@@ -1119,6 +1218,9 @@ def clone():
     x_vector_only = request.form.get("x_vector_only", "false").lower() == "true"
     fast_model = request.form.get("fast_model", "false").lower() == "true"
     accent_instruct = request.form.get("accent_instruct")  # Accent steering (optional)
+    clone_model = request.form.get("model")  # base | base_fast | voxcpm (optional)
+    clone_cfg_value = request.form.get("cfg_value", type=float)  # voxcpm only
+    clone_steps = request.form.get("inference_timesteps", type=int)  # voxcpm only
 
     try:
         speed = float(speed)
@@ -1163,6 +1265,9 @@ def clone():
             x_vector_only=x_vector_only,
             fast_model=fast_model,
             accent_instruct=accent_instruct,
+            model_type=clone_model,
+            cfg_value=clone_cfg_value,
+            inference_timesteps=clone_steps,
         )
 
         return Response(

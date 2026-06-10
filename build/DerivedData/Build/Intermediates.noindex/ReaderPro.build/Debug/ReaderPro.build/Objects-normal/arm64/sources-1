@@ -180,6 +180,8 @@
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/VoiceEmbeddingStore.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/VoiceSelectorView.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/Help/VoicesHelpContent.swift
+/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/VoxCPMOptionsView.swift
+/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/VoxCPMTTSAdapter.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/WAVEncoder.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/WaveformView.swift
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderPro.build/DerivedSources/GeneratedAssetSymbols.swift

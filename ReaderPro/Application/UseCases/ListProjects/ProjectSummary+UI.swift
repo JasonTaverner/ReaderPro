@@ -43,6 +43,8 @@ extension ProjectSummary {
             return "Kokoro"
         case .qwen3:
             return "Qwen3"
+        case .voxcpm:
+            return "VoxCPM2"
         }
     }
 }

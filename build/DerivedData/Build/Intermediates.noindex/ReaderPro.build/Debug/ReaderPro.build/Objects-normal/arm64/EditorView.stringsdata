@@ -132,10 +132,18 @@
       },
       {
         "comment": "",
+        "key": "VoxCPM2",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 175
+        }
+      },
+      {
+        "comment": "",
         "key": "Speed",
         "location": {
           "startingColumn": 27,
-          "startingLine": 241
+          "startingLine": 279
         }
       },
       {
@@ -143,7 +151,7 @@
         "key": "0.5x",
         "location": {
           "startingColumn": 26,
-          "startingLine": 254
+          "startingLine": 292
         }
       },
       {
@@ -151,7 +159,7 @@
         "key": "2.0x",
         "location": {
           "startingColumn": 26,
-          "startingLine": 260
+          "startingLine": 298
         }
       },
       {
@@ -159,7 +167,7 @@
         "key": "Estimated Duration",
         "location": {
           "startingColumn": 19,
-          "startingLine": 271
+          "startingLine": 309
         }
       },
       {
@@ -167,7 +175,7 @@
         "key": "Save Project",
         "location": {
           "startingColumn": 19,
-          "startingLine": 299
+          "startingLine": 337
         }
       },
       {
@@ -175,7 +183,7 @@
         "key": "Cancel",
         "location": {
           "startingColumn": 20,
-          "startingLine": 311
+          "startingLine": 349
         }
       },
       {
@@ -183,7 +191,7 @@
         "key": "Done",
         "location": {
           "startingColumn": 22,
-          "startingLine": 325
+          "startingLine": 363
         }
       }
     ]

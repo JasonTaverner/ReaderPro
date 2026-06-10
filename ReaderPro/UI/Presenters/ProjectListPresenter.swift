@@ -75,8 +75,16 @@ final class ProjectListPresenter: ObservableObject {
     /// Llamado cuando la vista aparece
     /// Carga los proyectos
     func onAppear() async {
-        await loadFolders()
+        // Proyectos primero: es lo que el usuario ve (~50 ms). Las carpetas pueden
+        // quedarse esperando detras de trabajo de arranque (servidores, voces del
+        // sistema) y no deben retrasar la lista.
+        let t0 = CFAbsoluteTimeGetCurrent()
         await loadProjects()
+        let t1 = CFAbsoluteTimeGetCurrent()
+        await loadFolders()
+        let t2 = CFAbsoluteTimeGetCurrent()
+        print(String(format: "[Perf] ProjectList onAppear: projects %.2fs, folders %.2fs, total %.2fs",
+                     t1 - t0, t2 - t1, t2 - t0))
     }
 
     // MARK: - User Actions

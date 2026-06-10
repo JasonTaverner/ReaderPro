@@ -16,6 +16,7 @@ struct Voice: Equatable, Hashable, Identifiable {
         case native     // AVSpeechSynthesizer (macOS nativo)
         case kokoro     // Kokoro TTS (local)
         case qwen3      // Qwen3-TTS (local o API)
+        case voxcpm     // VoxCPM2 (máxima calidad 48 kHz, mismo servidor MLX)
 
         /// Nombre legible para UI
         var displayName: String {
@@ -26,6 +27,8 @@ struct Voice: Equatable, Hashable, Identifiable {
                 return "Kokoro TTS"
             case .qwen3:
                 return "Qwen3 TTS"
+            case .voxcpm:
+                return "VoxCPM2"
             }
         }
     }

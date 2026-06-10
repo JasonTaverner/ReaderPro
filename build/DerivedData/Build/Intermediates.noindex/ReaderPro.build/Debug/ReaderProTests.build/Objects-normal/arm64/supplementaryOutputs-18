@@ -1,24 +1,38 @@
 {
-  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Application/UseCases/SaveAudioEntryUseCaseTests.swift" : {
-    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SaveAudioEntryUseCaseTests.swiftconstvalues",
-    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SaveAudioEntryUseCaseTests.d",
-    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SaveAudioEntryUseCaseTests.dia",
-    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SaveAudioEntryUseCaseTests.o",
-    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SaveAudioEntryUseCaseTests.swiftdeps"
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Application/UseCases/ProcessTextBatchUseCaseTests.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProcessTextBatchUseCaseTests.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProcessTextBatchUseCaseTests.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProcessTextBatchUseCaseTests.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProcessTextBatchUseCaseTests.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProcessTextBatchUseCaseTests.swiftdeps"
   },
-  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Domain/AudioGeneration/ValueObjects/SpeechEmotionTests.swift" : {
-    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SpeechEmotionTests.swiftconstvalues",
-    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SpeechEmotionTests.d",
-    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SpeechEmotionTests.dia",
-    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SpeechEmotionTests.o",
-    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SpeechEmotionTests.swiftdeps"
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Domain/ProjectManagement/ProjectNameTests.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectNameTests.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectNameTests.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectNameTests.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectNameTests.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectNameTests.swiftdeps"
   },
-  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Infrastructure/Configuration/StorageConfigurationTests.swift" : {
-    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/StorageConfigurationTests.swiftconstvalues",
-    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/StorageConfigurationTests.d",
-    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/StorageConfigurationTests.dia",
-    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/StorageConfigurationTests.o",
-    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/StorageConfigurationTests.swiftdeps"
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Domain/ProjectManagement/ProjectStatusTests.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectStatusTests.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectStatusTests.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectStatusTests.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectStatusTests.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectStatusTests.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Domain/ProjectManagement/ProjectTests.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectTests.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectTests.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectTests.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectTests.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectTests.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Infrastructure/TTS/Qwen3ServerManagerTests.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/Qwen3ServerManagerTests.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/Qwen3ServerManagerTests.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/Qwen3ServerManagerTests.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/Qwen3ServerManagerTests.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/Qwen3ServerManagerTests.swiftdeps"
   },
   "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/Infrastructure/TTS/Qwen3TTSAdapterTests.swift" : {
     "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/Qwen3TTSAdapterTests.swiftconstvalues",
@@ -27,11 +41,11 @@
     "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/Qwen3TTSAdapterTests.o",
     "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/Qwen3TTSAdapterTests.swiftdeps"
   },
-  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/UI/SettingsPresenterTests.swift" : {
-    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SettingsPresenterTests.swiftconstvalues",
-    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SettingsPresenterTests.d",
-    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SettingsPresenterTests.dia",
-    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SettingsPresenterTests.o",
-    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/SettingsPresenterTests.swiftdeps"
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Tests/UI/ProjectListPresenterTests.swift" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectListPresenterTests.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectListPresenterTests.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectListPresenterTests.dia",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectListPresenterTests.o",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Debug/ReaderProTests.build/Objects-normal/arm64/ProjectListPresenterTests.swiftdeps"
   }
 }

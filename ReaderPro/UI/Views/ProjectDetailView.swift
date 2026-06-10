@@ -444,6 +444,7 @@ struct ProjectDetailView: View {
                 Picker("Provider", selection: providerBinding) {
                     Text("Kokoro").tag("kokoro")
                     Text("Qwen3").tag("qwen3")
+                    Text("VoxCPM2").tag("voxcpm")
                 }
                 .pickerStyle(.segmented)
             }
@@ -480,6 +481,44 @@ struct ProjectDetailView: View {
                         Task { await presenter.transcribeReferenceAudio() }
                     },
                     isTranscribing: presenter.viewModel.isTranscribing,
+                    savedProfiles: presenter.viewModel.savedClonedVoices,
+                    selectedProfileId: presenter.viewModel.selectedClonedVoiceId,
+                    onSelectProfile: { id in
+                        presenter.selectClonedVoiceProfile(id: id)
+                    },
+                    onSaveProfile: {
+                        presenter.viewModel.cloneProfileName = ""
+                        presenter.viewModel.showSaveCloneProfileSheet = true
+                    },
+                    onDeleteProfile: { id in
+                        Task { await presenter.deleteClonedVoiceProfile(id: id) }
+                    }
+                )
+            }
+
+            // VoxCPM2-specific: style/quality options + voice cloning (48 kHz)
+            if isVoxCPMSelected {
+                Divider()
+
+                VoxCPMOptionsView(
+                    styleInstruct: voxcpmInstructBinding,
+                    cfgValue: voxcpmCfgBinding,
+                    qualitySteps: voxcpmStepsBinding,
+                    targetAccent: cloneTargetAccentBinding
+                )
+
+                VoiceCloneView(
+                    isCloneMode: cloneModeBinding,
+                    referenceAudioURL: referenceAudioBinding,
+                    referenceText: referenceTextBinding,
+                    cloneFastMode: cloneFastModeBinding,
+                    cloneFastModel: cloneFastModelBinding,
+                    cloneTargetAccent: cloneTargetAccentBinding,
+                    onTranscribe: {
+                        Task { await presenter.transcribeReferenceAudio() }
+                    },
+                    isTranscribing: presenter.viewModel.isTranscribing,
+                    showQwenOptions: false,
                     savedProfiles: presenter.viewModel.savedClonedVoices,
                     selectedProfileId: presenter.viewModel.selectedClonedVoiceId,
                     onSelectProfile: { id in
@@ -1106,6 +1145,34 @@ struct ProjectDetailView: View {
         Binding(
             get: { presenter.viewModel.cloneFastModel },
             set: { presenter.viewModel.cloneFastModel = $0 }
+        )
+    }
+
+    private var isVoxCPMSelected: Bool {
+        guard let selectedId = presenter.viewModel.selectedVoiceId,
+              let voice = presenter.viewModel.availableVoices.first(where: { $0.id == selectedId })
+        else { return false }
+        return voice.provider == Voice.TTSProvider.voxcpm.rawValue
+    }
+
+    private var voxcpmInstructBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.voxcpmInstruct },
+            set: { presenter.viewModel.voxcpmInstruct = $0 }
+        )
+    }
+
+    private var voxcpmCfgBinding: Binding<Double> {
+        Binding(
+            get: { presenter.viewModel.voxcpmCfgValue },
+            set: { presenter.viewModel.voxcpmCfgValue = $0 }
+        )
+    }
+
+    private var voxcpmStepsBinding: Binding<Double> {
+        Binding(
+            get: { presenter.viewModel.voxcpmSteps },
+            set: { presenter.viewModel.voxcpmSteps = $0 }
         )
     }
 

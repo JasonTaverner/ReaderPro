@@ -135,6 +135,15 @@ final class EditorViewModel: ObservableObject {
     /// Use lightweight 0.6B model for cloning (faster, lower quality)
     @Published var cloneFastModel: Bool = false
 
+    // MARK: - VoxCPM2 (proveedor de máxima calidad, 48 kHz)
+
+    /// Instrucciones de estilo en texto libre (p. ej. "Habla pausadamente")
+    @Published var voxcpmInstruct: String = ""
+    /// Estabilidad de la voz (cfg 1.0-3.0; 2.0 = default del modelo)
+    @Published var voxcpmCfgValue: Double = 2.0
+    /// Pasos de difusión (5-30; 10 = default del modelo)
+    @Published var voxcpmSteps: Double = 10
+
     /// Target accent for voice cloning (nil = automatic from reference audio)
     @Published var cloneTargetAccent: CloneTargetAccent? = nil
 

@@ -135,7 +135,15 @@
         "key": "Uses built-in macOS voices. No server required.",
         "location": {
           "startingColumn": 22,
-          "startingLine": 140
+          "startingLine": 141
+        }
+      },
+      {
+        "comment": "",
+        "key": "Maximum quality (48 kHz), ~2x slower than real time. Runs on the same local MLX server as Qwen3.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 147
         }
       },
       {
@@ -143,7 +151,7 @@
         "key": "Applied on next app launch",
         "location": {
           "startingColumn": 18,
-          "startingLine": 145
+          "startingLine": 152
         }
       },
       {
@@ -159,7 +167,7 @@
         "key": "Kokoro Mode",
         "location": {
           "startingColumn": 24,
-          "startingLine": 130
+          "startingLine": 131
         }
       },
       {
@@ -188,15 +196,15 @@
       },
       {
         "comment": "",
-        "key": "Local (ONNX)",
+        "key": "VoxCPM2",
         "location": {
-          "startingColumn": 26,
-          "startingLine": 131
+          "startingColumn": 22,
+          "startingLine": 126
         }
       },
       {
         "comment": "",
-        "key": "Server (Python)",
+        "key": "Local (ONNX)",
         "location": {
           "startingColumn": 26,
           "startingLine": 132
@@ -204,10 +212,18 @@
       },
       {
         "comment": "",
+        "key": "Server (Python)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 133
+        }
+      },
+      {
+        "comment": "",
         "key": "Restart required after changing server URLs",
         "location": {
           "startingColumn": 18,
-          "startingLine": 174
+          "startingLine": 181
         }
       },
       {
@@ -215,7 +231,7 @@
         "key": "Kokoro URL",
         "location": {
           "startingColumn": 22,
-          "startingLine": 157
+          "startingLine": 164
         }
       },
       {
@@ -223,7 +239,7 @@
         "key": "http://127.0.0.1:8880",
         "location": {
           "startingColumn": 27,
-          "startingLine": 161
+          "startingLine": 168
         }
       },
       {
@@ -231,7 +247,7 @@
         "key": "Qwen3 URL",
         "location": {
           "startingColumn": 22,
-          "startingLine": 166
+          "startingLine": 173
         }
       },
       {
@@ -239,7 +255,7 @@
         "key": "http://127.0.0.1:8890",
         "location": {
           "startingColumn": 27,
-          "startingLine": 170
+          "startingLine": 177
         }
       },
       {
@@ -247,7 +263,7 @@
         "key": "Turn off servers to free memory when not in use",
         "location": {
           "startingColumn": 18,
-          "startingLine": 203
+          "startingLine": 210
         }
       },
       {
@@ -255,7 +271,7 @@
         "key": "Kokoro Server",
         "location": {
           "startingColumn": 24,
-          "startingLine": 186
+          "startingLine": 193
         }
       },
       {
@@ -263,7 +279,7 @@
         "key": "Qwen3 Server",
         "location": {
           "startingColumn": 24,
-          "startingLine": 195
+          "startingLine": 202
         }
       },
       {
@@ -271,7 +287,7 @@
         "key": "Applied to new projects as initial voice settings",
         "location": {
           "startingColumn": 18,
-          "startingLine": 246
+          "startingLine": 253
         }
       },
       {
@@ -279,7 +295,7 @@
         "key": "Accent",
         "location": {
           "startingColumn": 20,
-          "startingLine": 227
+          "startingLine": 234
         }
       },
       {
@@ -287,7 +303,7 @@
         "key": "Emotion",
         "location": {
           "startingColumn": 20,
-          "startingLine": 234
+          "startingLine": 241
         }
       },
       {
@@ -295,7 +311,7 @@
         "key": "Gender",
         "location": {
           "startingColumn": 20,
-          "startingLine": 240
+          "startingLine": 247
         }
       },
       {
@@ -303,7 +319,7 @@
         "key": "None",
         "location": {
           "startingColumn": 22,
-          "startingLine": 228
+          "startingLine": 235
         }
       },
       {
@@ -311,7 +327,7 @@
         "key": "%@ %@",
         "location": {
           "startingColumn": 26,
-          "startingLine": 230
+          "startingLine": 237
         }
       },
       {
@@ -319,7 +335,7 @@
         "key": "Applied to new projects as initial clone settings",
         "location": {
           "startingColumn": 18,
-          "startingLine": 277
+          "startingLine": 290
         }
       },
       {
@@ -327,7 +343,7 @@
         "key": "Enable voice cloning by default",
         "location": {
           "startingColumn": 20,
-          "startingLine": 257
+          "startingLine": 264
         }
       },
       {
@@ -335,7 +351,7 @@
         "key": "Saved Voice",
         "location": {
           "startingColumn": 20,
-          "startingLine": 259
+          "startingLine": 266
         }
       },
       {
@@ -343,7 +359,7 @@
         "key": "Target Accent",
         "location": {
           "startingColumn": 20,
-          "startingLine": 266
+          "startingLine": 279
         }
       },
       {
@@ -351,7 +367,7 @@
         "key": "Fast cloning (less accurate, 2-3x faster)",
         "location": {
           "startingColumn": 20,
-          "startingLine": 273
+          "startingLine": 286
         }
       },
       {
@@ -359,7 +375,7 @@
         "key": "Lightweight model (0.6B, faster but lower quality)",
         "location": {
           "startingColumn": 20,
-          "startingLine": 275
+          "startingLine": 288
         }
       },
       {
@@ -367,7 +383,15 @@
         "key": "None (manual)",
         "location": {
           "startingColumn": 22,
-          "startingLine": 260
+          "startingLine": 267
+        }
+      },
+      {
+        "comment": "",
+        "key": "(Saved profile)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 272
         }
       },
       {
@@ -375,7 +399,7 @@
         "key": "%@ (%@)",
         "location": {
           "startingColumn": 26,
-          "startingLine": 262
+          "startingLine": 275
         }
       },
       {
@@ -383,7 +407,7 @@
         "key": "Automatic",
         "location": {
           "startingColumn": 22,
-          "startingLine": 267
+          "startingLine": 280
         }
       },
       {
@@ -391,7 +415,7 @@
         "key": "%@ %@",
         "location": {
           "startingColumn": 26,
-          "startingLine": 269
+          "startingLine": 282
         }
       },
       {
@@ -399,7 +423,7 @@
         "key": "Directory",
         "location": {
           "startingColumn": 22,
-          "startingLine": 289
+          "startingLine": 302
         }
       },
       {
@@ -407,7 +431,7 @@
         "key": "Saved Profiles",
         "location": {
           "startingColumn": 22,
-          "startingLine": 301
+          "startingLine": 314
         }
       },
       {
@@ -415,7 +439,7 @@
         "key": "%lld",
         "location": {
           "startingColumn": 22,
-          "startingLine": 305
+          "startingLine": 318
         }
       },
       {
@@ -423,7 +447,7 @@
         "key": "Open in Finder",
         "location": {
           "startingColumn": 23,
-          "startingLine": 313
+          "startingLine": 326
         }
       },
       {
@@ -431,7 +455,7 @@
         "key": "Server",
         "location": {
           "startingColumn": 22,
-          "startingLine": 325
+          "startingLine": 338
         }
       },
       {
@@ -439,7 +463,7 @@
         "key": "Online",
         "location": {
           "startingColumn": 27,
-          "startingLine": 330
+          "startingLine": 343
         }
       },
       {
@@ -447,7 +471,7 @@
         "key": "Offline",
         "location": {
           "startingColumn": 27,
-          "startingLine": 334
+          "startingLine": 347
         }
       },
       {
@@ -455,7 +479,7 @@
         "key": "Loaded Model",
         "location": {
           "startingColumn": 22,
-          "startingLine": 341
+          "startingLine": 354
         }
       },
       {
@@ -463,7 +487,7 @@
         "key": "None",
         "location": {
           "startingColumn": 26,
-          "startingLine": 353
+          "startingLine": 366
         }
       },
       {
@@ -471,7 +495,7 @@
         "key": "Refresh",
         "location": {
           "startingColumn": 27,
-          "startingLine": 363
+          "startingLine": 376
         }
       },
       {
@@ -479,7 +503,7 @@
         "key": "Free Memory",
         "location": {
           "startingColumn": 27,
-          "startingLine": 372
+          "startingLine": 385
         }
       }
     ]

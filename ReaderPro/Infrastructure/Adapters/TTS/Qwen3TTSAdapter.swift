@@ -236,6 +236,15 @@ final class Qwen3TTSAdapter: TTSPort {
             print("[Qwen3TTSAdapter] Clone fast model enabled (0.6B)")
         }
 
+        // Clone model override (e.g. "voxcpm" for maximum quality 48 kHz)
+        if let cloneModel = voiceConfiguration.cloneModel, !cloneModel.isEmpty {
+            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"model\"\r\n\r\n".data(using: .utf8)!)
+            body.append(cloneModel.data(using: .utf8)!)
+            body.append("\r\n".data(using: .utf8)!)
+            print("[Qwen3TTSAdapter] Clone model override: \(cloneModel)")
+        }
+
         // Accent instruct: steers pronunciation without changing voice timbre
         if let accentInstruct = voiceConfiguration.cloneAccentInstruct, !accentInstruct.isEmpty {
             body.append("--\(boundary)\r\n".data(using: .utf8)!)

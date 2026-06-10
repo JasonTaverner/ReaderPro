@@ -17,6 +17,9 @@ struct VoiceCloneView: View {
     @Binding var cloneTargetAccent: CloneTargetAccent?
     var onTranscribe: (() -> Void)? = nil
     var isTranscribing: Bool = false
+    /// Oculta las opciones específicas de Qwen3 (acento y toggles de velocidad)
+    /// cuando la vista se usa con otro proveedor (p. ej. VoxCPM2)
+    var showQwenOptions: Bool = true
 
     // Saved profiles
     var savedProfiles: [ClonedVoiceProfileDTO] = []
@@ -191,7 +194,8 @@ struct VoiceCloneView: View {
                         .padding(.top, 4)
                     }
 
-                    // Target accent selector
+                    // Target accent selector (Qwen3 only)
+                    if showQwenOptions {
                     Divider()
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Target Accent")
@@ -224,6 +228,7 @@ struct VoiceCloneView: View {
                     Toggle("Lightweight model (0.6B, faster but lower quality)", isOn: $cloneFastModel)
                         .toggleStyle(.checkbox)
                         .font(.caption)
+                    }
                 }
                 .padding(.leading, 20)
             }

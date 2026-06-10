@@ -212,10 +212,18 @@
       },
       {
         "comment": "",
+        "key": "VoxCPM2",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 447
+        }
+      },
+      {
+        "comment": "",
         "key": "Speed",
         "location": {
           "startingColumn": 27,
-          "startingLine": 513
+          "startingLine": 552
         }
       },
       {
@@ -223,7 +231,7 @@
         "key": "0.5x",
         "location": {
           "startingColumn": 26,
-          "startingLine": 523
+          "startingLine": 562
         }
       },
       {
@@ -231,7 +239,7 @@
         "key": "2.0x",
         "location": {
           "startingColumn": 26,
-          "startingLine": 525
+          "startingLine": 564
         }
       },
       {
@@ -239,7 +247,7 @@
         "key": "Estimated Duration",
         "location": {
           "startingColumn": 19,
-          "startingLine": 534
+          "startingLine": 573
         }
       },
       {
@@ -247,7 +255,7 @@
         "key": "Save Changes",
         "location": {
           "startingColumn": 23,
-          "startingLine": 559
+          "startingLine": 598
         }
       },
       {
@@ -255,7 +263,7 @@
         "key": "Capture Screen",
         "location": {
           "startingColumn": 23,
-          "startingLine": 571
+          "startingLine": 610
         }
       },
       {
@@ -263,7 +271,7 @@
         "key": "Import Images",
         "location": {
           "startingColumn": 23,
-          "startingLine": 584
+          "startingLine": 623
         }
       },
       {
@@ -271,7 +279,7 @@
         "key": "Import Document",
         "location": {
           "startingColumn": 23,
-          "startingLine": 596
+          "startingLine": 635
         }
       },
       {
@@ -279,7 +287,7 @@
         "key": "Import Text",
         "location": {
           "startingColumn": 23,
-          "startingLine": 606
+          "startingLine": 645
         }
       },
       {
@@ -287,7 +295,7 @@
         "key": "Generate Audio",
         "location": {
           "startingColumn": 27,
-          "startingLine": 618
+          "startingLine": 657
         }
       },
       {
@@ -295,7 +303,7 @@
         "key": "Generate Missing (%lld)",
         "location": {
           "startingColumn": 27,
-          "startingLine": 632
+          "startingLine": 671
         }
       },
       {
@@ -303,7 +311,7 @@
         "key": "Export Project",
         "location": {
           "startingColumn": 27,
-          "startingLine": 644
+          "startingLine": 683
         }
       },
       {
@@ -311,7 +319,7 @@
         "key": "Show in Finder",
         "location": {
           "startingColumn": 27,
-          "startingLine": 656
+          "startingLine": 695
         }
       },
       {
@@ -319,7 +327,7 @@
         "key": "%lld entries",
         "location": {
           "startingColumn": 22,
-          "startingLine": 673
+          "startingLine": 712
         }
       },
       {
@@ -327,7 +335,7 @@
         "key": "Audio Entries",
         "location": {
           "startingColumn": 23,
-          "startingLine": 669
+          "startingLine": 708
         }
       },
       {
@@ -335,7 +343,7 @@
         "key": "Mark as Unread",
         "location": {
           "startingColumn": 50,
-          "startingLine": 709
+          "startingLine": 748
         }
       },
       {
@@ -343,7 +351,7 @@
         "key": "Mark as Read",
         "location": {
           "startingColumn": 69,
-          "startingLine": 709
+          "startingLine": 748
         }
       },
       {
@@ -351,7 +359,7 @@
         "key": "Regenerate Audio",
         "location": {
           "startingColumn": 39,
-          "startingLine": 716
+          "startingLine": 755
         }
       },
       {
@@ -359,7 +367,7 @@
         "key": "Delete Entry",
         "location": {
           "startingColumn": 35,
-          "startingLine": 726
+          "startingLine": 765
         }
       },
       {
@@ -367,7 +375,7 @@
         "key": "Audio Player",
         "location": {
           "startingColumn": 23,
-          "startingLine": 740
+          "startingLine": 779
         }
       },
       {
@@ -375,7 +383,7 @@
         "key": "Auto-play",
         "location": {
           "startingColumn": 27,
-          "startingLine": 748
+          "startingLine": 787
         }
       },
       {
@@ -383,7 +391,7 @@
         "key": "Playing entry %lld of %lld",
         "location": {
           "startingColumn": 26,
-          "startingLine": 810
+          "startingLine": 849
         }
       },
       {
@@ -391,7 +399,7 @@
         "key": "Auto-play enabled",
         "location": {
           "startingColumn": 31,
-          "startingLine": 815
+          "startingLine": 854
         }
       },
       {
@@ -399,7 +407,7 @@
         "key": "Speed:",
         "location": {
           "startingColumn": 22,
-          "startingLine": 824
+          "startingLine": 863
         }
       },
       {
@@ -407,7 +415,7 @@
         "key": "Unsaved changes",
         "location": {
           "startingColumn": 22,
-          "startingLine": 877
+          "startingLine": 916
         }
       },
       {
@@ -415,7 +423,7 @@
         "key": "Saving...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 885
+          "startingLine": 924
         }
       },
       {
@@ -423,7 +431,7 @@
         "key": "Saved",
         "location": {
           "startingColumn": 22,
-          "startingLine": 894
+          "startingLine": 933
         }
       },
       {
@@ -431,7 +439,7 @@
         "key": "Loading...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 914
+          "startingLine": 953
         }
       },
       {
@@ -439,7 +447,7 @@
         "key": "Processing screenshot...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 935
+          "startingLine": 974
         }
       },
       {
@@ -447,7 +455,7 @@
         "key": "Exporting project...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 982
+          "startingLine": 1021
         }
       },
       {
@@ -455,7 +463,7 @@
         "key": "Merging audio, images, and text",
         "location": {
           "startingColumn": 22,
-          "startingLine": 985
+          "startingLine": 1024
         }
       }
     ]

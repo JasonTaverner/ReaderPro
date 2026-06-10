@@ -180,6 +180,8 @@
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceEmbeddingStore.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceSelectorView.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoicesHelpContent.o
+/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoxCPMOptionsView.o
+/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoxCPMTTSAdapter.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/WAVEncoder.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/WaveformView.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GeneratedAssetSymbols.o

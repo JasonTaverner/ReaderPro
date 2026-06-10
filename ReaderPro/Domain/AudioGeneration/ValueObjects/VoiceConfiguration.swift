@@ -24,6 +24,15 @@ struct VoiceConfiguration: Equatable {
     /// Accent instruct for voice cloning (e.g. "Speak with a Castilian Spanish accent from Spain").
     /// Passed as `instruct` parameter alongside the cloned voice to steer accent/pronunciation.
     let cloneAccentInstruct: String?
+    /// Server-side clone model override ("voxcpm" for maximum quality 48 kHz).
+    /// nil keeps the default Qwen3 Base model selection.
+    let cloneModel: String?
+    /// VoxCPM2: classifier-free guidance (1.0-3.0). Higher = more stable/faithful,
+    /// lower = more expressive. nil uses the model default (2.0).
+    let voxcpmCfgValue: Double?
+    /// VoxCPM2: diffusion inference steps (5-30). Higher = better quality, slower.
+    /// nil uses the model default (10).
+    let voxcpmSteps: Int?
 
     init(
         voiceId: String,
@@ -35,7 +44,10 @@ struct VoiceConfiguration: Equatable {
         voiceDesignLanguage: String? = nil,
         cloneFastMode: Bool = false,
         cloneFastModel: Bool = false,
-        cloneAccentInstruct: String? = nil
+        cloneAccentInstruct: String? = nil,
+        cloneModel: String? = nil,
+        voxcpmCfgValue: Double? = nil,
+        voxcpmSteps: Int? = nil
     ) {
         self.voiceId = voiceId
         self.speed = speed
@@ -47,6 +59,9 @@ struct VoiceConfiguration: Equatable {
         self.cloneFastMode = cloneFastMode
         self.cloneFastModel = cloneFastModel
         self.cloneAccentInstruct = cloneAccentInstruct
+        self.cloneModel = cloneModel
+        self.voxcpmCfgValue = voxcpmCfgValue
+        self.voxcpmSteps = voxcpmSteps
     }
 
     /// Value Object para velocidad de reproducción
