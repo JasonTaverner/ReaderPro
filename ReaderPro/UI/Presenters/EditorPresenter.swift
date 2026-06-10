@@ -50,6 +50,7 @@ final class EditorPresenter: ObservableObject {
     static let voxcpmInstructKey = "voxcpmInstruct"
     static let voxcpmCfgKey = "voxcpmCfgValue"
     static let voxcpmStepsKey = "voxcpmSteps"
+    static let voxcpmContinuationKey = "voxcpmContinuation"
 
     /// Timer para actualizar el estado de reproducción
     private var updateTimer: Timer?
@@ -1332,6 +1333,7 @@ final class EditorPresenter: ObservableObject {
         UserDefaults.standard.set(viewModel.voxcpmInstruct, forKey: Self.voxcpmInstructKey)
         UserDefaults.standard.set(viewModel.voxcpmCfgValue, forKey: Self.voxcpmCfgKey)
         UserDefaults.standard.set(viewModel.voxcpmSteps, forKey: Self.voxcpmStepsKey)
+        UserDefaults.standard.set(viewModel.voxcpmContinuation, forKey: Self.voxcpmContinuationKey)
 
         let voiceConfig = VoiceConfiguration(
             voiceId: voiceId,
@@ -1345,7 +1347,8 @@ final class EditorPresenter: ObservableObject {
             cloneFastModel: useCloning ? viewModel.cloneFastModel : false,
             cloneAccentInstruct: useCloning ? viewModel.cloneTargetAccent?.instruct : nil,
             voxcpmCfgValue: isVoxCPM ? viewModel.voxcpmCfgValue : nil,
-            voxcpmSteps: isVoxCPM ? Int(viewModel.voxcpmSteps) : nil
+            voxcpmSteps: isVoxCPM ? Int(viewModel.voxcpmSteps) : nil,
+            voxcpmContinuation: isVoxCPM && useCloning && viewModel.voxcpmContinuation
         )
 
         let voice = Voice(
@@ -1379,6 +1382,7 @@ final class EditorPresenter: ObservableObject {
         if UserDefaults.standard.object(forKey: Self.voxcpmStepsKey) != nil {
             viewModel.voxcpmSteps = UserDefaults.standard.double(forKey: Self.voxcpmStepsKey)
         }
+        viewModel.voxcpmContinuation = UserDefaults.standard.bool(forKey: Self.voxcpmContinuationKey)
 
         // Qwen3 voice defaults
         if let accent = UserDefaults.standard.string(forKey: SettingsPresenter.defaultQwen3AccentKey) {

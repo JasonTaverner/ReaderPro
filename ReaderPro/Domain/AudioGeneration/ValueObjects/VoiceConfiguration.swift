@@ -33,6 +33,9 @@ struct VoiceConfiguration: Equatable {
     /// VoxCPM2: diffusion inference steps (5-30). Higher = better quality, slower.
     /// nil uses the model default (10).
     let voxcpmSteps: Int?
+    /// VoxCPM2: continuation mode — the model literally continues the reference
+    /// audio, inheriting accent and prosody much more strongly than normal cloning.
+    let voxcpmContinuation: Bool
 
     init(
         voiceId: String,
@@ -47,7 +50,8 @@ struct VoiceConfiguration: Equatable {
         cloneAccentInstruct: String? = nil,
         cloneModel: String? = nil,
         voxcpmCfgValue: Double? = nil,
-        voxcpmSteps: Int? = nil
+        voxcpmSteps: Int? = nil,
+        voxcpmContinuation: Bool = false
     ) {
         self.voiceId = voiceId
         self.speed = speed
@@ -62,6 +66,7 @@ struct VoiceConfiguration: Equatable {
         self.cloneModel = cloneModel
         self.voxcpmCfgValue = voxcpmCfgValue
         self.voxcpmSteps = voxcpmSteps
+        self.voxcpmContinuation = voxcpmContinuation
     }
 
     /// Value Object para velocidad de reproducción

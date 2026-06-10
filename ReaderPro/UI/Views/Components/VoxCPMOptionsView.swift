@@ -9,6 +9,7 @@ struct VoxCPMOptionsView: View {
     @Binding var cfgValue: Double
     @Binding var qualitySteps: Double
     @Binding var targetAccent: CloneTargetAccent?
+    @Binding var continuationMode: Bool
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -78,6 +79,18 @@ struct VoxCPMOptionsView: View {
                 Text("Higher = better quality, slower generation (default 10)")
                     .font(.caption2)
                     .foregroundColor(.appTextMuted)
+            }
+
+            // Modo continuación (opción extra): herencia máxima del acento de la referencia
+            VStack(alignment: .leading, spacing: 2) {
+                Toggle("Continuation mode (strongest accent fidelity)", isOn: $continuationMode)
+                    .toggleStyle(.checkbox)
+                    .font(.caption)
+
+                Text("The model literally continues your reference audio, inheriting its accent and prosody. Requires voice cloning with a transcribed reference.")
+                    .font(.caption2)
+                    .foregroundColor(.appTextMuted)
+                    .padding(.leading, 20)
             }
 
             Text("Speed does not affect VoxCPM2 generation — adjust playback speed in the player.")

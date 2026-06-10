@@ -504,7 +504,8 @@ struct ProjectDetailView: View {
                     styleInstruct: voxcpmInstructBinding,
                     cfgValue: voxcpmCfgBinding,
                     qualitySteps: voxcpmStepsBinding,
-                    targetAccent: cloneTargetAccentBinding
+                    targetAccent: cloneTargetAccentBinding,
+                    continuationMode: voxcpmContinuationBinding
                 )
 
                 VoiceCloneView(
@@ -1173,6 +1174,13 @@ struct ProjectDetailView: View {
         Binding(
             get: { presenter.viewModel.voxcpmSteps },
             set: { presenter.viewModel.voxcpmSteps = $0 }
+        )
+    }
+
+    private var voxcpmContinuationBinding: Binding<Bool> {
+        Binding(
+            get: { presenter.viewModel.voxcpmContinuation },
+            set: { presenter.viewModel.voxcpmContinuation = $0 }
         )
     }
 

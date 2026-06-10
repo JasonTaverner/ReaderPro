@@ -733,6 +733,7 @@ def clone_voice(
     model_type: str | None = None,
     cfg_value: float | None = None,
     inference_timesteps: int | None = None,
+    continuation: bool = False,
 ) -> bytes:
     """
     Synthesize speech using a cloned voice from reference audio.
@@ -857,6 +858,19 @@ def clone_voice(
                             gen_kwargs["cfg_value"] = float(cfg_value)
                         if inference_timesteps is not None:
                             gen_kwargs["inference_timesteps"] = int(inference_timesteps)
+
+                        # Modo continuación: el modelo CONTINÚA literalmente el audio
+                        # de referencia (prefijo) en lugar de solo inspirarse en él.
+                        # Hereda acento y prosodia con mucha más fuerza; requiere la
+                        # transcripción de la referencia (ref_text).
+                        if continuation and ref_text:
+                            prompt_text = ref_text.strip()
+                            if prompt_text and prompt_text[-1] not in ".!?…":
+                                prompt_text += "."
+                            gen_kwargs.pop("ref_audio", None)
+                            gen_kwargs.pop("ref_text", None)
+                            gen_kwargs["prompt_audio"] = reference_audio_path
+                            gen_kwargs["prompt_text"] = prompt_text + " "
 
                     # kwargs específicos de la familia qwen3: otras familias
                     # (p. ej. voxcpm) no los entienden y fallarían
@@ -1221,6 +1235,7 @@ def clone():
     clone_model = request.form.get("model")  # base | base_fast | voxcpm (optional)
     clone_cfg_value = request.form.get("cfg_value", type=float)  # voxcpm only
     clone_steps = request.form.get("inference_timesteps", type=int)  # voxcpm only
+    clone_continuation = request.form.get("continuation", "false").lower() == "true"  # voxcpm only
 
     try:
         speed = float(speed)
@@ -1268,6 +1283,7 @@ def clone():
             model_type=clone_model,
             cfg_value=clone_cfg_value,
             inference_timesteps=clone_steps,
+            continuation=clone_continuation,
         )
 
         return Response(

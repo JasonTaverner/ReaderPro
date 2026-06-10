@@ -143,7 +143,7 @@
         "key": "Speed",
         "location": {
           "startingColumn": 27,
-          "startingLine": 280
+          "startingLine": 281
         }
       },
       {
@@ -151,7 +151,7 @@
         "key": "0.5x",
         "location": {
           "startingColumn": 26,
-          "startingLine": 293
+          "startingLine": 294
         }
       },
       {
@@ -159,7 +159,7 @@
         "key": "2.0x",
         "location": {
           "startingColumn": 26,
-          "startingLine": 299
+          "startingLine": 300
         }
       },
       {
@@ -167,7 +167,7 @@
         "key": "Estimated Duration",
         "location": {
           "startingColumn": 19,
-          "startingLine": 310
+          "startingLine": 311
         }
       },
       {
@@ -175,7 +175,7 @@
         "key": "Save Project",
         "location": {
           "startingColumn": 19,
-          "startingLine": 338
+          "startingLine": 339
         }
       },
       {
@@ -183,7 +183,7 @@
         "key": "Cancel",
         "location": {
           "startingColumn": 20,
-          "startingLine": 350
+          "startingLine": 351
         }
       },
       {
@@ -191,7 +191,7 @@
         "key": "Done",
         "location": {
           "startingColumn": 22,
-          "startingLine": 364
+          "startingLine": 365
         }
       }
     ]

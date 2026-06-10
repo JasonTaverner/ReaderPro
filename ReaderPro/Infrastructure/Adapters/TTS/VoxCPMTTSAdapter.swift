@@ -165,6 +165,9 @@ final class VoxCPMTTSAdapter: TTSPort {
         if let steps = voiceConfiguration.voxcpmSteps {
             appendField("inference_timesteps", "\(steps)")
         }
+        if voiceConfiguration.voxcpmContinuation {
+            appendField("continuation", "true")
+        }
 
         body.append("--\(boundary)--\r\n".data(using: .utf8)!)
 

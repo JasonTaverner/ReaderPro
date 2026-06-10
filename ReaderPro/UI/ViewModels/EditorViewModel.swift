@@ -143,6 +143,8 @@ final class EditorViewModel: ObservableObject {
     @Published var voxcpmCfgValue: Double = 2.0
     /// Pasos de difusión (5-30; 10 = default del modelo)
     @Published var voxcpmSteps: Double = 10
+    /// Modo continuación: hereda acento/prosodia de la referencia con máxima fuerza
+    @Published var voxcpmContinuation: Bool = false
 
     /// Target accent for voice cloning (nil = automatic from reference audio)
     @Published var cloneTargetAccent: CloneTargetAccent? = nil

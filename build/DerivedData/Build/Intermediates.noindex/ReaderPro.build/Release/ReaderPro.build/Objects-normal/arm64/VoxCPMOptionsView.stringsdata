@@ -7,7 +7,7 @@
         "key": "Speed does not affect VoxCPM2 generation — adjust playback speed in the player.",
         "location": {
           "startingColumn": 18,
-          "startingLine": 83
+          "startingLine": 96
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "VoxCPM2 Options",
         "location": {
           "startingColumn": 19,
-          "startingLine": 15
+          "startingLine": 16
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "Target accent",
         "location": {
           "startingColumn": 22,
-          "startingLine": 21
+          "startingLine": 22
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "Accent",
         "location": {
           "startingColumn": 24,
-          "startingLine": 25
+          "startingLine": 26
         }
       },
       {
@@ -39,7 +39,7 @@
         "key": "Automatic",
         "location": {
           "startingColumn": 26,
-          "startingLine": 26
+          "startingLine": 27
         }
       },
       {
@@ -47,7 +47,7 @@
         "key": "%@ %@",
         "location": {
           "startingColumn": 30,
-          "startingLine": 28
+          "startingLine": 29
         }
       },
       {
@@ -55,7 +55,7 @@
         "key": "Style instructions (optional)",
         "location": {
           "startingColumn": 22,
-          "startingLine": 36
+          "startingLine": 37
         }
       },
       {
@@ -63,7 +63,7 @@
         "key": "Try \"Habla más despacio\" if the voice sounds rushed.",
         "location": {
           "startingColumn": 22,
-          "startingLine": 44
+          "startingLine": 45
         }
       },
       {
@@ -71,7 +71,7 @@
         "key": "E.g.: Habla pausadamente, con tono calmado",
         "location": {
           "startingColumn": 27,
-          "startingLine": 40
+          "startingLine": 41
         }
       },
       {
@@ -79,7 +79,7 @@
         "key": "Lower = more expressive, higher = more stable and faithful",
         "location": {
           "startingColumn": 22,
-          "startingLine": 61
+          "startingLine": 62
         }
       },
       {
@@ -87,7 +87,7 @@
         "key": "Voice stability",
         "location": {
           "startingColumn": 26,
-          "startingLine": 52
+          "startingLine": 53
         }
       },
       {
@@ -95,7 +95,7 @@
         "key": "Higher = better quality, slower generation (default 10)",
         "location": {
           "startingColumn": 22,
-          "startingLine": 78
+          "startingLine": 79
         }
       },
       {
@@ -103,7 +103,7 @@
         "key": "Audio quality (diffusion steps)",
         "location": {
           "startingColumn": 26,
-          "startingLine": 69
+          "startingLine": 70
         }
       },
       {
@@ -111,7 +111,23 @@
         "key": "%lld",
         "location": {
           "startingColumn": 26,
-          "startingLine": 73
+          "startingLine": 74
+        }
+      },
+      {
+        "comment": "",
+        "key": "The model literally continues your reference audio, inheriting its accent and prosody. Requires voice cloning with a transcribed reference.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 90
+        }
+      },
+      {
+        "comment": "",
+        "key": "Continuation mode (strongest accent fidelity)",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 86
         }
       }
     ]

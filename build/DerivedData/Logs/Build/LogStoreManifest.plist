@@ -6,7 +6,7 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>447B282D-2779-426F-949F-855A53B4ABC1</key>
+		<key>04486725-9F5F-4354-9A8E-85BF8C9D4ADF</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,49 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>447B282D-2779-426F-949F-855A53B4ABC1.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>W</string>
-				<key>totalNumberOfAnalyzerIssues</key>
-				<integer>0</integer>
-				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
-				<key>totalNumberOfTestFailures</key>
-				<integer>0</integer>
-				<key>totalNumberOfWarnings</key>
-				<integer>10</integer>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>ReaderPro project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>ReaderPro</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project ReaderPro with scheme ReaderPro and configuration Release</string>
-			<key>timeStartedRecording</key>
-			<real>802795075.77684796</real>
-			<key>timeStoppedRecording</key>
-			<real>802795096.234604</real>
-			<key>title</key>
-			<string>Building project ReaderPro with scheme ReaderPro and configuration Release</string>
-			<key>uniqueIdentifier</key>
-			<string>447B282D-2779-426F-949F-855A53B4ABC1</string>
-		</dict>
-		<key>779AD0A5-6630-43ED-9EE7-F788637B13F4</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>779AD0A5-6630-43ED-9EE7-F788637B13F4.xcactivitylog</string>
+			<string>04486725-9F5F-4354-9A8E-85BF8C9D4ADF.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -82,15 +40,15 @@
 			<key>signature</key>
 			<string>Building project ReaderPro with scheme ReaderPro and configuration Release</string>
 			<key>timeStartedRecording</key>
-			<real>802794673.88155198</real>
+			<real>802796882.72691596</real>
 			<key>timeStoppedRecording</key>
-			<real>802794675.97279596</real>
+			<real>802796883.81351602</real>
 			<key>title</key>
 			<string>Building project ReaderPro with scheme ReaderPro and configuration Release</string>
 			<key>uniqueIdentifier</key>
-			<string>779AD0A5-6630-43ED-9EE7-F788637B13F4</string>
+			<string>04486725-9F5F-4354-9A8E-85BF8C9D4ADF</string>
 		</dict>
-		<key>D5FCC8DA-95E2-48FC-8B6E-4F725ABD0D8D</key>
+		<key>220AE7FB-1B1C-4667-BFD3-7B18440C1BE8</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -99,7 +57,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>D5FCC8DA-95E2-48FC-8B6E-4F725ABD0D8D.xcactivitylog</string>
+			<string>220AE7FB-1B1C-4667-BFD3-7B18440C1BE8.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -124,13 +82,13 @@
 			<key>signature</key>
 			<string>Building project ReaderPro with scheme ReaderPro and configuration Release</string>
 			<key>timeStartedRecording</key>
-			<real>802794528.93742704</real>
+			<real>802796788.14157605</real>
 			<key>timeStoppedRecording</key>
-			<real>802794558.159935</real>
+			<real>802796809.53366005</real>
 			<key>title</key>
 			<string>Building project ReaderPro with scheme ReaderPro and configuration Release</string>
 			<key>uniqueIdentifier</key>
-			<string>D5FCC8DA-95E2-48FC-8B6E-4F725ABD0D8D</string>
+			<string>220AE7FB-1B1C-4667-BFD3-7B18440C1BE8</string>
 		</dict>
 	</dict>
 </dict>
