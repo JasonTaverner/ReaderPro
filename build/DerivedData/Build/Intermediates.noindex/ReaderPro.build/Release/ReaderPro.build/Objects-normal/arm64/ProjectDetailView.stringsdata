@@ -391,7 +391,7 @@
         "key": "Audio Player",
         "location": {
           "startingColumn": 23,
-          "startingLine": 829
+          "startingLine": 840
         }
       },
       {
@@ -399,7 +399,7 @@
         "key": "Auto-play",
         "location": {
           "startingColumn": 27,
-          "startingLine": 837
+          "startingLine": 848
         }
       },
       {
@@ -407,7 +407,7 @@
         "key": "Playing entry %lld of %lld",
         "location": {
           "startingColumn": 26,
-          "startingLine": 899
+          "startingLine": 910
         }
       },
       {
@@ -415,7 +415,7 @@
         "key": "Auto-play enabled",
         "location": {
           "startingColumn": 31,
-          "startingLine": 904
+          "startingLine": 915
         }
       },
       {
@@ -423,7 +423,7 @@
         "key": "Speed:",
         "location": {
           "startingColumn": 22,
-          "startingLine": 913
+          "startingLine": 924
         }
       },
       {
@@ -431,7 +431,7 @@
         "key": "Unsaved changes",
         "location": {
           "startingColumn": 22,
-          "startingLine": 966
+          "startingLine": 977
         }
       },
       {
@@ -439,7 +439,7 @@
         "key": "Saving...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 974
+          "startingLine": 985
         }
       },
       {
@@ -447,7 +447,7 @@
         "key": "Saved",
         "location": {
           "startingColumn": 22,
-          "startingLine": 983
+          "startingLine": 994
         }
       },
       {
@@ -455,7 +455,7 @@
         "key": "Loading...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 1003
+          "startingLine": 1014
         }
       },
       {
@@ -463,7 +463,7 @@
         "key": "Processing screenshot...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 1024
+          "startingLine": 1035
         }
       },
       {
@@ -471,7 +471,7 @@
         "key": "Exporting project...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 1071
+          "startingLine": 1082
         }
       },
       {
@@ -479,7 +479,7 @@
         "key": "Merging audio, images, and text",
         "location": {
           "startingColumn": 22,
-          "startingLine": 1074
+          "startingLine": 1085
         }
       }
     ]

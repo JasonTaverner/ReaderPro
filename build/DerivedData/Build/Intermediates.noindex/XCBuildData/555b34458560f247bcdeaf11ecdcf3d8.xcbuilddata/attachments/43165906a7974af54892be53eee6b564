@@ -1,4 +1,0 @@
-module OnnxRuntimeBindings {
-umbrella "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/SourcePackages/checkouts/onnxruntime-swift-package-manager/objectivec/include"
-export *
-}

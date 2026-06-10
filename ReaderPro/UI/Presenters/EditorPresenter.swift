@@ -33,6 +33,7 @@ final class EditorPresenter: ObservableObject {
     private let ttsCoordinator: TTSServerCoordinator?
     private let clonedVoiceRepository: ClonedVoiceRepositoryPort?
     private let generationManager: GenerationManager
+    private let alignmentService: AlignmentService?
 
     /// Subscription para propagar cambios del viewModel anidado
     private var viewModelCancellable: AnyCancellable?
@@ -87,7 +88,8 @@ final class EditorPresenter: ObservableObject {
         audioStorage: AudioStoragePort,
         ttsCoordinator: TTSServerCoordinator? = nil,
         clonedVoiceRepository: ClonedVoiceRepositoryPort? = nil,
-        generationManager: GenerationManager? = nil
+        generationManager: GenerationManager? = nil,
+        alignmentService: AlignmentService? = nil
     ) {
         self.createProjectUseCase = createProjectUseCase
         self.getProjectUseCase = getProjectUseCase
@@ -106,6 +108,7 @@ final class EditorPresenter: ObservableObject {
         self.ttsCoordinator = ttsCoordinator
         self.clonedVoiceRepository = clonedVoiceRepository
         self.generationManager = generationManager ?? .shared
+        self.alignmentService = alignmentService
 
         // Propagar cambios del viewModel anidado al presenter
         // Esto soluciona el problema de SwiftUI con ObservableObjects anidados
@@ -857,6 +860,9 @@ final class EditorPresenter: ObservableObject {
 
     /// Detiene la reproducción y limpia estado
     func stopPlayback() async {
+        viewModel.playingWordTimings = nil
+        viewModel.playingEntryText = ""
+
         stopUpdateTimer()
         await audioPlayer.stop()
         viewModel.isPlaying = false
@@ -891,10 +897,40 @@ final class EditorPresenter: ObservableObject {
             startUpdateTimer()
             await audioPlayer.play()
             updatePlaybackState()
+
+            // Resaltado karaoke: pedir los tiempos por palabra en segundo plano
+            // (caché en disco la primera vez; best-effort, sin servidor no hay resaltado)
+            loadWordTimings(entryId: id, audioFullPath: fullPath)
         } catch {
             print("[EditorPresenter] Failed to play entry: \(error)")
             viewModel.playingEntryId = nil
             viewModel.currentPlayingIndex = -1
+        }
+    }
+
+    /// Carga (o calcula y guarda) los tiempos por palabra de la entrada en
+    /// reproducción para el resaltado sincronizado
+    private func loadWordTimings(entryId: String, audioFullPath: String) {
+        viewModel.playingWordTimings = nil
+        viewModel.playingEntryText = ""
+        guard let alignmentService else { return }
+        guard let entry = viewModel.entries.first(where: { $0.id == entryId }) else { return }
+
+        let text = viewModel.entryTexts[entryId] ?? entry.fullText
+        let voiceLanguage = viewModel.availableVoices
+            .first(where: { $0.id == viewModel.selectedVoiceId })?.language ?? "es"
+        let language = voiceLanguage.count >= 2 && voiceLanguage != "multi"
+            ? String(voiceLanguage.prefix(2)) : "es"
+
+        Task { [weak self] in
+            guard let timings = try? await alignmentService.loadOrAlign(
+                audioFullPath: audioFullPath, text: text, language: language
+            ) else { return }
+            await MainActor.run { [weak self] in
+                guard let self, self.viewModel.playingEntryId == entryId else { return }
+                self.viewModel.playingEntryText = text
+                self.viewModel.playingWordTimings = timings
+            }
         }
     }
 

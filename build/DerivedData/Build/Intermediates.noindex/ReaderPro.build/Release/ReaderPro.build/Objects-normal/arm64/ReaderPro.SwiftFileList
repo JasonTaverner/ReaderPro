@@ -1,6 +1,7 @@
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Audio/AVAudioPlayerAdapter.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Audio/AVFoundationEditorAdapter.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/AccentSelectorView.swift
+/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/AlignmentService.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Theme/AppColors.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/Errors/ApplicationError.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ManageFolders/AssignProjectToFolderUseCase.swift
@@ -84,6 +85,7 @@
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/ImageDetailView.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/ImportTextSheet.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Errors/InfrastructureError.swift
+/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/KaraokeTextView.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/KokoroModelStatusView.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/KokoroModelStore.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/KokoroONNXAdapter.swift

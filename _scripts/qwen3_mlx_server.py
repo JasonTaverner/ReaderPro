@@ -1488,6 +1488,137 @@ def transcribe():
             pass
 
 
+@app.route("/align", methods=["POST"])
+def align():
+    """
+    Align audio with its original text, returning word-level timestamps.
+
+    Request: multipart/form-data
+        - audio: WAV/MP3/M4A file (el audio generado por TTS)
+        - text: texto ORIGINAL sintetizado (las palabras devueltas son las suyas)
+        - language: hint de idioma para whisper (opcional, p. ej. "es")
+
+    Returns:
+        JSON { "words": [{"word", "start", "end", "char_start", "char_end"}] }
+    """
+    if "audio" not in request.files:
+        return jsonify({"error": "Missing 'audio' file"}), 400
+    original_text = request.form.get("text", "")
+    if not original_text.strip():
+        return jsonify({"error": "Missing 'text' field"}), 400
+    language = request.form.get("language") or None
+
+    audio_file = request.files["audio"]
+    suffix = os.path.splitext(audio_file.filename or "audio.wav")[1] or ".wav"
+    fd, tmp_path = tempfile.mkstemp(suffix=suffix)
+    os.close(fd)
+
+    try:
+        audio_file.save(tmp_path)
+        logger.info(f"Aligning audio with text ({len(original_text)} chars)")
+
+        import mlx_whisper
+
+        result = mlx_whisper.transcribe(
+            tmp_path,
+            path_or_hf_repo="mlx-community/whisper-base-mlx",
+            word_timestamps=True,
+            language=language,
+        )
+
+        # Palabras de whisper con sus tiempos
+        whisper_words = []
+        for seg in result.get("segments", []):
+            for w in seg.get("words", []):
+                token = (w.get("word") or "").strip()
+                if token:
+                    whisper_words.append((token, float(w["start"]), float(w["end"])))
+
+        words = _align_words(original_text, whisper_words)
+        logger.info(f"Alignment: {len(words)} words mapped from {len(whisper_words)} whisper tokens")
+        return jsonify({"words": words})
+
+    except ImportError:
+        return jsonify({"error": "mlx-whisper not installed on server"}), 500
+    except Exception as e:
+        logger.exception("Alignment failed")
+        return jsonify({"error": str(e)}), 500
+    finally:
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+
+
+def _align_words(original_text: str, whisper_words: list) -> list:
+    """Asigna tiempos a las palabras del texto ORIGINAL alineándolas con la
+    transcripción de whisper (matching difuso: el TTS lee números/abreviaturas
+    de forma distinta y whisper puede transcribir con variaciones)."""
+    import difflib
+    import re
+    import unicodedata
+
+    def norm(w: str) -> str:
+        w = unicodedata.normalize("NFD", w.lower())
+        w = "".join(c for c in w if unicodedata.category(c) != "Mn")
+        return re.sub(r"[^a-z0-9]", "", w)
+
+    # Tokenizar el original conservando offsets de caracteres
+    orig = [(m.group(), m.start(), m.end()) for m in re.finditer(r"\S+", original_text)]
+    if not orig:
+        return []
+    if not whisper_words:
+        return []
+
+    orig_norm = [norm(w) for w, _, _ in orig]
+    wh_norm = [norm(w) for w, _, _ in whisper_words]
+
+    timings: list = [None] * len(orig)
+    matcher = difflib.SequenceMatcher(None, orig_norm, wh_norm, autojunk=False)
+    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
+        if tag == "equal":
+            for k in range(i2 - i1):
+                _, ws, we = whisper_words[j1 + k]
+                timings[i1 + k] = (ws, we)
+        elif tag == "replace" and j2 > j1:
+            # Repartir el intervalo whisper proporcionalmente entre las palabras orig
+            block_start = whisper_words[j1][1]
+            block_end = whisper_words[j2 - 1][2]
+            n = i2 - i1
+            span = max(block_end - block_start, 0.01)
+            for k in range(n):
+                ws = block_start + span * k / n
+                we = block_start + span * (k + 1) / n
+                timings[i1 + k] = (ws, we)
+        # delete (orig sin audio) / insert (whisper extra): se interpola después
+
+    # Interpolar los huecos entre vecinos con timing conocido
+    last_end = 0.0
+    for i in range(len(timings)):
+        if timings[i] is None:
+            nxt = next((timings[j][0] for j in range(i + 1, len(timings)) if timings[j]), None)
+            if nxt is None:
+                nxt = last_end + 0.3
+            timings[i] = (last_end, max(nxt, last_end + 0.05))
+        # Forzar monotonia
+        ws, we = timings[i]
+        ws = max(ws, last_end)
+        we = max(we, ws + 0.02)
+        timings[i] = (ws, we)
+        last_end = we
+
+    return [
+        {
+            "word": w,
+            "start": round(t[0], 3),
+            "end": round(t[1], 3),
+            "char_start": cs,
+            "char_end": ce,
+        }
+        for (w, cs, ce), t in zip(orig, timings)
+    ]
+
+
 @app.route("/benchmark", methods=["POST"])
 def benchmark():
     """Measure generation speed to diagnose performance issues.

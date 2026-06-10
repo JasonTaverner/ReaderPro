@@ -1,6 +1,7 @@
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AVAudioPlayerAdapter.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AVFoundationEditorAdapter.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AccentSelectorView.o
+/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AlignmentService.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AppColors.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ApplicationError.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AssignProjectToFolderUseCase.o
@@ -84,6 +85,7 @@
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImageDetailView.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImportTextSheet.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/InfrastructureError.o
+/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KaraokeTextView.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroModelStatusView.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroModelStore.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroONNXAdapter.o

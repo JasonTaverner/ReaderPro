@@ -623,6 +623,11 @@
     "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectMapper.bc",
     "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectMapper.o"
   },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/AlignmentService.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AlignmentService.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AlignmentService.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AlignmentService.o"
+  },
   "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/ChatterboxTTSAdapter.swift" : {
     "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxTTSAdapter.o",
     "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxTTSAdapter.bc",
@@ -867,6 +872,11 @@
     "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImportTextSheet.o",
     "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImportTextSheet.bc",
     "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImportTextSheet.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/KaraokeTextView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KaraokeTextView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KaraokeTextView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KaraokeTextView.o"
   },
   "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/MergeOptionsSheet.swift" : {
     "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeOptionsSheet.o",

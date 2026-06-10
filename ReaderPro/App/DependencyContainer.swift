@@ -127,6 +127,13 @@ final class DependencyContainer {
         return ChatterboxTTSAdapter(baseURL: url)
     }()
 
+    /// Alineación palabra-audio para el resaltado karaoke (mismo servidor MLX)
+    private lazy var alignmentServiceInstance: AlignmentService = {
+        let urlString = UserDefaults.standard.string(forKey: "qwen3ServerURL") ?? "http://127.0.0.1:8890"
+        let url = URL(string: urlString) ?? URL(string: "http://127.0.0.1:8890")!
+        return AlignmentService(baseURL: url)
+    }()
+
     /// Supertonic comparte el servidor MLX de Qwen3 (misma URL y manager)
     private lazy var supertonicTTSAdapter: SupertonicTTSAdapter = {
         let urlString = UserDefaults.standard.string(forKey: "qwen3ServerURL") ?? "http://127.0.0.1:8890"
@@ -381,7 +388,8 @@ final class DependencyContainer {
             audioStorage: audioStorage,
             ttsCoordinator: ttsCoordinator,
             clonedVoiceRepository: clonedVoiceRepository,
-            generationManager: generationManager
+            generationManager: generationManager,
+            alignmentService: alignmentServiceInstance
         )
         _editorPresenter = presenter
         return presenter

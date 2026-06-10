@@ -824,6 +824,17 @@ struct ProjectDetailView: View {
         VStack(alignment: .leading, spacing: 16) {
             Divider()
 
+            // Lectura sincronizada: frase en curso con la palabra actual resaltada
+            if presenter.viewModel.playingEntryId != nil,
+               let timings = presenter.viewModel.playingWordTimings,
+               !timings.isEmpty {
+                KaraokeTextView(
+                    text: presenter.viewModel.playingEntryText,
+                    timings: timings,
+                    currentTime: presenter.viewModel.currentTime
+                )
+            }
+
             // Header with Auto-play toggle
             HStack {
                 Label("Audio Player", systemImage: "speaker.wave.2")

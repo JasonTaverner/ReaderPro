@@ -97,6 +97,12 @@ final class EditorViewModel: ObservableObject {
     /// ID del entry actualmente reproduciéndose
     @Published var playingEntryId: String?
 
+    /// Tiempos por palabra de la entrada en reproducción (resaltado karaoke);
+    /// nil mientras se calculan o si la alineación no está disponible
+    @Published var playingWordTimings: [WordTiming]?
+    /// Texto de la entrada en reproducción (para el resaltado)
+    @Published var playingEntryText: String = ""
+
     // MARK: - Entry Tabs
 
     /// Selected entry tab: nil = project text, String = entry id
