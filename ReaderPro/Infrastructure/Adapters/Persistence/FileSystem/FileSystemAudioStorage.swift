@@ -60,10 +60,21 @@ final class FileSystemAudioStorage: AudioStoragePort {
         } else {
             number = nextSequentialNumber(in: dirURL, ext: "wav")
         }
+
+        // 3. Comprimir a AAC/M4A (~6-10x menos disco que WAV; transparente para voz).
+        // Toda la app lee .m4a igual que .wav (AVAudioPlayer/AVAudioFile); los WAV
+        // antiguos siguen funcionando tal cual. Si la codificación falla, se guarda
+        // el WAV original (comportamiento previo).
+        if let m4aFilename = try? Self.encodeToM4A(wavData: audioData.data, in: dirURL, number: number) {
+            let relativePath = "\(folderName)/\(m4aFilename)"
+            print("[FileSystemAudioStorage] Saved compressed audio: \(relativePath)")
+            return relativePath
+        }
+
         let filename = String(format: "%03d.wav", number)
         let relativePath = "\(folderName)/\(filename)"
 
-        // 3. Get full path
+        // 3b. Get full path (fallback WAV)
         let fileURL = dirURL.appendingPathComponent(filename)
 
         print("[FileSystemAudioStorage] Saving audio: \(relativePath)")
@@ -205,6 +216,50 @@ final class FileSystemAudioStorage: AudioStoragePort {
 
     /// Finds the next sequential number for files in a directory with a given extension
     /// Scans existing files like 001.wav, 002.wav and returns max + 1
+    /// Codifica un WAV en memoria a AAC (.m4a) en el directorio dado.
+    /// Devuelve el nombre de fichero (NNN.m4a) o lanza si la codificación falla.
+    private static func encodeToM4A(wavData: Data, in dirURL: URL, number: Int) throws -> String {
+        let tempWAV = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString + ".wav")
+        try wavData.write(to: tempWAV)
+        defer { try? FileManager.default.removeItem(at: tempWAV) }
+
+        let inFile = try AVAudioFile(forReading: tempWAV)
+        let format = inFile.processingFormat
+
+        let filename = String(format: "%03d.m4a", number)
+        let outURL = dirURL.appendingPathComponent(filename)
+        try? FileManager.default.removeItem(at: outURL)
+
+        // 64 kbps para 24 kHz (Kokoro/Qwen3/Chatterbox), 96 kbps para 44-48 kHz
+        // (Supertonic/VoxCPM2): transparente para voz
+        let bitRate = format.sampleRate >= 44_100 ? 96_000 : 64_000
+        let settings: [String: Any] = [
+            AVFormatIDKey: kAudioFormatMPEG4AAC,
+            AVSampleRateKey: format.sampleRate,
+            AVNumberOfChannelsKey: format.channelCount,
+            AVEncoderBitRateKey: bitRate,
+        ]
+
+        do {
+            let outFile = try AVAudioFile(forWriting: outURL, settings: settings)
+            guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: 32_768) else {
+                throw InfrastructureError.fileWriteFailed(outURL.path)
+            }
+            while inFile.framePosition < inFile.length {
+                try inFile.read(into: buffer)
+                if buffer.frameLength == 0 { break }
+                try outFile.write(from: buffer)
+            }
+        } catch {
+            // No dejar un .m4a a medias
+            try? FileManager.default.removeItem(at: outURL)
+            throw error
+        }
+
+        return filename
+    }
+
     private func nextSequentialNumber(in directory: URL, ext: String) -> Int {
         guard let contents = try? fileManager.contentsOfDirectory(
             at: directory,
@@ -215,7 +270,9 @@ final class FileSystemAudioStorage: AudioStoragePort {
         }
 
         var maxNumber = 0
-        for url in contents where url.pathExtension == ext {
+        // El audio puede ser .wav (antiguo) o .m4a (comprimido): contar ambos
+        let audioExtensions = ext == "wav" ? ["wav", "m4a"] : [ext]
+        for url in contents where audioExtensions.contains(url.pathExtension) {
             let name = url.deletingPathExtension().lastPathComponent
             if let number = Int(name) {
                 maxNumber = max(maxNumber, number)

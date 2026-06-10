@@ -83,7 +83,8 @@ final class FileSystemAudioStorageTests: XCTestCase {
 
         // Assert
         XCTAssertFalse(path.isEmpty)
-        XCTAssertTrue(path.hasSuffix(".wav"))
+        // El audio válido se comprime a AAC al guardarse
+        XCTAssertTrue(path.hasSuffix(".m4a"))
     }
 
     func test_save_shouldCreateFile() async throws {
@@ -108,7 +109,7 @@ final class FileSystemAudioStorageTests: XCTestCase {
 
         // Assert
         XCTAssertTrue(path.contains("TestProject"))
-        XCTAssertTrue(path.hasSuffix(".wav"))
+        XCTAssertTrue(path.hasSuffix(".m4a"))
     }
 
     func test_save_multipleTimes_shouldCreateMultipleFiles() async throws {
@@ -144,7 +145,9 @@ final class FileSystemAudioStorageTests: XCTestCase {
 
         // Assert
         XCTAssertNotNil(loadedAudio)
-        XCTAssertEqual(loadedAudio.data.count, originalAudio.data.count)
+        // Comprimido a AAC: legible y más pequeño que el WAV original
+        XCTAssertGreaterThan(loadedAudio.data.count, 0)
+        XCTAssertLessThan(loadedAudio.data.count, originalAudio.data.count)
         XCTAssertGreaterThan(loadedAudio.duration, 0)
     }
 
@@ -257,8 +260,8 @@ final class FileSystemAudioStorageTests: XCTestCase {
 
         // Assert
         XCTAssertGreaterThan(size, 0)
-        // WAV file size should be approximately the data size
-        XCTAssertEqual(size, audioData.sizeInBytes, accuracy: 1000)
+        // Comprimido a AAC: menor que el WAV original
+        XCTAssertLessThan(size, audioData.sizeInBytes)
     }
 
     func test_getSize_withNonexistentFile_shouldThrowError() async {
@@ -375,7 +378,7 @@ final class FileSystemAudioStorageTests: XCTestCase {
         // Act
         let path = await sut.generateUniquePath(folderName: "SeqTest", format: .wav)
 
-        // Assert - should be 003.wav since 001 and 002 exist
+        // Assert - should be 003 since 001 and 002 exist (saved as .m4a)
         XCTAssertEqual(path, "SeqTest/003.wav")
     }
 
