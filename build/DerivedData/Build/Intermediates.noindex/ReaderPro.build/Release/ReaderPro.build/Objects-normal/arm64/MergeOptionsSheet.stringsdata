@@ -1,0 +1,64 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/MergeOptionsSheet.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Export Project",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld entries to merge",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Select what to export:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Silence between audio files:",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 93
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 113
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 123
+        }
+      },
+      {
+        "comment": "",
+        "key": "No entries",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 173
+        }
+      }
+    ]
+  },
+  "version": 1
+}

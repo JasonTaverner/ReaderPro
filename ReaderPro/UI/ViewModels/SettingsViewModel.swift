@@ -80,4 +80,21 @@ final class SettingsViewModel: ObservableObject {
 
     /// Whether a model operation (load/unload) is in progress
     @Published var isModelOperationInProgress: Bool = false
+
+    // MARK: - Server Toggle State
+
+    /// Whether the Kokoro server is currently enabled/running
+    @Published var isKokoroServerEnabled: Bool = false
+
+    /// Whether the Qwen3 server is currently enabled/running
+    @Published var isQwen3ServerEnabled: Bool = false
+
+    /// Status of the Kokoro server
+    @Published var kokoroServerStatus: String = "Unknown"
+
+    /// Status of the Qwen3 server
+    @Published var qwen3ServerStatus: String = "Unknown"
+
+    /// Whether a server toggle operation is in progress
+    @Published var isServerToggleInProgress: Bool = false
 }

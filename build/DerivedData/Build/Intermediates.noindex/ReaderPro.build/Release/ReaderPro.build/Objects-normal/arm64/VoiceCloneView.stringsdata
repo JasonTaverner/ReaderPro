@@ -1,0 +1,192 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/VoiceCloneView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Voice Cloning",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable voice cloning",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "Performance",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 216
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fast cloning (less accurate, 2-3x faster)",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 220
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lightweight model (0.6B, faster but lower quality)",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 224
+        }
+      },
+      {
+        "comment": "",
+        "key": "Saved Voice:",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete this saved voice profile",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "New (manual)",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "(Deleted profile)",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ (%@)",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 65
+        }
+      },
+      {
+        "comment": "",
+        "key": "3+ seconds WAV/MP3/M4A",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 92
+        }
+      },
+      {
+        "comment": "",
+        "key": "Select Audio File...",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 87
+        }
+      },
+      {
+        "comment": "",
+        "key": "(%@s)",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 110
+        }
+      },
+      {
+        "comment": "",
+        "key": "What is said in the audio? (Highly recommended):",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 138
+        }
+      },
+      {
+        "comment": "",
+        "key": "Transcribing...",
+        "location": {
+          "startingColumn": 63,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "Transcribe",
+        "location": {
+          "startingColumn": 83,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save as Voice Profile",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 186
+        }
+      },
+      {
+        "comment": "",
+        "key": "Target Accent",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 197
+        }
+      },
+      {
+        "comment": "",
+        "key": "Steers pronunciation without changing the cloned voice timbre.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 209
+        }
+      },
+      {
+        "comment": "",
+        "key": "Accent",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 201
+        }
+      },
+      {
+        "comment": "",
+        "key": "Automatic (from audio)",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 202
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ %@",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 204
+        }
+      }
+    ]
+  },
+  "version": 1
+}

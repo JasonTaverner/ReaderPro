@@ -107,22 +107,38 @@ final class Qwen3ServerManager: ObservableObject {
         }
     }
 
-    /// Para el servidor y limpia recursos
+    /// Para el servidor y limpia recursos.
+    /// Kills the process we launched (if any), then falls back to killing
+    /// whatever is listening on the port — covers externally-started servers.
     func stopServer() {
         healthTimer?.invalidate()
         healthTimer = nil
 
+        var killedOwnProcess = false
+
+        // 1. Kill our own process if we have one
         if let process = serverProcess {
             let pid = process.processIdentifier
             if process.isRunning {
-                // SIGINT first (Flask handles Ctrl+C cleanly)
+                kill(-pid, SIGTERM)  // Process group first
                 process.interrupt()
-                // Kill the entire process group to catch child processes
-                kill(-pid, SIGTERM)
-                print("[Qwen3Server] Process interrupted (pid: \(pid))")
+                // Give it a moment, then force-kill
+                DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
+                    if process.isRunning {
+                        kill(-pid, SIGKILL)
+                        kill(pid, SIGKILL)
+                        print("[Qwen3Server] Force-killed process (pid: \(pid))")
+                    }
+                }
+                killedOwnProcess = true
+                print("[Qwen3Server] Sent SIGTERM to process group (pid: \(pid))")
             }
             serverProcess = nil
         }
+
+        // 2. Kill by port — catches externally-started servers or orphaned children
+        let port = baseURL.port ?? 8890
+        KokoroServerManager.killProcessesOnPort(port, label: "Qwen3Server", forceIfNeeded: !killedOwnProcess)
 
         status = .disconnected
     }

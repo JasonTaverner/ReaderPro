@@ -41,6 +41,13 @@ targets:
         excludes:
           - "**/*.md"
       - path: ReaderPro/Resources
+        excludes:
+          - "espeak-ng"
+      # Folder reference: copia espeak-ng/ entera al bundle (Resources/espeak-ng/ con
+      # libespeak-ng.dylib y espeak-ng-data), que es donde EspeakPhonemizer la busca
+      - path: ReaderPro/Resources/espeak-ng
+        type: folder
+        buildPhase: resources
     dependencies:
       - package: ZIPFoundation
       - package: onnxruntime

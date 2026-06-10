@@ -394,6 +394,14 @@ final class EditorPresenter: ObservableObject {
     /// Launches audio generation via GenerationManager.
     /// Call this from the UI instead of generateAudio() directly.
     func startGeneration() {
+        // Si hay una pestaña de entrada seleccionada, generar ESA entrada;
+        // generateAudio() sintetiza siempre el texto principal del proyecto y lo
+        // guarda como entrada nueva, lo que duplicaba el primer texto una y otra vez.
+        if let entryId = viewModel.selectedEntryTab {
+            startGenerationForEntry(id: entryId)
+            return
+        }
+
         let projectName = viewModel.name.isEmpty ? "Untitled" : viewModel.name
         generationManager.startJob(type: .projectText, projectName: projectName) { [weak self] job in
             await self?.generateAudio(job: job)
@@ -968,6 +976,10 @@ final class EditorPresenter: ObservableObject {
         job.appendLog("Preparing entry generation...")
 
         do {
+            // Guardar el texto editado pendiente para sintetizar la versión actual
+            // (el use case lee el texto de la entrada desde persistencia)
+            try await updateProject()
+
             // Build full voice configuration (including VoiceDesign accent/gender/emotion)
             let (voiceConfig, selectedVoice) = try buildCurrentVoiceConfiguration()
 
@@ -1205,7 +1217,14 @@ final class EditorPresenter: ObservableObject {
         }
 
         Task {
-            guard let profile = try? await repo.findById(id) else { return }
+            guard let profile = try? await repo.findById(id) else {
+                // Perfil inexistente (p. ej. borrado): deseleccionar para que el
+                // Picker no se quede con una selección sin tag asociado
+                viewModel.selectedClonedVoiceId = nil
+                viewModel.referenceAudioURL = nil
+                viewModel.referenceText = ""
+                return
+            }
             let audioURL = repo.audioURL(for: profile)
             viewModel.referenceAudioURL = audioURL
             viewModel.referenceText = profile.referenceText
@@ -1541,16 +1560,20 @@ final class EditorPresenter: ObservableObject {
         let request = GetProjectRequest(projectId: projectId)
         let response = try await getProjectUseCase.execute(request)
         viewModel.folderName = response.folderName
-        viewModel.entries = response.entries.enumerated().map { index, entry in
+
+        let newEntries = response.entries.enumerated().map { index, entry in
             AudioEntryDTO(from: entry, number: index + 1, storageBaseDirectory: audioStorage.baseDirectory)
         }
 
-        // Update entry texts cache with new/updated entries
-        for entry in viewModel.entries {
-            if viewModel.entryTexts[entry.id] == nil {
-                viewModel.entryTexts[entry.id] = entry.fullText
-            }
+        // Poblar la caché de textos ANTES de publicar las entries: si la UI renderiza
+        // entre ambas publicaciones, el editor de una entrada nueva leería un texto
+        // vacío/incoherente de entryTexts
+        var texts = viewModel.entryTexts
+        for entry in newEntries where texts[entry.id] == nil {
+            texts[entry.id] = entry.fullText
         }
+        viewModel.entryTexts = texts
+        viewModel.entries = newEntries
     }
 
     /// Actualiza la duración estimada basada en el texto

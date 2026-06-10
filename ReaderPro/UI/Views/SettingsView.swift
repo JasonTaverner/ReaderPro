@@ -59,6 +59,10 @@ struct SettingsView: View {
                     Section("Server Configuration") {
                         serverConfigSection
                     }
+
+                    Section("Servers") {
+                        serversToggleSection
+                    }
                 }
 
                 if presenter.viewModel.defaultProvider == "qwen3" {
@@ -83,7 +87,7 @@ struct SettingsView: View {
             }
             .formStyle(.grouped)
         }
-        .frame(width: 500, height: presenter.viewModel.defaultProvider == "qwen3" ? 920 : presenter.viewModel.defaultProvider == "native" ? 400 : 620)
+        .frame(width: 500, height: presenter.viewModel.defaultProvider == "qwen3" ? 1020 : presenter.viewModel.defaultProvider == "native" ? 400 : 720)
         .onAppear {
             presenter.onAppear()
         }
@@ -128,6 +132,8 @@ struct SettingsView: View {
                     Text("Server (Python)").tag("remoteServer")
                 }
                 .pickerStyle(.segmented)
+
+                KokoroModelStatusView()
             }
 
             if presenter.viewModel.defaultProvider == "native" {
@@ -170,6 +176,48 @@ struct SettingsView: View {
                 .foregroundColor(Color.appTextSecondary)
         }
         .padding(.vertical, 4)
+    }
+
+    // MARK: - Servers Toggle Section
+
+    private var serversToggleSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Toggle("Kokoro Server", isOn: kokoroServerBinding)
+                    .disabled(presenter.viewModel.isServerToggleInProgress)
+
+                Spacer()
+
+                serverStatusBadge(presenter.viewModel.kokoroServerStatus)
+            }
+
+            HStack {
+                Toggle("Qwen3 Server", isOn: qwen3ServerBinding)
+                    .disabled(presenter.viewModel.isServerToggleInProgress)
+
+                Spacer()
+
+                serverStatusBadge(presenter.viewModel.qwen3ServerStatus)
+            }
+
+            Text("Turn off servers to free memory when not in use")
+                .font(.caption)
+                .foregroundColor(Color.appTextSecondary)
+        }
+        .padding(.vertical, 4)
+    }
+
+    @ViewBuilder
+    private func serverStatusBadge(_ status: String) -> some View {
+        HStack(spacing: 4) {
+            Circle()
+                .fill(status == "Running" ? Color(hex: "4caf50") :
+                      status.hasPrefix("Starting") ? Color.appHighlight : .red)
+                .frame(width: 6, height: 6)
+            Text(status)
+                .font(.caption)
+                .foregroundColor(Color.appTextSecondary)
+        }
     }
 
     // MARK: - Default Qwen3 Voice Section
@@ -417,6 +465,20 @@ struct SettingsView: View {
         Binding(
             get: { presenter.viewModel.defaultCloneFastModel },
             set: { presenter.setDefaultCloneFastModel($0) }
+        )
+    }
+
+    private var kokoroServerBinding: Binding<Bool> {
+        Binding(
+            get: { presenter.viewModel.isKokoroServerEnabled },
+            set: { presenter.toggleKokoroServer($0) }
+        )
+    }
+
+    private var qwen3ServerBinding: Binding<Bool> {
+        Binding(
+            get: { presenter.viewModel.isQwen3ServerEnabled },
+            set: { presenter.toggleQwen3Server($0) }
         )
     }
 

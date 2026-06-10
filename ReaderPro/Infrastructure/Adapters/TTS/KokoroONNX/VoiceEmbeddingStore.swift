@@ -63,32 +63,11 @@ final class VoiceEmbeddingStore: VoiceEmbeddingStoreProtocol {
 
     /// Convenience init to find voices file in common locations
     convenience init() throws {
-        // Search in bundle resources and known paths
-        let searchPaths = [
-            Bundle.main.url(forResource: "voices-v1.0", withExtension: "bin"),
-            Bundle.main.url(forResource: "voices", withExtension: "bin"),
-        ].compactMap { $0 }
-
-        if let url = searchPaths.first {
-            self.init(voicesURL: url)
-            return
+        // Búsqueda centralizada: bundle → Application Support (descarga automática) → rutas de desarrollo
+        guard let url = KokoroModelStore.locateVoices() else {
+            throw VoiceEmbeddingError.fileNotFound("Could not find voices.bin in any search path")
         }
-
-        // Check scripts/Resources path
-        let projectPaths = [
-            "scripts/Resources/Models/kokoro/voices-v1.0.bin",
-            "voices.bin"
-        ]
-
-        for relativePath in projectPaths {
-            let url = URL(fileURLWithPath: relativePath)
-            if FileManager.default.fileExists(atPath: url.path) {
-                self.init(voicesURL: url)
-                return
-            }
-        }
-
-        throw VoiceEmbeddingError.fileNotFound("Could not find voices.bin in any search path")
+        self.init(voicesURL: url)
     }
 
     // MARK: - VoiceEmbeddingStoreProtocol

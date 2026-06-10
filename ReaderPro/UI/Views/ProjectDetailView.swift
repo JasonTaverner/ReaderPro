@@ -609,8 +609,8 @@ struct ProjectDetailView: View {
             .buttonStyle(SecondaryButtonStyle())
             .disabled(presenter.viewModel.isImportingImages || presenter.viewModel.isCapturing)
 
-            // Generar audio (solo si hay texto)
-            if !presenter.viewModel.text.isEmpty {
+            // Generar audio de la pestaña actual (texto principal o entrada seleccionada)
+            if !currentTabText.isEmpty {
                 Button {
                     print("[ProjectDetailView] Generating audio...")
                     presenter.startGeneration()
@@ -906,7 +906,10 @@ struct ProjectDetailView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 16) {
+                // El frame explícito evita el warning de layout de AppKitProgressView
+                // (min/max degenerados al proponer tamaño al NSProgressIndicator)
                 ProgressView()
+                    .frame(width: 32, height: 32)
                     .scaleEffect(1.2)
                 Text("Loading...")
                     .font(.headline)

@@ -107,22 +107,38 @@ final class KokoroServerManager: ObservableObject {
         }
     }
 
-    /// Para el servidor y limpia recursos
+    /// Para el servidor y limpia recursos.
+    /// Kills the process we launched (if any), then falls back to killing
+    /// whatever is listening on the port — covers externally-started servers.
     func stopServer() {
         healthTimer?.invalidate()
         healthTimer = nil
 
+        var killedOwnProcess = false
+
+        // 1. Kill our own process if we have one
         if let process = serverProcess {
             let pid = process.processIdentifier
             if process.isRunning {
-                // SIGINT first (Flask handles Ctrl+C cleanly)
+                kill(-pid, SIGTERM)  // Process group first
                 process.interrupt()
-                // Kill the entire process group to catch child processes
-                kill(-pid, SIGTERM)
-                print("[KokoroServer] Process interrupted (pid: \(pid))")
+                // Give it a moment, then force-kill
+                DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
+                    if process.isRunning {
+                        kill(-pid, SIGKILL)
+                        kill(pid, SIGKILL)
+                        print("[KokoroServer] Force-killed process (pid: \(pid))")
+                    }
+                }
+                killedOwnProcess = true
+                print("[KokoroServer] Sent SIGTERM to process group (pid: \(pid))")
             }
             serverProcess = nil
         }
+
+        // 2. Kill by port — catches externally-started servers or orphaned children
+        let port = baseURL.port ?? 8880
+        Self.killProcessesOnPort(port, label: "KokoroServer", forceIfNeeded: !killedOwnProcess)
 
         status = .disconnected
     }
@@ -342,6 +358,50 @@ final class KokoroServerManager: ObservableObject {
         paths.append(anacondaPath)
 
         return paths
+    }
+
+    /// Finds all PIDs listening on the given TCP port via lsof and kills them.
+    nonisolated static func killProcessesOnPort(_ port: Int, label: String, forceIfNeeded: Bool = true) {
+        let lsof = Process()
+        lsof.executableURL = URL(fileURLWithPath: "/usr/sbin/lsof")
+        lsof.arguments = ["-ti", "tcp:\(port)"]
+        let pipe = Pipe()
+        lsof.standardOutput = pipe
+        lsof.standardError = FileHandle.nullDevice
+
+        do {
+            try lsof.run()
+            lsof.waitUntilExit()
+        } catch {
+            print("[\(label)] lsof failed: \(error)")
+            return
+        }
+
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        guard let output = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !output.isEmpty else {
+            print("[\(label)] No process found on port \(port)")
+            return
+        }
+
+        let pids = output.components(separatedBy: "\n").compactMap { Int32($0.trimmingCharacters(in: .whitespaces)) }
+        for pid in pids {
+            kill(pid, SIGTERM)
+            print("[\(label)] Sent SIGTERM to pid \(pid) on port \(port)")
+        }
+
+        if forceIfNeeded {
+            // Wait briefly then SIGKILL any survivors
+            DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
+                for pid in pids {
+                    // Check if still alive (kill 0 tests existence)
+                    if kill(pid, 0) == 0 {
+                        kill(pid, SIGKILL)
+                        print("[\(label)] Force-killed pid \(pid)")
+                    }
+                }
+            }
+        }
     }
 
     private static func defaultScriptSearchPaths() -> [String] {

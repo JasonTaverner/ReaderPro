@@ -47,6 +47,11 @@ struct ReaderProApp: App {
 final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Descargar los modelos de Kokoro en segundo plano si faltan (primer arranque)
+        Task { @MainActor in
+            KokoroModelStore.shared.downloadIfNeeded()
+        }
+
         // Arrancar el servidor TTS del proveedor activo al iniciar la app
         Task { @MainActor in
             await DependencyContainer.shared.ttsCoordinator.startActiveServer()

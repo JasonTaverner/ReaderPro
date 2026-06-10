@@ -46,6 +46,12 @@ final class TTSServerCoordinator: ObservableObject {
     /// Estado del servidor del proveedor activo
     @Published private(set) var activeStatus: TTSServerStatus = .unknown
 
+    /// Whether the Kokoro server is enabled (user toggle)
+    @Published private(set) var isKokoroServerEnabled: Bool = false
+
+    /// Whether the Qwen3 server is enabled (user toggle)
+    @Published private(set) var isQwen3ServerEnabled: Bool = false
+
     // MARK: - Server Managers
 
     let kokoroManager: KokoroServerManager
@@ -126,8 +132,10 @@ final class TTSServerCoordinator: ObservableObject {
                 return
             }
             await kokoroManager.startServer()
+            isKokoroServerEnabled = true
         case .qwen3:
             await qwen3Manager.startServer()
+            isQwen3ServerEnabled = true
         case .native:
             break // No server needed
         }
@@ -137,6 +145,8 @@ final class TTSServerCoordinator: ObservableObject {
     func stopAllServers() {
         kokoroManager.stopServer()
         qwen3Manager.stopServer()
+        isKokoroServerEnabled = false
+        isQwen3ServerEnabled = false
     }
 
     /// Cambia el proveedor y arranca su servidor
@@ -150,6 +160,7 @@ final class TTSServerCoordinator: ObservableObject {
         kokoroMode = mode
         if activeProvider == .kokoro && mode == .remoteServer {
             await kokoroManager.startServer()
+            isKokoroServerEnabled = true
         }
     }
 
@@ -167,6 +178,38 @@ final class TTSServerCoordinator: ObservableObject {
             return
         }
         await startActiveServer()
+    }
+
+    // MARK: - Individual Server Toggle
+
+    /// Toggles the Kokoro server on or off
+    func setKokoroServerEnabled(_ enabled: Bool) async {
+        if enabled {
+            await kokoroManager.startServer()
+            isKokoroServerEnabled = true
+        } else {
+            kokoroManager.stopServer()
+            isKokoroServerEnabled = false
+        }
+        // Refresh active status if Kokoro is the active provider in remote mode
+        if activeProvider == .kokoro && kokoroMode == .remoteServer {
+            observeActiveStatus()
+        }
+    }
+
+    /// Toggles the Qwen3 server on or off
+    func setQwen3ServerEnabled(_ enabled: Bool) async {
+        if enabled {
+            await qwen3Manager.startServer()
+            isQwen3ServerEnabled = true
+        } else {
+            qwen3Manager.stopServer()
+            isQwen3ServerEnabled = false
+        }
+        // Refresh active status if Qwen3 is the active provider
+        if activeProvider == .qwen3 {
+            observeActiveStatus()
+        }
     }
 
     /// Transcribes audio to text using mlx-whisper via the Qwen3 server.

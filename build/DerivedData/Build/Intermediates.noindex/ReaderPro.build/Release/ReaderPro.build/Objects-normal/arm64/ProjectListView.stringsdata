@@ -1,0 +1,248 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/ProjectListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Search by name or content",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete Project?",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 70
+        }
+      },
+      {
+        "comment": "",
+        "key": "Error",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 462
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 466
+        }
+      },
+      {
+        "comment": "",
+        "key": "Are you sure you want to delete \"%@\"? This action cannot be undone.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 74
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 78
+        }
+      },
+      {
+        "comment": "",
+        "key": "Move to Folder",
+        "location": {
+          "startingColumn": 14,
+          "startingLine": 336
+        }
+      },
+      {
+        "comment": "",
+        "key": "Loading projects...",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 180
+        }
+      },
+      {
+        "comment": "",
+        "key": "Error",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 193
+        }
+      },
+      {
+        "comment": "",
+        "key": "Try Again",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 208
+        }
+      },
+      {
+        "comment": "",
+        "key": "No Projects",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 221
+        }
+      },
+      {
+        "comment": "",
+        "key": "Create your first project to get started",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 226
+        }
+      },
+      {
+        "comment": "",
+        "key": "New Project",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 233
+        }
+      },
+      {
+        "comment": "",
+        "key": "No Results",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 247
+        }
+      },
+      {
+        "comment": "",
+        "key": "No projects match \"%@\"",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 252
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clear Search",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 261
+        }
+      },
+      {
+        "comment": "",
+        "key": "Create a new project",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 283
+        }
+      },
+      {
+        "comment": "",
+        "key": "New Project",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 281
+        }
+      },
+      {
+        "comment": "",
+        "key": "Refresh project list",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 294
+        }
+      },
+      {
+        "comment": "",
+        "key": "Refresh",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 292
+        }
+      },
+      {
+        "comment": "",
+        "key": "Open settings",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 302
+        }
+      },
+      {
+        "comment": "",
+        "key": "Settings",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 300
+        }
+      },
+      {
+        "comment": "",
+        "key": "Edit",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 313
+        }
+      },
+      {
+        "comment": "",
+        "key": "Play Audio",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 322
+        }
+      },
+      {
+        "comment": "",
+        "key": "Generate Audio",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 328
+        }
+      },
+      {
+        "comment": "",
+        "key": "Remove from Folder",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 344
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show in Finder",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 372
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add Cover Image",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 378
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 386
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -22,6 +22,12 @@ final class SettingsPresenter: ObservableObject {
     /// Subscription for status changes
     private var statusCancellable: AnyCancellable?
 
+    /// Subscriptions for individual server status/toggle state
+    private var kokoroStatusCancellable: AnyCancellable?
+    private var qwen3StatusCancellable: AnyCancellable?
+    private var kokoroToggleCancellable: AnyCancellable?
+    private var qwen3ToggleCancellable: AnyCancellable?
+
     /// Propagates nested viewModel changes to the presenter's objectWillChange
     private var viewModelCancellable: AnyCancellable?
 
@@ -68,6 +74,32 @@ final class SettingsPresenter: ObservableObject {
                         self.viewModel.isServerOnline = false
                         self.viewModel.loadedModelName = nil
                     }
+                }
+
+            // Observe individual server statuses
+            kokoroStatusCancellable = coordinator.kokoroManager.$status
+                .receive(on: RunLoop.main)
+                .sink { [weak self] status in
+                    self?.viewModel.kokoroServerStatus = Self.statusDisplayString(status)
+                }
+
+            qwen3StatusCancellable = coordinator.qwen3Manager.$status
+                .receive(on: RunLoop.main)
+                .sink { [weak self] status in
+                    self?.viewModel.qwen3ServerStatus = Self.statusDisplayString(status)
+                }
+
+            // Observe toggle state
+            kokoroToggleCancellable = coordinator.$isKokoroServerEnabled
+                .receive(on: RunLoop.main)
+                .sink { [weak self] enabled in
+                    self?.viewModel.isKokoroServerEnabled = enabled
+                }
+
+            qwen3ToggleCancellable = coordinator.$isQwen3ServerEnabled
+                .receive(on: RunLoop.main)
+                .sink { [weak self] enabled in
+                    self?.viewModel.isQwen3ServerEnabled = enabled
                 }
         }
     }
@@ -255,5 +287,37 @@ final class SettingsPresenter: ObservableObject {
     func setDefaultCloneProfileId(_ value: String) {
         UserDefaults.standard.set(value, forKey: Self.defaultCloneProfileIdKey)
         viewModel.defaultCloneProfileId = value
+    }
+
+    // MARK: - Server Toggle Actions
+
+    /// Toggle the Kokoro server on or off
+    func toggleKokoroServer(_ enabled: Bool) {
+        viewModel.isServerToggleInProgress = true
+        Task {
+            await ttsCoordinator?.setKokoroServerEnabled(enabled)
+            viewModel.isServerToggleInProgress = false
+        }
+    }
+
+    /// Toggle the Qwen3 server on or off
+    func toggleQwen3Server(_ enabled: Bool) {
+        viewModel.isServerToggleInProgress = true
+        Task {
+            await ttsCoordinator?.setQwen3ServerEnabled(enabled)
+            viewModel.isServerToggleInProgress = false
+        }
+    }
+
+    // MARK: - Status Display Helper
+
+    private static func statusDisplayString(_ status: TTSServerStatus) -> String {
+        switch status {
+        case .unknown: return "Stopped"
+        case .starting: return "Starting…"
+        case .connected: return "Running"
+        case .disconnected: return "Stopped"
+        case .error(let msg): return "Error: \(msg)"
+        }
     }
 }

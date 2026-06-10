@@ -113,10 +113,16 @@ final class DependencyContainer {
     /// Kokoro ONNX local adapter (nil if resources not available)
     private lazy var kokoroONNXAdapterInstance: KokoroONNXAdapter? = {
         do {
-            let engine = try KokoroONNXEngine()
+            // Si los modelos aún no están descargados se usa la ruta donde KokoroModelStore
+            // los instalará: el engine solo comprueba el fichero en loadModel(), así que el
+            // adaptador queda operativo en cuanto termina la descarga automática, sin reiniciar.
+            let modelPath = KokoroModelStore.locateModel() ?? KokoroModelStore.installedModelURL.path
+            let voicesURL = KokoroModelStore.locateVoices() ?? KokoroModelStore.installedVoicesURL
+
+            let engine = KokoroONNXEngine(modelPath: modelPath)
             let phonemizer = try EspeakPhonemizer()
             let tokenizer = KokoroTokenizer()
-            let embeddingStore = try VoiceEmbeddingStore()
+            let embeddingStore = VoiceEmbeddingStore(voicesURL: voicesURL)
 
             return KokoroONNXAdapter(
                 engine: engine,

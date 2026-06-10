@@ -1,0 +1,488 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/SettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Restart Required",
+        "location": {
+          "startingColumn": 13,
+          "startingLine": 95
+        }
+      },
+      {
+        "comment": "",
+        "key": "Error",
+        "location": {
+          "startingColumn": 13,
+          "startingLine": 105
+        }
+      },
+      {
+        "comment": "",
+        "key": "Storage",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Default TTS Provider",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 54
+        }
+      },
+      {
+        "comment": "",
+        "key": "Server Configuration",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 59
+        }
+      },
+      {
+        "comment": "",
+        "key": "Servers",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Default Qwen3 Voice",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "Default Clone Settings",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 73
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cloned Voices",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "TTS Memory (Qwen3)",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Project Directory",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reset to Default",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
+        "key": "Change...",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 98
+        }
+      },
+      {
+        "comment": "",
+        "key": "The storage directory has been changed. Please restart ReaderPro for the change to take effect.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 102
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 108
+        }
+      },
+      {
+        "comment": "",
+        "key": "Uses built-in macOS voices. No server required.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 140
+        }
+      },
+      {
+        "comment": "",
+        "key": "Applied on next app launch",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 145
+        }
+      },
+      {
+        "comment": "",
+        "key": "Provider",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kokoro Mode",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "System (macOS)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 123
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kokoro",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 124
+        }
+      },
+      {
+        "comment": "",
+        "key": "Qwen3",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 125
+        }
+      },
+      {
+        "comment": "",
+        "key": "Local (ONNX)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 131
+        }
+      },
+      {
+        "comment": "",
+        "key": "Server (Python)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 132
+        }
+      },
+      {
+        "comment": "",
+        "key": "Restart required after changing server URLs",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 174
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kokoro URL",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 157
+        }
+      },
+      {
+        "comment": "",
+        "key": "http://127.0.0.1:8880",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 161
+        }
+      },
+      {
+        "comment": "",
+        "key": "Qwen3 URL",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 166
+        }
+      },
+      {
+        "comment": "",
+        "key": "http://127.0.0.1:8890",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 170
+        }
+      },
+      {
+        "comment": "",
+        "key": "Turn off servers to free memory when not in use",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 203
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kokoro Server",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 186
+        }
+      },
+      {
+        "comment": "",
+        "key": "Qwen3 Server",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 195
+        }
+      },
+      {
+        "comment": "",
+        "key": "Applied to new projects as initial voice settings",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 246
+        }
+      },
+      {
+        "comment": "",
+        "key": "Accent",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 227
+        }
+      },
+      {
+        "comment": "",
+        "key": "Emotion",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 234
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gender",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 240
+        }
+      },
+      {
+        "comment": "",
+        "key": "None",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 228
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ %@",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 230
+        }
+      },
+      {
+        "comment": "",
+        "key": "Applied to new projects as initial clone settings",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 277
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable voice cloning by default",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 257
+        }
+      },
+      {
+        "comment": "",
+        "key": "Saved Voice",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 259
+        }
+      },
+      {
+        "comment": "",
+        "key": "Target Accent",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 266
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fast cloning (less accurate, 2-3x faster)",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 273
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lightweight model (0.6B, faster but lower quality)",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 275
+        }
+      },
+      {
+        "comment": "",
+        "key": "None (manual)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 260
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ (%@)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 262
+        }
+      },
+      {
+        "comment": "",
+        "key": "Automatic",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 267
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ %@",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 269
+        }
+      },
+      {
+        "comment": "",
+        "key": "Directory",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 289
+        }
+      },
+      {
+        "comment": "",
+        "key": "Saved Profiles",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 301
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 305
+        }
+      },
+      {
+        "comment": "",
+        "key": "Open in Finder",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 313
+        }
+      },
+      {
+        "comment": "",
+        "key": "Server",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 325
+        }
+      },
+      {
+        "comment": "",
+        "key": "Online",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 330
+        }
+      },
+      {
+        "comment": "",
+        "key": "Offline",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 334
+        }
+      },
+      {
+        "comment": "",
+        "key": "Loaded Model",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 341
+        }
+      },
+      {
+        "comment": "",
+        "key": "None",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 353
+        }
+      },
+      {
+        "comment": "",
+        "key": "Refresh",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 363
+        }
+      },
+      {
+        "comment": "",
+        "key": "Free Memory",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 372
+        }
+      }
+    ]
+  },
+  "version": 1
+}

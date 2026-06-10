@@ -74,40 +74,8 @@ final class KokoroONNXEngine: KokoroONNXEngineProtocol {
     // MARK: - Model Discovery
 
     private static func findModel() -> String? {
-        let searchPaths = [
-            Bundle.main.path(forResource: "kokoro-v1.0", ofType: "onnx"),
-            Bundle.main.path(forResource: "kokoro", ofType: "onnx"),
-        ].compactMap { $0 }
-
-        if let path = searchPaths.first {
-            return path
-        }
-
-        let relativePaths = [
-            "scripts/Resources/Models/kokoro/kokoro-v1.0.onnx",
-            "kokoro.onnx",
-        ]
-
-        for path in relativePaths {
-            if FileManager.default.fileExists(atPath: path) {
-                return path
-            }
-        }
-
-        // Try SOURCE_ROOT
-        if let sourceRoot = ProcessInfo.processInfo.environment["SOURCE_ROOT"] {
-            let paths = [
-                "\(sourceRoot)/scripts/Resources/Models/kokoro/kokoro-v1.0.onnx",
-                "\(sourceRoot)/kokoro.onnx",
-            ]
-            for path in paths {
-                if FileManager.default.fileExists(atPath: path) {
-                    return path
-                }
-            }
-        }
-
-        return nil
+        // Búsqueda centralizada: bundle → Application Support (descarga automática) → rutas de desarrollo
+        KokoroModelStore.locateModel()
     }
 
     // MARK: - KokoroONNXEngineProtocol

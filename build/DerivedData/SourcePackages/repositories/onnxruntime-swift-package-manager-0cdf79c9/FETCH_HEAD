@@ -1,0 +1,51 @@
+68c6912edf7f18467851c0eb7a258d739561f435	not-for-merge	branch 'edgchen1/fix_ci' of https://github.com/microsoft/onnxruntime-swift-package-manager
+cd42ff1dcabc04146a703917df6e0e45e9d3f74c	not-for-merge	branch 'edgchen1/ort_1.24.1' of https://github.com/microsoft/onnxruntime-swift-package-manager
+b4291c0ce406d6918941380c3f7db47347318494	not-for-merge	branch 'edgchen1/ort_1.24.2' of https://github.com/microsoft/onnxruntime-swift-package-manager
+1ef15bbd530bade4152dbb8f36c062e978cffb74	not-for-merge	branch 'edgchen1/update_to_ort_1.24.3' of https://github.com/microsoft/onnxruntime-swift-package-manager
+b7fb7f7dea8a2469e6335d95a61b8f36d0dc83b2	not-for-merge	branch 'main' of https://github.com/microsoft/onnxruntime-swift-package-manager
+05c20d65343c315b2a17677153670027c7601616	not-for-merge	branch 'users/merlinbot/1es-pt-auto-baselining-pr' of https://github.com/microsoft/onnxruntime-swift-package-manager
+19f678db0d3742f3262839d4d274df7d88c04ae8	not-for-merge	branch 'yguo/add-initial-files' of https://github.com/microsoft/onnxruntime-swift-package-manager
+53dc10d6a7807232e9c2223d54226a61a5aa637a	not-for-merge	branch 'yguo/remove-unsafe-flags' of https://github.com/microsoft/onnxruntime-swift-package-manager
+408508d6a46808b9b62e6fc1f17e2b7535dbca8a	not-for-merge	branch 'yguo/spm-for-ort-ext' of https://github.com/microsoft/onnxruntime-swift-package-manager
+1f4e2067cde64e8fd0d1c8c8952db42190297db4	not-for-merge	branch 'yguo/update-macos-support-in-spm' of https://github.com/microsoft/onnxruntime-swift-package-manager
+501e417bacfe09dcfa8011b42ed5f5489521344a	not-for-merge	branch 'yguo/update-spm-dev-pipelines' of https://github.com/microsoft/onnxruntime-swift-package-manager
+c6a3f608793db14a4869f88564731d1223af2400	not-for-merge	branch 'yguo/update-test-with-new-release-packages' of https://github.com/microsoft/onnxruntime-swift-package-manager
+dd7fe96e6f5caff586801ff2e99b13f658a0db94	not-for-merge	branch 'yguo/update-to-1.18.0-version' of https://github.com/microsoft/onnxruntime-swift-package-manager
+6b807ae06f0400f50212b31fd280fb8bb99bb6dc	not-for-merge	branch 'yguo/update-to-release-version' of https://github.com/microsoft/onnxruntime-swift-package-manager
+1febc7883de6fae25753380587e9ea39577fd34e	not-for-merge	branch 'yguo/update-version-for-spm-dependency' of https://github.com/microsoft/onnxruntime-swift-package-manager
+19f678db0d3742f3262839d4d274df7d88c04ae8	not-for-merge	'refs/pull/1/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+501e417bacfe09dcfa8011b42ed5f5489521344a	not-for-merge	'refs/pull/10/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+12789c11b5785e0f3c07c284394d8bdd934f68d1	not-for-merge	'refs/pull/11/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+1f4e2067cde64e8fd0d1c8c8952db42190297db4	not-for-merge	'refs/pull/12/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+c6a3f608793db14a4869f88564731d1223af2400	not-for-merge	'refs/pull/14/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+dd7fe96e6f5caff586801ff2e99b13f658a0db94	not-for-merge	'refs/pull/17/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+6ede16e8fe06bf14ecf40398de2b5cbbde2eb61b	not-for-merge	'refs/pull/21/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+5f84804f94d1c2fb84779ecbcd0af6f98e3dd1a8	not-for-merge	'refs/pull/22/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+fc9e35c73c28367636e16c20468b1e49ba815d88	not-for-merge	'refs/pull/24/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+f3a18089c2ab643bbbc4167791ccf9aee3ceac2c	not-for-merge	'refs/pull/25/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+4d1dc0e86b04d73c01b44042ee9d1bec7846ac97	not-for-merge	'refs/pull/26/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+408508d6a46808b9b62e6fc1f17e2b7535dbca8a	not-for-merge	'refs/pull/3/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+4ec6a36a11764d774bf1ad9925385abb85043467	not-for-merge	'refs/pull/32/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+97f6a7fc13e177585980c7f34ef4b0ca8c0f7c80	not-for-merge	'refs/pull/33/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+d5c3824d7e10b195b6a92e3f0c016c7f821412ed	not-for-merge	'refs/pull/38/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+f2e3e758818d99d16565cf635757e23277ad735f	not-for-merge	'refs/pull/39/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+1febc7883de6fae25753380587e9ea39577fd34e	not-for-merge	'refs/pull/4/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+f2e3e758818d99d16565cf635757e23277ad735f	not-for-merge	'refs/pull/40/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+b5c2906884d6ccaa151459f8827548c853402113	not-for-merge	'refs/pull/40/merge' of https://github.com/microsoft/onnxruntime-swift-package-manager
+6da682d1366197bf48e4ec16fe381ac4ec4167a0	not-for-merge	'refs/pull/41/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+3192ebac0f3d66d326d0ac85293a850385e29dc7	not-for-merge	'refs/pull/41/merge' of https://github.com/microsoft/onnxruntime-swift-package-manager
+cd42ff1dcabc04146a703917df6e0e45e9d3f74c	not-for-merge	'refs/pull/42/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+b4291c0ce406d6918941380c3f7db47347318494	not-for-merge	'refs/pull/43/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+1ef15bbd530bade4152dbb8f36c062e978cffb74	not-for-merge	'refs/pull/44/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+fc7545a041dca8e3cbc5223f808798942b54f378	not-for-merge	'refs/pull/44/merge' of https://github.com/microsoft/onnxruntime-swift-package-manager
+74f0c615ebdcad9a57715f09118b9911061c6bb8	not-for-merge	'refs/pull/7/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+6b807ae06f0400f50212b31fd280fb8bb99bb6dc	not-for-merge	'refs/pull/8/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+53dc10d6a7807232e9c2223d54226a61a5aa637a	not-for-merge	'refs/pull/9/head' of https://github.com/microsoft/onnxruntime-swift-package-manager
+12ce7374c86944e1f68f3a866d10105d8357f074	not-for-merge	tag '1.20.0' of https://github.com/microsoft/onnxruntime-swift-package-manager
+9e7ca91f94c67eb27acbb84a25d94b7da39beffd	not-for-merge	tag '1.24.1' of https://github.com/microsoft/onnxruntime-swift-package-manager
+b7fb7f7dea8a2469e6335d95a61b8f36d0dc83b2	not-for-merge	tag '1.24.2' of https://github.com/microsoft/onnxruntime-swift-package-manager
+cdaadfe0c3497091831c12297a0445e7d081a34e	not-for-merge	tag 'v1.15.0' of https://github.com/microsoft/onnxruntime-swift-package-manager
+18e053d3442bea0848491c0363c170741693c2c1	not-for-merge	tag 'v1.16.0' of https://github.com/microsoft/onnxruntime-swift-package-manager
+ce64739c6d2f0c362e326b29780a6c035055a431	not-for-merge	tag 'v1.17.0' of https://github.com/microsoft/onnxruntime-swift-package-manager
+11c7dd6dd4fefb45a00a370315f483702f48598d	not-for-merge	tag 'v1.18.0' of https://github.com/microsoft/onnxruntime-swift-package-manager
+03b916ee11112829425930f7c2af96a3071aa558	not-for-merge	tag 'v1.19.2' of https://github.com/microsoft/onnxruntime-swift-package-manager

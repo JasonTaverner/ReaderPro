@@ -175,12 +175,11 @@ final class EspeakPhonemizer: EspeakPhonemizerProtocol {
     }
 
     private func initializeEspeak() throws {
-        // Use espeak_Initialize with the data path
-        // output=0 (AUDIO_OUTPUT_PLAYBACK not needed, we just want phonemes)
-        // buflength=0 (default)
-        // options=1 (don't load phoneme data for audio, just text-to-phonemes)
-        let result = dataPath.withCString { pathPtr -> Int32 in
-            initialize!(0, 0, pathPtr, 1) // options=1: espeakINITIALIZE_DONT_EXIT
+        let homePath = try Self.resolveDataHome(dataPath: dataPath)
+        // options=0x8000 (espeakINITIALIZE_DONT_EXIT): un fallo de datos devuelve
+        // error en lugar de terminar el proceso de la app con exit()
+        let result = homePath.withCString { pathPtr -> Int32 in
+            initialize!(0, 0, pathPtr, 0x8000)
         }
 
         guard result > 0 else {
@@ -188,6 +187,26 @@ final class EspeakPhonemizer: EspeakPhonemizerProtocol {
         }
 
         initialized = true
+    }
+
+    /// espeak_Initialize espera el directorio PADRE que contiene espeak-ng-data y lo
+    /// copia a un buffer interno de 160 caracteres (N_PATH_HOME): con rutas más largas
+    /// (p. ej. el bundle dentro de DerivedData de Xcode) la ruta se trunca, la carga de
+    /// datos falla y espeak cae a la ruta por defecto compilada en la dylib (inexistente).
+    /// Para rutas largas se crea un symlink corto en Application Support.
+    private static func resolveDataHome(dataPath: String) throws -> String {
+        let parent = (dataPath as NSString).deletingLastPathComponent
+        if (parent + "/espeak-ng-data").utf8.count < 150 {
+            return parent
+        }
+
+        let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("ReaderPro/espeak", isDirectory: true)
+        try FileManager.default.createDirectory(at: base, withIntermediateDirectories: true)
+        let link = base.appendingPathComponent("espeak-ng-data")
+        try? FileManager.default.removeItem(at: link)
+        try FileManager.default.createSymbolicLink(at: link, withDestinationURL: URL(fileURLWithPath: dataPath))
+        return base.path
     }
 
     // MARK: - EspeakPhonemizerProtocol

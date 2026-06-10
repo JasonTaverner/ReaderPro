@@ -142,8 +142,11 @@ struct GenerationProgressPanel: View {
                         .progressViewStyle(.linear)
                         .tint(progressColor(for: job))
                 } else if !job.status.isTerminal {
+                    // Indeterminado: sin frame explícito AppKit calcula un ancho
+                    // mín/máx degenerado y SwiftUI emite warnings de layout
                     ProgressView()
                         .progressViewStyle(.linear)
+                        .frame(maxWidth: .infinity)
                 }
 
                 // Status message + live detail

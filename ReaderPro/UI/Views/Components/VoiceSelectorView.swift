@@ -18,6 +18,12 @@ struct VoiceSelectorView: View {
                 .foregroundColor(Color.appTextPrimary)
 
             Picker("Voice", selection: selectionBinding) {
+                // La selección es Optional: sin un tag para nil, el Picker emite
+                // "the selection \"nil\" is invalid" cada vez que el proyecto
+                // todavía no tiene voz asignada
+                if selectedId == nil {
+                    Text("Select a voice…").tag(String?.none)
+                }
                 // Provide a hidden tag for the current selection during
                 // provider transitions to avoid "not a valid tag" warnings.
                 if let selected = selectedId,

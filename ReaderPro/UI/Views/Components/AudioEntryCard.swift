@@ -1,15 +1,37 @@
 import SwiftUI
 import AppKit
+import CryptoKit
 
 /// Thread-safe async image cache for thumbnail display.
 /// Loads and downscales images on a background thread to avoid blocking the UI.
 /// Thumbnails are capped at 300px to keep memory low while looking sharp.
+/// Las miniaturas se persisten en ~/Library/Caches: las capturas OCR originales pesan
+/// 10-16 MB y releerlas + redimensionarlas en cada arranque era la causa principal de
+/// la lentitud al cargar la lista y al abrir proyectos.
 actor ThumbnailCache {
     static let shared = ThumbnailCache()
     private var cache: [String: NSImage] = [:]
     private var order: [String] = []
     private let maxSize = 100
     private let thumbnailMaxDimension: CGFloat = 300
+
+    private static let diskCacheDirectory: URL = {
+        let dir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("ReaderPro/Thumbnails", isDirectory: true)
+        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        return dir
+    }()
+
+    /// URL de la miniatura cacheada; la clave incluye la fecha de modificación del
+    /// original para invalidar la caché si la imagen cambia
+    private static func diskCacheURL(for path: String) -> URL {
+        let mtime = ((try? FileManager.default.attributesOfItem(atPath: path))?[.modificationDate] as? Date)?
+            .timeIntervalSince1970 ?? 0
+        let key = "\(path)|\(mtime)"
+        let digest = SHA256.hash(data: Data(key.utf8)).prefix(12)
+            .map { String(format: "%02x", $0) }.joined()
+        return diskCacheDirectory.appendingPathComponent("\(digest).jpg")
+    }
 
     /// Returns cached thumbnail if available (fast, no I/O)
     func cachedImage(for path: String) -> NSImage? {
@@ -26,6 +48,13 @@ actor ThumbnailCache {
         // Load and thumbnail on background thread
         let maxDim = thumbnailMaxDimension
         let thumb: NSImage? = await Task.detached(priority: .utility) {
+            // 1. Miniatura ya generada en disco (~100 KB, lectura instantánea)
+            let diskURL = Self.diskCacheURL(for: path)
+            if let fromDisk = NSImage(contentsOf: diskURL) {
+                return fromDisk
+            }
+
+            // 2. Original + downsample
             guard let original = NSImage(contentsOfFile: path) else { return nil }
             let originalSize = original.size
             guard originalSize.width > 0 && originalSize.height > 0 else { return nil }
@@ -60,6 +89,11 @@ actor ThumbnailCache {
                           from: NSRect(origin: .zero, size: originalSize),
                           operation: .copy, fraction: 1.0)
             NSGraphicsContext.restoreGraphicsState()
+
+            // 3. Persistir la miniatura para los próximos arranques
+            if let jpeg = bitmapRep.representation(using: .jpeg, properties: [.compressionFactor: 0.8]) {
+                try? jpeg.write(to: diskURL)
+            }
 
             let thumb = NSImage(size: newSize)
             thumb.addRepresentation(bitmapRep)

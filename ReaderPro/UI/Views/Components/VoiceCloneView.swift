@@ -54,6 +54,13 @@ struct VoiceCloneView: View {
                                 set: { onSelectProfile($0 == "__new__" ? nil : $0) }
                             )) {
                                 Text("New (manual)").tag("__new__")
+                                // Si el perfil seleccionado ya no existe (p. ej. borrado),
+                                // darle un tag al valor actual para que el Picker no reciba
+                                // una selección sin tag asociado
+                                if let selected = selectedProfileId,
+                                   !savedProfiles.contains(where: { $0.id == selected }) {
+                                    Text("(Deleted profile)").tag(selected)
+                                }
                                 ForEach(savedProfiles) { profile in
                                     Text("\(profile.name) (\(profile.formattedDuration))")
                                         .tag(profile.id)
