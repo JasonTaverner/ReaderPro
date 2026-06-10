@@ -10,6 +10,11 @@ protocol FileStoragePort {
     /// - Throws: Error si falla el guardado
     func save(data: Data, to path: String) async throws
 
+    /// Guarda una imagen COMPRIMIDA (JPEG con dimensión máxima limitada) con
+    /// nombre numerado (001.jpg, 002.jpg…) y devuelve el path relativo final.
+    /// Si los datos no son una imagen decodificable, los guarda tal cual como .png.
+    func saveImageCompressed(data: Data, baseDirectory: String, number: Int) async throws -> String
+
     /// Guarda texto en un archivo
     /// - Parameters:
     ///   - text: El texto a guardar

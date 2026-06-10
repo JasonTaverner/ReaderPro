@@ -2,7 +2,7 @@ import XCTest
 @testable import ReaderPro
 
 /// Tests para el Value Object TextContent
-/// Validación: no vacío, max 6000 caracteres, cálculo de palabras y duración
+/// Validación: no vacío, max 50000 caracteres, cálculo de palabras y duración
 final class TextTests: XCTestCase {
 
     // MARK: - Creation Tests
@@ -41,8 +41,8 @@ final class TextTests: XCTestCase {
     }
 
     func test_createText_exceedingLimit_shouldThrow() {
-        // Arrange - 6001 caracteres
-        let longText = String(repeating: "a", count: 6001)
+        // Arrange - 50001 caracteres
+        let longText = String(repeating: "a", count: 50001)
 
         // Act & Assert
         XCTAssertThrowsError(try TextContent(longText)) { error in
@@ -54,14 +54,14 @@ final class TextTests: XCTestCase {
     }
 
     func test_createText_atMaxLimit_shouldSucceed() throws {
-        // Arrange - Exactamente 6000 caracteres
-        let maxText = String(repeating: "a", count: 6000)
+        // Arrange - Exactamente 50000 caracteres
+        let maxText = String(repeating: "a", count: 50000)
 
         // Act
         let text = try TextContent(maxText)
 
         // Assert
-        XCTAssertEqual(text.value.count, 6000)
+        XCTAssertEqual(text.value.count, 50000)
     }
 
     // MARK: - Word Count Tests

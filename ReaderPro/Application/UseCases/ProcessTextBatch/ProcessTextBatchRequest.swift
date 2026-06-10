@@ -8,6 +8,8 @@ enum TextSplitMode: Equatable {
     case sentence
     /// Split every N words
     case words(count: Int)
+    /// No split: the whole text becomes a single entry (long-form chapter mode)
+    case singleEntry
 
     var displayName: String {
         switch self {
@@ -17,6 +19,8 @@ enum TextSplitMode: Equatable {
             return "By Sentences"
         case .words(let count):
             return "Every \(count) words"
+        case .singleEntry:
+            return "Single entry (whole chapter)"
         }
     }
 }

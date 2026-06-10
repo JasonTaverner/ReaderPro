@@ -65,7 +65,7 @@ struct ProjectDetailView: View {
                 }
                 .padding()
             }
-            .frame(width: 280)
+            .frame(width: 360)
             .background(Color.appSecondary)
         }
         .navigationTitle(presenter.viewModel.name.isEmpty ? "Edit Project" : presenter.viewModel.name)
@@ -445,8 +445,11 @@ struct ProjectDetailView: View {
                     Text("Kokoro").tag("kokoro")
                     Text("Qwen3").tag("qwen3")
                     Text("VoxCPM2").tag("voxcpm")
+                    Text("Chatterbox").tag("chatterbox")
+                    Text("Supertonic").tag("supertonic")
                 }
-                .pickerStyle(.segmented)
+                .pickerStyle(.menu)
+                .labelsHidden()
             }
 
             VoiceSelectorView(
@@ -532,6 +535,52 @@ struct ProjectDetailView: View {
                     onDeleteProfile: { id in
                         Task { await presenter.deleteClonedVoiceProfile(id: id) }
                     }
+                )
+            }
+
+            // Chatterbox-specific: language/expressiveness + voice cloning (fast, MIT)
+            if isChatterboxSelected {
+                Divider()
+
+                ChatterboxOptionsView(
+                    language: chatterboxLanguageBinding,
+                    exaggeration: chatterboxExaggerationBinding,
+                    cfgWeight: chatterboxCfgWeightBinding
+                )
+
+                VoiceCloneView(
+                    isCloneMode: cloneModeBinding,
+                    referenceAudioURL: referenceAudioBinding,
+                    referenceText: referenceTextBinding,
+                    cloneFastMode: cloneFastModeBinding,
+                    cloneFastModel: cloneFastModelBinding,
+                    cloneTargetAccent: cloneTargetAccentBinding,
+                    onTranscribe: {
+                        Task { await presenter.transcribeReferenceAudio() }
+                    },
+                    isTranscribing: presenter.viewModel.isTranscribing,
+                    showQwenOptions: false,
+                    savedProfiles: presenter.viewModel.savedClonedVoices,
+                    selectedProfileId: presenter.viewModel.selectedClonedVoiceId,
+                    onSelectProfile: { id in
+                        presenter.selectClonedVoiceProfile(id: id)
+                    },
+                    onSaveProfile: {
+                        presenter.viewModel.cloneProfileName = ""
+                        presenter.viewModel.showSaveCloneProfileSheet = true
+                    },
+                    onDeleteProfile: { id in
+                        Task { await presenter.deleteClonedVoiceProfile(id: id) }
+                    }
+                )
+            }
+
+            // Supertonic-specific: idioma (las voces preset van en el selector de voz)
+            if isSupertonicSelected {
+                Divider()
+
+                SupertonicOptionsView(
+                    language: supertonicLanguageBinding
                 )
             }
         }
@@ -1183,6 +1232,48 @@ struct ProjectDetailView: View {
             set: { presenter.viewModel.voxcpmContinuation = $0 }
         )
     }
+    private var isChatterboxSelected: Bool {
+        guard let selectedId = presenter.viewModel.selectedVoiceId,
+              let voice = presenter.viewModel.availableVoices.first(where: { $0.id == selectedId })
+        else { return false }
+        return voice.provider == Voice.TTSProvider.chatterbox.rawValue
+    }
+
+    private var chatterboxLanguageBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.chatterboxLanguage },
+            set: { presenter.viewModel.chatterboxLanguage = $0 }
+        )
+    }
+
+    private var chatterboxExaggerationBinding: Binding<Double> {
+        Binding(
+            get: { presenter.viewModel.chatterboxExaggeration },
+            set: { presenter.viewModel.chatterboxExaggeration = $0 }
+        )
+    }
+
+    private var chatterboxCfgWeightBinding: Binding<Double> {
+        Binding(
+            get: { presenter.viewModel.chatterboxCfgWeight },
+            set: { presenter.viewModel.chatterboxCfgWeight = $0 }
+        )
+    }
+    private var isSupertonicSelected: Bool {
+        guard let selectedId = presenter.viewModel.selectedVoiceId,
+              let voice = presenter.viewModel.availableVoices.first(where: { $0.id == selectedId })
+        else { return false }
+        return voice.provider == Voice.TTSProvider.supertonic.rawValue
+    }
+
+    private var supertonicLanguageBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.supertonicLanguage },
+            set: { presenter.viewModel.supertonicLanguage = $0 }
+        )
+    }
+
+
 
     private var cloneTargetAccentBinding: Binding<CloneTargetAccent?> {
         Binding(

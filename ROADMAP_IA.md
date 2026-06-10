@@ -73,6 +73,22 @@ Criterios para añadir un modelo:
 
 ## Fase 2 — MOSS-TTS-Local 1.7B: el de los textos más largos
 
+> **Estado (10-6-2026): MOSS BLOQUEADO upstream; ruta long-form ENTREGADA con los
+> modelos actuales.**
+> - MOSS: el único repo MLX (`mlx-community/MOSS-TTS-Local-Transformer-MLX-8bit`,
+>   mirror de AppAutomaton) está convertido para el runtime `mlx-speech`, NO para
+>   mlx-audio (66 pesos incompatibles + `IndexError` en
+>   `mlx_audio/tts/models/moss_tts/processor.py:404`, bug presente también en el
+>   main de mlx-audio). El upstream PyTorch (6,1 GB bf16, SÍ tiene español) violaría
+>   el presupuesto de RAM. **Vigilar**: releases de mlx-audio con fix del processor
+>   o una conversión MLX nativa de OpenMOSS; entonces reintentar (el patrón de
+>   integración es 1 entrada de registro + adaptador estilo Chatterbox).
+> - Long-form (opción extra, aditiva): límite de `TextContent` 6.000 → **50.000**
+>   chars; endpoints del server 10.000 → 60.000; timeouts MLX 600 → 7.200 s; nuevo
+>   modo de importación **"Whole Chapter"** (una sola entrada, el server segmenta
+>   internamente con la misma voz clonada y la barra de progreso por segmentos ya
+>   funciona — verificado: 11k chars → 40 segmentos con progreso avanzando).
+
 **La killer feature para una app de lectura**: genera hasta **1 hora de audio en una sola
 pasada** con prosodia coherente — ningún otro lo hace; todos los demás obligan a trocear
 y la prosodia "se reinicia" en cada fragmento.
@@ -89,6 +105,17 @@ y la prosodia "se reinicia" en cada fragmento.
 
 ## Fase 3 — Chatterbox Multilingual 500M: el equilibrio ligero (MIT)
 
+- **Estado (10-6-2026): INTEGRADO como 5º proveedor** (adelantado a la Fase 2 porque
+  VoxCPM2 falló el criterio nº 1: su español generativo es latino incluso clonando
+  referencias castellanas, con instruct y en modo continuación — confirmado por el
+  usuario en muestras A-H). Benchmark M4: **RTF ~0,98× (tiempo real)**, 24 kHz, ~1,5 GB.
+  Veredicto del usuario: voz default floja ("gangosa") pero **clonación castellana
+  "bastante bien"** → flujo recomendado siempre con perfiles. `chatterbox` en el
+  registro del servidor (`mlx-community/chatterbox-8bit`), `ChatterboxTTSAdapter`,
+  panel propio (idioma, expresividad, CFG/ritmo) y clonación sin opciones Qwen.
+  Reparto final de papeles: **Chatterbox = lectura diaria castellana (rápido+acento)**,
+  VoxCPM2 = máxima fidelidad de sonido 48 kHz, Qwen3 = emociones/VoiceDesign/acentos
+  por instrucción, Kokoro = ligero sin Python, nativo = fallback.
 - **Modelo**: ResembleAI Chatterbox Multilingual vía mlx-audio (~1–1,5 GB). **MIT** puro.
 - **Por qué**: español valorado como excelente en pruebas de terceros; clonación zero-shot;
   control de exageración/emoción; la mitad de RAM que Qwen3 1.7B y más rápido que VoxCPM2.
@@ -98,6 +125,16 @@ y la prosodia "se reinicia" en cada fragmento.
 - **Esfuerzo**: 1–2 días. Fuente: github.com/resemble-ai/chatterbox
 
 ## Fase 4 (opcional) — Supertonic v3: tier ultrarrápido 100 % nativo
+
+> **Estado (10-6-2026): INTEGRADO como 7º motor (vía servidor), voces españolas
+> validadas por el usuario.** Benchmark M4: **RTF ~4× tiempo real** (el más rápido de
+> la flota), 44,1 kHz, 404 MB, 10 voces preset (M1-M5/F1-F5 en el selector de voces),
+> SDK pip `supertonic` en el servidor (entrada `supertonic` en MODEL_REGISTRY, carga
+> por familia en ModelManager — no usa mlx-audio), panel con idioma; el ÚNICO motor
+> que aplica la velocidad del proyecto en generación; tags de expresión en el texto.
+> Sin clonación (Voice Builder es de pago). **Pendiente (milestone): integración
+> ONNX nativa en Swift** (4 modelos encadenados, ~3-5 días) para que entre en el
+> paquete autocontenido sin Python y pueda sustituir a Kokoro como default.
 
 - **Modelo**: Supertone Supertonic v3 — **ONNX, 404 MB**, mismo stack que Kokoro
   (sin Python), 31 idiomas, decenas de veces tiempo real, tags de expresión y

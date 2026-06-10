@@ -15,7 +15,8 @@ final class VoxCPMTTSAdapter: TTSPort {
     private let baseURL: URL
     private let urlSession: URLSessionProtocol
     private let healthCheckTimeout: TimeInterval = 2.0
-    private let synthesizeTimeout: TimeInterval = 600.0
+    // 2 h: una entrada long-form de ~50k chars puede tardar >1 h en generarse
+    private let synthesizeTimeout: TimeInterval = 7200.0
 
     // MARK: - Initialization
 

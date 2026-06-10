@@ -124,8 +124,10 @@ struct SettingsView: View {
                 Text("Kokoro").tag("kokoro")
                 Text("Qwen3").tag("qwen3")
                 Text("VoxCPM2").tag("voxcpm")
+                Text("Chatterbox").tag("chatterbox")
+                Text("Supertonic").tag("supertonic")
             }
-            .pickerStyle(.segmented)
+            .pickerStyle(.menu)
 
             if presenter.viewModel.defaultProvider == "kokoro" {
                 Picker("Kokoro Mode", selection: defaultKokoroModeBinding) {
@@ -145,6 +147,18 @@ struct SettingsView: View {
 
             if presenter.viewModel.defaultProvider == "voxcpm" {
                 Text("Maximum quality (48 kHz), ~2x slower than real time. Runs on the same local MLX server as Qwen3.")
+                    .font(.caption)
+                    .foregroundColor(Color.appTextSecondary)
+            }
+
+            if presenter.viewModel.defaultProvider == "supertonic" {
+                Text("Fastest engine (~4x real time, ONNX): 10 preset voices, 31 languages, expression tags. No cloning. Same local server as Qwen3.")
+                    .font(.caption)
+                    .foregroundColor(Color.appTextSecondary)
+            }
+
+            if presenter.viewModel.defaultProvider == "chatterbox" {
+                Text("Fast multilingual model (~real time). Best with voice cloning — the accent is inherited from your reference. Same local MLX server as Qwen3.")
                     .font(.caption)
                     .foregroundColor(Color.appTextSecondary)
             }

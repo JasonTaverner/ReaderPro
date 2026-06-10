@@ -36,6 +36,14 @@ struct VoiceConfiguration: Equatable {
     /// VoxCPM2: continuation mode — the model literally continues the reference
     /// audio, inheriting accent and prosody much more strongly than normal cloning.
     let voxcpmContinuation: Bool
+    /// Chatterbox: synthesis language code (e.g. "es"). nil defaults to "es".
+    let chatterboxLanguage: String?
+    /// Chatterbox: expressiveness 0-1 (model default 0.1).
+    let chatterboxExaggeration: Double?
+    /// Chatterbox: CFG weight 0-1 — lower = slower, more deliberate (default 0.5).
+    let chatterboxCfgWeight: Double?
+    /// Supertonic: synthesis language code (e.g. "es"). nil defaults to "es".
+    let supertonicLanguage: String?
 
     init(
         voiceId: String,
@@ -51,7 +59,11 @@ struct VoiceConfiguration: Equatable {
         cloneModel: String? = nil,
         voxcpmCfgValue: Double? = nil,
         voxcpmSteps: Int? = nil,
-        voxcpmContinuation: Bool = false
+        voxcpmContinuation: Bool = false,
+        chatterboxLanguage: String? = nil,
+        chatterboxExaggeration: Double? = nil,
+        chatterboxCfgWeight: Double? = nil,
+        supertonicLanguage: String? = nil
     ) {
         self.voiceId = voiceId
         self.speed = speed
@@ -67,6 +79,10 @@ struct VoiceConfiguration: Equatable {
         self.voxcpmCfgValue = voxcpmCfgValue
         self.voxcpmSteps = voxcpmSteps
         self.voxcpmContinuation = voxcpmContinuation
+        self.chatterboxLanguage = chatterboxLanguage
+        self.chatterboxExaggeration = chatterboxExaggeration
+        self.chatterboxCfgWeight = chatterboxCfgWeight
+        self.supertonicLanguage = supertonicLanguage
     }
 
     /// Value Object para velocidad de reproducción

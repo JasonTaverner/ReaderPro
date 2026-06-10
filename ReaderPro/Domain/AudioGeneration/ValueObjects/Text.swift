@@ -1,7 +1,7 @@
 import Foundation
 
 /// Value Object que representa texto validado para TTS
-/// - Validación: no vacío, max 6000 caracteres
+/// - Validación: no vacío, max 50000 caracteres (capítulos enteros en modo long-form)
 /// - Calcula número de palabras y duración estimada
 /// - Inmutable (struct con let)
 struct TextContent: Equatable {
@@ -17,9 +17,10 @@ struct TextContent: Equatable {
             throw DomainError.invalidText("El texto no puede estar vacío")
         }
 
-        // Validación 2: No puede exceder 6000 caracteres
-        guard value.count <= 6000 else {
-            throw DomainError.invalidText("El texto excede el límite de 6000 caracteres")
+        // Validación 2: No puede exceder 50000 caracteres (~60-75 min de audio,
+        // suficiente para un capítulo entero importado como entrada única)
+        guard value.count <= 50000 else {
+            throw DomainError.invalidText("El texto excede el límite de 50000 caracteres")
         }
 
         self.value = value

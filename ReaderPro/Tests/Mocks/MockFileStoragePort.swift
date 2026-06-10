@@ -47,6 +47,14 @@ final class MockFileStoragePort: FileStoragePort {
         }
     }
 
+    var saveImageCompressedCalled = false
+    func saveImageCompressed(data: Data, baseDirectory: String, number: Int) async throws -> String {
+        saveImageCompressedCalled = true
+        let path = generateNumberedPath(baseDirectory: baseDirectory, number: number, extension: "jpg")
+        try await save(data: data, to: path)
+        return path
+    }
+
     func saveText(_ text: String, to path: String) async throws {
         saveTextCalled = true
         lastSavedText = text

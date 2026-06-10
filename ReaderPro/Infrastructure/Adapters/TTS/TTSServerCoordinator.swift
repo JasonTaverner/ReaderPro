@@ -64,6 +64,8 @@ final class TTSServerCoordinator: ObservableObject {
     private let kokoroONNXAdapter: KokoroONNXAdapter?
     private let qwen3Adapter: Qwen3TTSAdapter
     private let voxcpmAdapter: VoxCPMTTSAdapter
+    private let chatterboxAdapter: ChatterboxTTSAdapter
+    private let supertonicAdapter: SupertonicTTSAdapter
     private let adapterProxy: TTSAdapterProxy
 
     // MARK: - Internal
@@ -80,6 +82,8 @@ final class TTSServerCoordinator: ObservableObject {
         kokoroONNXAdapter: KokoroONNXAdapter?,
         qwen3Adapter: Qwen3TTSAdapter,
         voxcpmAdapter: VoxCPMTTSAdapter,
+        chatterboxAdapter: ChatterboxTTSAdapter,
+        supertonicAdapter: SupertonicTTSAdapter,
         adapterProxy: TTSAdapterProxy,
         initialProvider: Voice.TTSProvider = .kokoro
     ) {
@@ -90,6 +94,8 @@ final class TTSServerCoordinator: ObservableObject {
         self.kokoroONNXAdapter = kokoroONNXAdapter
         self.qwen3Adapter = qwen3Adapter
         self.voxcpmAdapter = voxcpmAdapter
+        self.chatterboxAdapter = chatterboxAdapter
+        self.supertonicAdapter = supertonicAdapter
         self.adapterProxy = adapterProxy
         self.activeProvider = initialProvider
 
@@ -108,6 +114,10 @@ final class TTSServerCoordinator: ObservableObject {
             adapterProxy.current = qwen3Adapter
         case .voxcpm:
             adapterProxy.current = voxcpmAdapter
+        case .chatterbox:
+            adapterProxy.current = chatterboxAdapter
+        case .supertonic:
+            adapterProxy.current = supertonicAdapter
         case .native:
             adapterProxy.current = nativeAdapter
         }
@@ -138,8 +148,8 @@ final class TTSServerCoordinator: ObservableObject {
             }
             await kokoroManager.startServer()
             isKokoroServerEnabled = true
-        case .qwen3, .voxcpm:
-            // VoxCPM2 corre en el mismo servidor MLX que Qwen3
+        case .qwen3, .voxcpm, .chatterbox, .supertonic:
+            // VoxCPM2, Chatterbox y Supertonic corren en el mismo servidor que Qwen3
             await qwen3Manager.startServer()
             isQwen3ServerEnabled = true
         case .native:
@@ -272,6 +282,10 @@ final class TTSServerCoordinator: ObservableObject {
             adapterProxy.current = qwen3Adapter
         case .voxcpm:
             adapterProxy.current = voxcpmAdapter
+        case .chatterbox:
+            adapterProxy.current = chatterboxAdapter
+        case .supertonic:
+            adapterProxy.current = supertonicAdapter
         case .native:
             adapterProxy.current = nativeAdapter
         }
@@ -317,7 +331,7 @@ final class TTSServerCoordinator: ObservableObject {
                         self?.activeStatus = newStatus
                     }
             }
-        case .qwen3, .voxcpm:
+        case .qwen3, .voxcpm, .chatterbox, .supertonic:
             activeStatus = qwen3Manager.status
             statusCancellable = qwen3Manager.$status
                 .receive(on: RunLoop.main)

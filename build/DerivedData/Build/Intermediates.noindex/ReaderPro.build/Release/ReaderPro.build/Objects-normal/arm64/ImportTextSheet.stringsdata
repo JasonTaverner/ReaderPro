@@ -84,10 +84,18 @@
       },
       {
         "comment": "",
+        "key": "The whole text becomes ONE entry, generated in a single pass (with internal segmentation). Expect roughly 1 minute of generation per minute of audio — ideal to leave running in the background.",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 184
+        }
+      },
+      {
+        "comment": "",
         "key": "Words per fragment:",
         "location": {
           "startingColumn": 30,
-          "startingLine": 162
+          "startingLine": 163
         }
       },
       {
@@ -95,7 +103,7 @@
         "key": "%lld words",
         "location": {
           "startingColumn": 30,
-          "startingLine": 165
+          "startingLine": 166
         }
       },
       {
@@ -103,7 +111,7 @@
         "key": "%lld fragments",
         "location": {
           "startingColumn": 22,
-          "startingLine": 191
+          "startingLine": 202
         }
       },
       {
@@ -111,7 +119,7 @@
         "key": "Preview",
         "location": {
           "startingColumn": 23,
-          "startingLine": 186
+          "startingLine": 197
         }
       },
       {
@@ -119,7 +127,7 @@
         "key": "Enter text to see preview",
         "location": {
           "startingColumn": 30,
-          "startingLine": 199
+          "startingLine": 210
         }
       },
       {
@@ -127,7 +135,7 @@
         "key": "%lld entries will be created",
         "location": {
           "startingColumn": 18,
-          "startingLine": 226
+          "startingLine": 237
         }
       },
       {
@@ -135,7 +143,7 @@
         "key": "Cancel",
         "location": {
           "startingColumn": 20,
-          "startingLine": 219
+          "startingLine": 230
         }
       },
       {
@@ -143,7 +151,7 @@
         "key": "Import",
         "location": {
           "startingColumn": 23,
-          "startingLine": 233
+          "startingLine": 244
         }
       },
       {
@@ -151,7 +159,7 @@
         "key": "%lld",
         "location": {
           "startingColumn": 18,
-          "startingLine": 268
+          "startingLine": 279
         }
       }
     ]

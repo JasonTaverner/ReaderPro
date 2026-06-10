@@ -166,7 +166,7 @@ final class SaveAudioEntryUseCaseTests: XCTestCase {
         // (project folder name as base directory, number 1, and png extension)
         XCTAssertTrue(mockFileStorage.generateNumberedPathCalled)
         XCTAssertEqual(mockFileStorage.lastGeneratedBaseDirectory, project.folderName)
-        XCTAssertEqual(mockFileStorage.lastGeneratedExtension, "png")
+        XCTAssertEqual(mockFileStorage.lastGeneratedExtension, "jpg")
 
         // Assert - Response contains the saved path
         XCTAssertNotNil(response.imagePath)

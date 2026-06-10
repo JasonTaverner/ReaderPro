@@ -1,0 +1,72 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/ChatterboxOptionsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Tip: enable Voice Cloning with one of your saved profiles — the default voice is weak, and the accent is inherited from your reference.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 75
+        }
+      },
+      {
+        "comment": "",
+        "key": "Chatterbox Options",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Language",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "Language",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Higher = more dramatic delivery (default 0.10)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 53
+        }
+      },
+      {
+        "comment": "",
+        "key": "Expressiveness",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lower = slower, more deliberate speech (default 0.50)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 70
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pacing (CFG weight)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 61
+        }
+      }
+    ]
+  },
+  "version": 1
+}

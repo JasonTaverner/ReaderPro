@@ -24,7 +24,7 @@ struct ReaderProApp: App {
 
                 GenerationProgressPanel(manager: container.generationManager)
             }
-            .frame(minWidth: 800, minHeight: 600)
+            .frame(minWidth: 920, minHeight: 600)
             .preferredColorScheme(.dark)
         }
         .commands {

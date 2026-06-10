@@ -73,13 +73,13 @@ final class SaveAudioEntryUseCase {
             let sourceURL = URL(fileURLWithPath: sourceImagePath)
             if FileManager.default.fileExists(atPath: sourceURL.path) {
                 let imageData = try Data(contentsOf: sourceURL)
-                let imagePath = fileStorage.generateNumberedPath(
+                // Comprime a JPEG con dimensión limitada (las capturas Retina en PNG
+                // pesan 10+ MB); el OCR ya se hizo sobre la imagen original en memoria
+                savedImagePath = try await fileStorage.saveImageCompressed(
+                    data: imageData,
                     baseDirectory: projectFolder,
-                    number: entryNumber,
-                    extension: "png"
+                    number: entryNumber
                 )
-                try await fileStorage.save(data: imageData, to: imagePath)
-                savedImagePath = imagePath
             }
         }
 

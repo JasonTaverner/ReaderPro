@@ -140,10 +140,26 @@
       },
       {
         "comment": "",
+        "key": "Chatterbox",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 176
+        }
+      },
+      {
+        "comment": "",
+        "key": "Supertonic",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
         "key": "Speed",
         "location": {
           "startingColumn": 27,
-          "startingLine": 279
+          "startingLine": 330
         }
       },
       {
@@ -151,7 +167,7 @@
         "key": "0.5x",
         "location": {
           "startingColumn": 26,
-          "startingLine": 292
+          "startingLine": 343
         }
       },
       {
@@ -159,7 +175,7 @@
         "key": "2.0x",
         "location": {
           "startingColumn": 26,
-          "startingLine": 298
+          "startingLine": 349
         }
       },
       {
@@ -167,7 +183,7 @@
         "key": "Estimated Duration",
         "location": {
           "startingColumn": 19,
-          "startingLine": 309
+          "startingLine": 360
         }
       },
       {
@@ -175,7 +191,7 @@
         "key": "Save Project",
         "location": {
           "startingColumn": 19,
-          "startingLine": 337
+          "startingLine": 388
         }
       },
       {
@@ -183,7 +199,7 @@
         "key": "Cancel",
         "location": {
           "startingColumn": 20,
-          "startingLine": 349
+          "startingLine": 400
         }
       },
       {
@@ -191,7 +207,7 @@
         "key": "Done",
         "location": {
           "startingColumn": 22,
-          "startingLine": 363
+          "startingLine": 414
         }
       }
     ]

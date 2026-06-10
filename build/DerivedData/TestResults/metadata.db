@@ -111,117 +111,117 @@
 				<key>test_audioEntry_withUnicodeInPaths_shouldStore</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0003910064697265625</real>
+					<real>0.0012381076812744141</real>
 				</dict>
 				<key>test_createAudioEntry_shouldGenerateUniqueId</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00032794475555419922</real>
+					<real>0.00036895275115966797</real>
 				</dict>
 				<key>test_createAudioEntry_shouldSetCreatedAtToNow</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00032699108123779297</real>
+					<real>0.00031101703643798828</real>
 				</dict>
 				<key>test_createAudioEntry_withAllPaths_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00040996074676513672</real>
+					<real>0.00029504299163818359</real>
 				</dict>
 				<key>test_createAudioEntry_withExistingId_shouldUseProvidedId</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00036597251892089844</real>
+					<real>0.00027799606323242188</real>
 				</dict>
 				<key>test_createAudioEntry_withTextAndAudioPath_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00031793117523193359</real>
+					<real>0.00035595893859863281</real>
 				</dict>
 				<key>test_createAudioEntry_withTextOnly_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00043702125549316406</real>
+					<real>0.00044500827789306641</real>
 				</dict>
 				<key>test_createAudioEntry_withVeryLongText_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0032739639282226562</real>
+					<real>0.00083398818969726562</real>
 				</dict>
 				<key>test_entries_canBeFilteredByHasAudio</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00040602684020996094</real>
+					<real>0.00030994415283203125</real>
 				</dict>
 				<key>test_entries_canBeSortedByCreatedAt</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00033593177795410156</real>
+					<real>0.00032901763916015625</real>
 				</dict>
 				<key>test_entries_canBeStoredInArray</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00033688545227050781</real>
+					<real>0.00034594535827636719</real>
 				</dict>
 				<key>test_equality_withDifferentId_shouldNotBeEqual</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00032699108123779297</real>
+					<real>0.00043797492980957031</real>
 				</dict>
 				<key>test_equality_withSameId_shouldBeEqual</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0013729333877563477</real>
+					<real>0.00039601325988769531</real>
 				</dict>
 				<key>test_hasAudio_withAudioPath_shouldReturnTrue</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00034999847412109375</real>
+					<real>0.00036203861236572266</real>
 				</dict>
 				<key>test_hasAudio_withNoAudioPath_shouldReturnFalse</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00030195713043212891</real>
+					<real>0.00042498111724853516</real>
 				</dict>
 				<key>test_hasImage_withImagePath_shouldReturnTrue</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0019448995590209961</real>
+					<real>0.00033700466156005859</real>
 				</dict>
 				<key>test_hasImage_withNoImagePath_shouldReturnFalse</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00029003620147705078</real>
+					<real>0.00034797191619873047</real>
 				</dict>
 				<key>test_hashable_canBeUsedInDictionary</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00037801265716552734</real>
+					<real>0.00034201145172119141</real>
 				</dict>
 				<key>test_hashable_canBeUsedInSet</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00032401084899902344</real>
+					<real>0.0031189918518066406</real>
 				</dict>
 				<key>test_setAudioPath_multiple_times_shouldKeepLatest</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0003299713134765625</real>
+					<real>0.00030398368835449219</real>
 				</dict>
 				<key>test_setAudioPath_shouldUpdatePath</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00036501884460449219</real>
+					<real>0.00031697750091552734</real>
 				</dict>
 				<key>test_setAudioPath_withEmptyString_shouldStore</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00033402442932128906</real>
+					<real>0.0019370317459106445</real>
 				</dict>
 				<key>test_setImagePath_shouldUpdatePath</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00034201145172119141</real>
+					<real>0.00036299228668212891</real>
 				</dict>
 			</dict>
 			<key>AudioSegmentTests</key>
@@ -458,72 +458,72 @@
 				<key>test_execute_shouldEmitProjectCreatedEvent</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0019069910049438477</real>
+					<real>0.0037959814071655273</real>
 				</dict>
 				<key>test_execute_shouldGenerateUniqueProjectId</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0013079643249511719</real>
+					<real>0.00051295757293701172</real>
 				</dict>
 				<key>test_execute_shouldSetCreatedAtTimestamp</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.10250496864318848</real>
+					<real>0.00047600269317626953</real>
 				</dict>
 				<key>test_execute_whenRepositoryThrows_shouldPropagateError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.001277923583984375</real>
+					<real>0.0013830661773681641</real>
 				</dict>
 				<key>test_execute_withCustomVoiceConfiguration_shouldUseProvidedValues</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.10249698162078857</real>
+					<real>0.10141301155090332</real>
 				</dict>
 				<key>test_execute_withDefaultSpeed_shouldUseNormalSpeed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.10243391990661621</real>
+					<real>0.00052905082702636719</real>
 				</dict>
 				<key>test_execute_withEmptyProjectName_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.10213398933410645</real>
+					<real>0.0004730224609375</real>
 				</dict>
 				<key>test_execute_withEmptyText_shouldCreateProjectWithNilText</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0014660358428955078</real>
+					<real>0.00050497055053710938</real>
 				</dict>
 				<key>test_execute_withInvalidSpeed_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0012849569320678711</real>
+					<real>0.00044000148773193359</real>
 				</dict>
 				<key>test_execute_withNameExceedingLimit_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0011249780654907227</real>
+					<real>0.00042295455932617188</real>
 				</dict>
 				<key>test_execute_withTextExceedingLimit_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0013589859008789062</real>
+					<real>0.00088703632354736328</real>
 				</dict>
 				<key>test_execute_withValidRequest_shouldCreateAndSaveProject</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.002617955207824707</real>
+					<real>0.00061404705047607422</real>
 				</dict>
 				<key>test_execute_withWhitespaceOnlyText_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00091993808746337891</real>
+					<real>0.00037395954132080078</real>
 				</dict>
 				<key>test_execute_withoutNameProvided_shouldGenerateNameFromText</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0016559362411499023</real>
+					<real>0.00076699256896972656</real>
 				</dict>
 			</dict>
 			<key>DeleteProjectUseCaseTests</key>
@@ -2566,72 +2566,72 @@
 				<key>test_execute_shouldCallProgressCallback</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.002472996711730957</real>
+					<real>0.0018240213394165039</real>
 				</dict>
 				<key>test_execute_shouldReturnFragmentPreviews</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0011490583419799805</real>
+					<real>0.00053310394287109375</real>
 				</dict>
 				<key>test_execute_splitByParagraph_shouldCreateEntriesForEachParagraph</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.088961005210876465</real>
+					<real>0.00059998035430908203</real>
 				</dict>
 				<key>test_execute_splitByParagraph_shouldIgnoreEmptyParagraphs</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0021979808807373047</real>
+					<real>0.00046002864837646484</real>
 				</dict>
 				<key>test_execute_splitByParagraph_withSingleParagraph_shouldCreateOneEntry</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0011960268020629883</real>
+					<real>0.08929896354675293</real>
 				</dict>
 				<key>test_execute_splitBySentence_shouldCreateEntriesForEachSentence</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0011709928512573242</real>
+					<real>0.00061905384063720703</real>
 				</dict>
 				<key>test_execute_splitBySentence_shouldHandleAbbreviations</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0031249523162841797</real>
+					<real>0.00048696994781494141</real>
 				</dict>
 				<key>test_execute_splitByWords_shouldCreateEntriesWithSpecifiedWordCount</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0017299652099609375</real>
+					<real>0.00055801868438720703</real>
 				</dict>
 				<key>test_execute_splitByWords_withExactMultiple_shouldNotCreateEmptyEntry</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0011470317840576172</real>
+					<real>0.027964949607849121</real>
 				</dict>
 				<key>test_execute_splitByWords_withFewerWordsThanCount_shouldCreateOneEntry</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.075908064842224121</real>
+					<real>0.0005359649658203125</real>
 				</dict>
 				<key>test_execute_withEmptyText_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0014349222183227539</real>
+					<real>0.00062799453735351562</real>
 				</dict>
 				<key>test_execute_withGenerateAudioTrue_shouldCallTTSAndSaveAudio</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0018219947814941406</real>
+					<real>0.00066304206848144531</real>
 				</dict>
 				<key>test_execute_withNonexistentProject_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0011678934097290039</real>
+					<real>0.00042903423309326172</real>
 				</dict>
 				<key>test_execute_withWhitespaceOnlyText_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0014159679412841797</real>
+					<real>0.00042498111724853516</real>
 				</dict>
 			</dict>
 			<key>ProjectListPresenterTests</key>
@@ -3407,97 +3407,97 @@
 				<key>test_execute_fullFlow_shouldCoordinateAllOperations</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0016809701919555664</real>
+					<real>0.016821980476379395</real>
 				</dict>
 				<key>test_execute_multipleEntries_shouldIncrementNumbers</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.061179995536804199</real>
+					<real>0.00051200389862060547</real>
 				</dict>
 				<key>test_execute_shouldAddEntryToProject</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.09822392463684082</real>
+					<real>0.00045597553253173828</real>
 				</dict>
 				<key>test_execute_shouldCreateAudioDataFromBytes</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0013289451599121094</real>
+					<real>0.00050008296966552734</real>
 				</dict>
 				<key>test_execute_shouldGenerateCorrectPaths</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0063560009002685547</real>
+					<real>0.00045609474182128906</real>
 				</dict>
 				<key>test_execute_shouldSaveProjectAfterAddingEntry</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0014801025390625</real>
+					<real>0.00081396102905273438</real>
 				</dict>
 				<key>test_execute_whenAudioSaveFails_shouldPropagateError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.001194000244140625</real>
+					<real>0.00046610832214355469</real>
 				</dict>
 				<key>test_execute_whenRepositorySaveFails_shouldPropagateError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0011360645294189453</real>
+					<real>0.00044202804565429688</real>
 				</dict>
 				<key>test_execute_whenTextSaveFails_shouldPropagateError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00094497203826904297</real>
+					<real>0.00051999092102050781</real>
 				</dict>
 				<key>test_execute_withEmptyAudioData_shouldSaveTextOnly</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0014079809188842773</real>
+					<real>0.0005130767822265625</real>
 				</dict>
 				<key>test_execute_withEmptyText_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.071390032768249512</real>
+					<real>0.00050294399261474609</real>
 				</dict>
 				<key>test_execute_withFirstEntry_shouldCreateEntry001</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0013570785522460938</real>
+					<real>0.00058102607727050781</real>
 				</dict>
 				<key>test_execute_withImagePath_shouldPersistImage</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0020269155502319336</real>
+					<real>0.00095605850219726562</real>
 				</dict>
 				<key>test_execute_withNilAudioData_shouldSaveTextOnly</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0019170045852661133</real>
+					<real>0.00080394744873046875</real>
 				</dict>
 				<key>test_execute_withNonexistentProject_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.096174001693725586</real>
+					<real>0.00047600269317626953</real>
 				</dict>
 				<key>test_execute_withSecondEntry_shouldCreateEntry002</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0013619661331176758</real>
+					<real>0.00041401386260986328</real>
 				</dict>
 				<key>test_execute_withThirdEntry_shouldCreateEntry003</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0012099742889404297</real>
+					<real>0.00041401386260986328</real>
 				</dict>
 				<key>test_execute_withWhitespaceOnlyText_shouldThrowError</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0013259649276733398</real>
+					<real>0.00047791004180908203</real>
 				</dict>
 				<key>test_execute_withoutImagePath_shouldNotSaveImage</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0022450685501098633</real>
+					<real>0.00038504600524902344</real>
 				</dict>
 			</dict>
 			<key>SettingsPresenterTests</key>
@@ -3669,87 +3669,87 @@
 				<key>test_createText_atMaxLimit_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00072193145751953125</real>
+					<real>0.00083601474761962891</real>
 				</dict>
 				<key>test_createText_exceedingLimit_shouldThrow</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00081396102905273438</real>
+					<real>0.00090992450714111328</real>
 				</dict>
 				<key>test_createText_withEmptyString_shouldThrow</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00050199031829833984</real>
+					<real>0.00037407875061035156</real>
 				</dict>
 				<key>test_createText_withNumbers_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00056600570678710938</real>
+					<real>0.00031101703643798828</real>
 				</dict>
 				<key>test_createText_withPunctuation_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0005359649658203125</real>
+					<real>0.00031197071075439453</real>
 				</dict>
 				<key>test_createText_withUnicodeCharacters_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00059497356414794922</real>
+					<real>0.007783055305480957</real>
 				</dict>
 				<key>test_createText_withValidString_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00038897991180419922</real>
+					<real>0.00034892559051513672</real>
 				</dict>
 				<key>test_createText_withWhitespaceOnly_shouldThrow</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00055599212646484375</real>
+					<real>0.00047004222869873047</real>
 				</dict>
 				<key>test_equality_withDifferentValue_shouldNotBeEqual</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00054693222045898438</real>
+					<real>0.00031292438507080078</real>
 				</dict>
 				<key>test_equality_withSameValue_shouldBeEqual</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00045502185821533203</real>
+					<real>0.00034105777740478516</real>
 				</dict>
 				<key>test_estimatedDuration_with150Words_shouldReturn60Seconds</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00045096874237060547</real>
+					<real>0.0093839168548583984</real>
 				</dict>
 				<key>test_estimatedDuration_with75Words_shouldReturn30Seconds</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00061094760894775391</real>
+					<real>0.00059401988983154297</real>
 				</dict>
 				<key>test_estimatedDuration_withFewWords_shouldReturnSmallDuration</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00047194957733154297</real>
+					<real>0.00053298473358154297</real>
 				</dict>
 				<key>test_wordCount_withExtraSpaces_shouldIgnoreThem</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00041997432708740234</real>
+					<real>0.00048100948333740234</real>
 				</dict>
 				<key>test_wordCount_withMultipleWords_shouldCalculateCorrectly</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00041508674621582031</real>
+					<real>0.00032603740692138672</real>
 				</dict>
 				<key>test_wordCount_withNewlines_shouldCount</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00050008296966552734</real>
+					<real>0.0002899169921875</real>
 				</dict>
 				<key>test_wordCount_withSingleWord_shouldReturnOne</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0029250383377075195</real>
+					<real>0.0062530040740966797</real>
 				</dict>
 			</dict>
 			<key>TimeRangeTests</key>
@@ -4395,42 +4395,47 @@
 				<key>test_createVoice_withDefaultTrue_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00031304359436035156</real>
+					<real>0.00091505050659179688</real>
 				</dict>
 				<key>test_createVoice_withValidData_shouldSucceed</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00035989284515380859</real>
+					<real>0.00034403800964355469</real>
 				</dict>
 				<key>test_equality_withDifferentId_shouldNotBeEqual</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.000370025634765625</real>
+					<real>0.00037097930908203125</real>
 				</dict>
 				<key>test_equality_withSameIdButDifferentName_shouldBeEqual</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00027310848236083984</real>
+					<real>0.00027894973754882812</real>
 				</dict>
 				<key>test_equality_withSameId_shouldBeEqual</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.0026909112930297852</real>
+					<real>0.00030398368835449219</real>
 				</dict>
 				<key>test_filterDefaultVoices_shouldWork</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00039505958557128906</real>
+					<real>0.00058495998382568359</real>
 				</dict>
 				<key>test_hashable_canBeUsedInDictionary</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00041091442108154297</real>
+					<real>0.00034499168395996094</real>
 				</dict>
 				<key>test_hashable_canBeUsedInSet</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00034201145172119141</real>
+					<real>0.00032401084899902344</real>
+				</dict>
+				<key>test_provider_allCases_shouldContainAllProviders</key>
+				<dict>
+					<key>mrnet</key>
+					<real>0.0003070831298828125</real>
 				</dict>
 				<key>test_provider_allCases_shouldContainThreeProviders</key>
 				<dict>
@@ -4440,72 +4445,72 @@
 				<key>test_provider_displayName_kokoro_shouldReturnCorrectString</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00030505657196044922</real>
+					<real>0.0002880096435546875</real>
 				</dict>
 				<key>test_provider_displayName_native_shouldReturnCorrectString</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00029098987579345703</real>
+					<real>0.016524076461791992</real>
 				</dict>
 				<key>test_provider_displayName_qwen3_shouldReturnCorrectString</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00034189224243164062</real>
+					<real>0.00033700466156005859</real>
 				</dict>
 				<key>test_provider_kokoro_shouldHaveCorrectRawValue</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00029802322387695312</real>
+					<real>0.00031697750091552734</real>
 				</dict>
 				<key>test_provider_native_shouldHaveCorrectRawValue</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00031900405883789062</real>
+					<real>0.00032210350036621094</real>
 				</dict>
 				<key>test_provider_qwen3_shouldHaveCorrectRawValue</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00029706954956054688</real>
+					<real>0.00030291080474853516</real>
 				</dict>
 				<key>test_voice_shouldBeIdentifiable</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00033104419708251953</real>
+					<real>0.0070439577102661133</real>
 				</dict>
 				<key>test_voice_withDifferentLanguages_shouldStore</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00030601024627685547</real>
+					<real>0.00033700466156005859</real>
 				</dict>
 				<key>test_voice_withEmptyStrings_shouldStore</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00027799606323242188</real>
+					<real>0.00031304359436035156</real>
 				</dict>
 				<key>test_voice_withSpecialCharacters_shouldStore</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00031602382659912109</real>
+					<real>0.00033509731292724609</real>
 				</dict>
 				<key>test_voices_canBeFilteredByLanguage</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00031006336212158203</real>
+					<real>0.00033009052276611328</real>
 				</dict>
 				<key>test_voices_canBeFilteredByProvider</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00030601024627685547</real>
+					<real>0.0026340484619140625</real>
 				</dict>
 				<key>test_voices_canBeSorted</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00029695034027099609</real>
+					<real>0.00039601325988769531</real>
 				</dict>
 				<key>test_voices_canBeStoredInArray</key>
 				<dict>
 					<key>mrnet</key>
-					<real>0.00031590461730957031</real>
+					<real>0.00028598308563232422</real>
 				</dict>
 			</dict>
 			<key>WAVEncoderTests</key>

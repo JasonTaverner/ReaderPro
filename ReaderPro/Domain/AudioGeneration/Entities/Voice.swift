@@ -17,6 +17,8 @@ struct Voice: Equatable, Hashable, Identifiable {
         case kokoro     // Kokoro TTS (local)
         case qwen3      // Qwen3-TTS (local o API)
         case voxcpm     // VoxCPM2 (máxima calidad 48 kHz, mismo servidor MLX)
+        case chatterbox // Chatterbox Multilingual (rápido, MIT, mismo servidor MLX)
+        case supertonic // Supertonic v3 (ONNX ~4x tiempo real, 10 voces preset)
 
         /// Nombre legible para UI
         var displayName: String {
@@ -29,6 +31,10 @@ struct Voice: Equatable, Hashable, Identifiable {
                 return "Qwen3 TTS"
             case .voxcpm:
                 return "VoxCPM2"
+            case .chatterbox:
+                return "Chatterbox"
+            case .supertonic:
+                return "Supertonic"
             }
         }
     }

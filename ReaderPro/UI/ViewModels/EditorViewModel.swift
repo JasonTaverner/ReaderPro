@@ -23,6 +23,10 @@ final class EditorViewModel: ObservableObject {
     /// ID del proyecto (nil si es nuevo)
     @Published var projectId: String?
 
+    /// true solo cuando loadProject completó con éxito; protege contra cargas
+    /// canceladas a mitad (la vista se recrea y SwiftUI cancela el .task)
+    @Published var projectLoaded: Bool = false
+
     /// Nombre de la carpeta del proyecto en disco
     @Published var folderName: String?
 
@@ -145,6 +149,20 @@ final class EditorViewModel: ObservableObject {
     @Published var voxcpmSteps: Double = 10
     /// Modo continuación: hereda acento/prosodia de la referencia con máxima fuerza
     @Published var voxcpmContinuation: Bool = false
+
+    // MARK: - Chatterbox Multilingual (rápido, MIT)
+
+    /// Idioma de síntesis (código corto, p. ej. "es")
+    @Published var chatterboxLanguage: String = "es"
+    /// Expresividad 0-1 (0.1 = default del modelo)
+    @Published var chatterboxExaggeration: Double = 0.1
+    /// CFG weight 0-1: más bajo = habla más pausada (0.5 = default)
+    @Published var chatterboxCfgWeight: Double = 0.5
+
+    // MARK: - Supertonic (ultrarrápido, voces preset)
+
+    /// Idioma de síntesis (código corto, p. ej. "es")
+    @Published var supertonicLanguage: String = "es"
 
     /// Target accent for voice cloning (nil = automatic from reference audio)
     @Published var cloneTargetAccent: CloneTargetAccent? = nil
@@ -272,6 +290,7 @@ final class EditorViewModel: ObservableObject {
     /// Resetea el estado para un nuevo proyecto
     func reset() {
         projectId = nil
+        projectLoaded = false
         name = ""
         text = ""
         selectedVoiceId = nil

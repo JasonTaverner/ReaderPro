@@ -20,6 +20,8 @@
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/CaptureAndProcess/CaptureAndProcessResponse.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/CaptureAndProcess/CaptureAndProcessUseCase.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/ValueObjects/CapturedImage.swift
+/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/ChatterboxOptionsView.swift
+/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/ChatterboxTTSAdapter.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/ValueObjects/ClonedVoiceProfile.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/DTOs/ClonedVoiceProfileDTO.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/Ports/ClonedVoiceRepositoryPort.swift
@@ -156,6 +158,8 @@
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/Help/ShortcutsHelpContent.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/ValueObjects/SpeechEmotion.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Configuration/StorageConfiguration.swift
+/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/SupertonicOptionsView.swift
+/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/SupertonicTTSAdapter.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/TTSAdapterProxy.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/Ports/TTSPort.swift
 /Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/TTSServerCoordinator.swift

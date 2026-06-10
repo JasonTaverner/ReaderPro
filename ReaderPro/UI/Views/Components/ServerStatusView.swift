@@ -10,7 +10,7 @@ struct ServerStatusView: View {
         Menu {
             // Provider selection
             Section("TTS Provider") {
-                ForEach([Voice.TTSProvider.native, .kokoro, .qwen3, .voxcpm], id: \.self) { provider in
+                ForEach([Voice.TTSProvider.native, .kokoro, .qwen3, .voxcpm, .chatterbox, .supertonic], id: \.self) { provider in
                     Button {
                         Task {
                             await coordinator.switchProvider(to: provider)

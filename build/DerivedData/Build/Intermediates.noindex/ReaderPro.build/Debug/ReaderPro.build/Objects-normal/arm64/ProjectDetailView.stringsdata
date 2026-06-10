@@ -220,10 +220,26 @@
       },
       {
         "comment": "",
+        "key": "Chatterbox",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 448
+        }
+      },
+      {
+        "comment": "",
+        "key": "Supertonic",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 449
+        }
+      },
+      {
+        "comment": "",
         "key": "Speed",
         "location": {
           "startingColumn": 27,
-          "startingLine": 551
+          "startingLine": 602
         }
       },
       {
@@ -231,7 +247,7 @@
         "key": "0.5x",
         "location": {
           "startingColumn": 26,
-          "startingLine": 561
+          "startingLine": 612
         }
       },
       {
@@ -239,7 +255,7 @@
         "key": "2.0x",
         "location": {
           "startingColumn": 26,
-          "startingLine": 563
+          "startingLine": 614
         }
       },
       {
@@ -247,7 +263,7 @@
         "key": "Estimated Duration",
         "location": {
           "startingColumn": 19,
-          "startingLine": 572
+          "startingLine": 623
         }
       },
       {
@@ -255,7 +271,7 @@
         "key": "Save Changes",
         "location": {
           "startingColumn": 23,
-          "startingLine": 597
+          "startingLine": 648
         }
       },
       {
@@ -263,7 +279,7 @@
         "key": "Capture Screen",
         "location": {
           "startingColumn": 23,
-          "startingLine": 609
+          "startingLine": 660
         }
       },
       {
@@ -271,7 +287,7 @@
         "key": "Import Images",
         "location": {
           "startingColumn": 23,
-          "startingLine": 622
+          "startingLine": 673
         }
       },
       {
@@ -279,7 +295,7 @@
         "key": "Import Document",
         "location": {
           "startingColumn": 23,
-          "startingLine": 634
+          "startingLine": 685
         }
       },
       {
@@ -287,7 +303,7 @@
         "key": "Import Text",
         "location": {
           "startingColumn": 23,
-          "startingLine": 644
+          "startingLine": 695
         }
       },
       {
@@ -295,7 +311,7 @@
         "key": "Generate Audio",
         "location": {
           "startingColumn": 27,
-          "startingLine": 656
+          "startingLine": 707
         }
       },
       {
@@ -303,7 +319,7 @@
         "key": "Generate Missing (%lld)",
         "location": {
           "startingColumn": 27,
-          "startingLine": 670
+          "startingLine": 721
         }
       },
       {
@@ -311,7 +327,7 @@
         "key": "Export Project",
         "location": {
           "startingColumn": 27,
-          "startingLine": 682
+          "startingLine": 733
         }
       },
       {
@@ -319,7 +335,7 @@
         "key": "Show in Finder",
         "location": {
           "startingColumn": 27,
-          "startingLine": 694
+          "startingLine": 745
         }
       },
       {
@@ -327,7 +343,7 @@
         "key": "%lld entries",
         "location": {
           "startingColumn": 22,
-          "startingLine": 711
+          "startingLine": 762
         }
       },
       {
@@ -335,7 +351,7 @@
         "key": "Audio Entries",
         "location": {
           "startingColumn": 23,
-          "startingLine": 707
+          "startingLine": 758
         }
       },
       {
@@ -343,7 +359,7 @@
         "key": "Mark as Unread",
         "location": {
           "startingColumn": 50,
-          "startingLine": 747
+          "startingLine": 798
         }
       },
       {
@@ -351,7 +367,7 @@
         "key": "Mark as Read",
         "location": {
           "startingColumn": 69,
-          "startingLine": 747
+          "startingLine": 798
         }
       },
       {
@@ -359,7 +375,7 @@
         "key": "Regenerate Audio",
         "location": {
           "startingColumn": 39,
-          "startingLine": 754
+          "startingLine": 805
         }
       },
       {
@@ -367,7 +383,7 @@
         "key": "Delete Entry",
         "location": {
           "startingColumn": 35,
-          "startingLine": 764
+          "startingLine": 815
         }
       },
       {
@@ -375,7 +391,7 @@
         "key": "Audio Player",
         "location": {
           "startingColumn": 23,
-          "startingLine": 778
+          "startingLine": 829
         }
       },
       {
@@ -383,7 +399,7 @@
         "key": "Auto-play",
         "location": {
           "startingColumn": 27,
-          "startingLine": 786
+          "startingLine": 837
         }
       },
       {
@@ -391,7 +407,7 @@
         "key": "Playing entry %lld of %lld",
         "location": {
           "startingColumn": 26,
-          "startingLine": 848
+          "startingLine": 899
         }
       },
       {
@@ -399,7 +415,7 @@
         "key": "Auto-play enabled",
         "location": {
           "startingColumn": 31,
-          "startingLine": 853
+          "startingLine": 904
         }
       },
       {
@@ -407,7 +423,7 @@
         "key": "Speed:",
         "location": {
           "startingColumn": 22,
-          "startingLine": 862
+          "startingLine": 913
         }
       },
       {
@@ -415,7 +431,7 @@
         "key": "Unsaved changes",
         "location": {
           "startingColumn": 22,
-          "startingLine": 915
+          "startingLine": 966
         }
       },
       {
@@ -423,7 +439,7 @@
         "key": "Saving...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 923
+          "startingLine": 974
         }
       },
       {
@@ -431,7 +447,7 @@
         "key": "Saved",
         "location": {
           "startingColumn": 22,
-          "startingLine": 932
+          "startingLine": 983
         }
       },
       {
@@ -439,7 +455,7 @@
         "key": "Loading...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 952
+          "startingLine": 1003
         }
       },
       {
@@ -447,7 +463,7 @@
         "key": "Processing screenshot...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 973
+          "startingLine": 1024
         }
       },
       {
@@ -455,7 +471,7 @@
         "key": "Exporting project...",
         "location": {
           "startingColumn": 22,
-          "startingLine": 1020
+          "startingLine": 1071
         }
       },
       {
@@ -463,7 +479,7 @@
         "key": "Merging audio, images, and text",
         "location": {
           "startingColumn": 22,
-          "startingLine": 1023
+          "startingLine": 1074
         }
       }
     ]

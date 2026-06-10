@@ -231,7 +231,7 @@ final class CreateProjectUseCaseTests: XCTestCase {
 
     func test_execute_withTextExceedingLimit_shouldThrowError() async {
         // Arrange
-        let longText = String(repeating: "a", count: 6001)  // Exceeds 6000 char limit
+        let longText = String(repeating: "a", count: 50001)  // Exceeds 50000 char limit
         let request = CreateProjectRequest(
             text: longText,
             name: "Proyecto",

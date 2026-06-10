@@ -70,11 +70,13 @@ final class VoiceTests: XCTestCase {
         let allCases = Voice.TTSProvider.allCases
 
         // Assert
-        XCTAssertEqual(allCases.count, 4)
+        XCTAssertEqual(allCases.count, 6)
         XCTAssertTrue(allCases.contains(.native))
         XCTAssertTrue(allCases.contains(.kokoro))
         XCTAssertTrue(allCases.contains(.qwen3))
         XCTAssertTrue(allCases.contains(.voxcpm))
+        XCTAssertTrue(allCases.contains(.chatterbox))
+        XCTAssertTrue(allCases.contains(.supertonic))
     }
 
     func test_provider_displayName_native_shouldReturnCorrectString() {

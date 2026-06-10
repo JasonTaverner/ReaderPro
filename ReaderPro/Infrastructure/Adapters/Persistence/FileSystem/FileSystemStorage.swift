@@ -1,4 +1,5 @@
 import Foundation
+import AppKit
 
 /// Storage de archivos basado en sistema de archivos que implementa FileStoragePort
 /// Maneja tanto texto como datos binarios (textos, imágenes, etc.)
@@ -97,6 +98,56 @@ final class FileSystemStorage: FileStoragePort {
         } catch {
             throw InfrastructureError.fileWriteFailed("Failed to delete: \(path)")
         }
+    }
+
+    func saveImageCompressed(data: Data, baseDirectory: String, number: Int) async throws -> String {
+        // Capturas Retina y fotos importadas pueden pesar 10+ MB en PNG; como la
+        // imagen es solo referencia visual (el OCR ya se hizo en memoria), se
+        // guarda en JPEG con dimensión limitada (~10x menos disco)
+        let maxDimension: CGFloat = 2400
+        let jpegQuality: CGFloat = 0.78
+
+        guard let image = NSImage(data: data),
+              let compressed = Self.jpegData(from: image, maxDimension: maxDimension, quality: jpegQuality) else {
+            // Datos no decodificables como imagen: guardar tal cual (comportamiento previo)
+            let path = generateNumberedPath(baseDirectory: baseDirectory, number: number, extension: "png")
+            try await save(data: data, to: path)
+            return path
+        }
+
+        let path = generateNumberedPath(baseDirectory: baseDirectory, number: number, extension: "jpg")
+        try await save(data: compressed, to: path)
+        return path
+    }
+
+    private static func jpegData(from image: NSImage, maxDimension: CGFloat, quality: CGFloat) -> Data? {
+        let size = image.size
+        guard size.width > 0, size.height > 0 else { return nil }
+
+        let scale = min(1.0, maxDimension / max(size.width, size.height))
+        let newSize = NSSize(width: round(size.width * scale), height: round(size.height * scale))
+
+        guard let bitmapRep = NSBitmapImageRep(
+            bitmapDataPlanes: nil,
+            pixelsWide: Int(newSize.width),
+            pixelsHigh: Int(newSize.height),
+            bitsPerSample: 8,
+            samplesPerPixel: 4,
+            hasAlpha: true,
+            isPlanar: false,
+            colorSpaceName: .deviceRGB,
+            bytesPerRow: 0,
+            bitsPerPixel: 0
+        ) else { return nil }
+
+        NSGraphicsContext.saveGraphicsState()
+        NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: bitmapRep)
+        image.draw(in: NSRect(origin: .zero, size: newSize),
+                   from: NSRect(origin: .zero, size: size),
+                   operation: .copy, fraction: 1.0)
+        NSGraphicsContext.restoreGraphicsState()
+
+        return bitmapRep.representation(using: .jpeg, properties: [.compressionFactor: quality])
     }
 
     func generateNumberedPath(baseDirectory: String, number: Int, extension ext: String) -> String {

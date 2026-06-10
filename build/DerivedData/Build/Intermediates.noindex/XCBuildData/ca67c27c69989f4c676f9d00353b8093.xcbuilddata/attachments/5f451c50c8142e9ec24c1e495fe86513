@@ -1,0 +1,956 @@
+{
+  "" : {
+    "const-values" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ReaderPro-primary.swiftconstvalues",
+    "dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ReaderPro-primary.d",
+    "diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ReaderPro-primary.dia",
+    "emit-module-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ReaderPro-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ReaderPro-primary-emit-module.dia",
+    "pch" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ReaderPro-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ReaderPro-primary.swiftdeps"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/App/DependencyContainer.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DependencyContainer.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DependencyContainer.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DependencyContainer.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/App/ReaderProApp.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ReaderProApp.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ReaderProApp.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ReaderProApp.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/DTOs/AudioEntryDTO.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEntryDTO.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEntryDTO.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEntryDTO.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/DTOs/ClonedVoiceProfileDTO.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceProfileDTO.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceProfileDTO.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceProfileDTO.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/DTOs/VoiceDTO.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceDTO.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceDTO.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceDTO.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/Errors/ApplicationError.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ApplicationError.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ApplicationError.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ApplicationError.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/CaptureAndProcess/CaptureAndProcessRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/CaptureAndProcess/CaptureAndProcessResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/CaptureAndProcess/CaptureAndProcessUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/CreateProject/CreateProjectRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/CreateProject/CreateProjectResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/CreateProject/CreateProjectUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/DeleteProject/DeleteProjectRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteProjectRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteProjectRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteProjectRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/DeleteProject/DeleteProjectResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteProjectResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteProjectResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteProjectResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/DeleteProject/DeleteProjectUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteProjectUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteProjectUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteProjectUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/GenerateAudio/GenerateAudioRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/GenerateAudio/GenerateAudioResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/GenerateAudio/GenerateAudioUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/GenerateAudioForEntry/GenerateAudioForEntryRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioForEntryRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioForEntryRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioForEntryRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/GenerateAudioForEntry/GenerateAudioForEntryResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioForEntryResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioForEntryResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioForEntryResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/GenerateAudioForEntry/GenerateAudioForEntryUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioForEntryUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioForEntryUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerateAudioForEntryUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/GetProject/GetProjectRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GetProjectRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GetProjectRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GetProjectRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/GetProject/GetProjectResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GetProjectResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GetProjectResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GetProjectResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/GetProject/GetProjectUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GetProjectUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GetProjectUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GetProjectUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ListProjects/ListProjectsRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListProjectsRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListProjectsRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListProjectsRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ListProjects/ListProjectsResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListProjectsResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListProjectsResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListProjectsResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ListProjects/ListProjectsUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListProjectsUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListProjectsUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListProjectsUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ListProjects/ProjectSummary+UI.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectSummary+UI.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectSummary+UI.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectSummary+UI.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ListProjects/ProjectSummary.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectSummary.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectSummary.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectSummary.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ManageFolders/AssignProjectToFolderUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AssignProjectToFolderUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AssignProjectToFolderUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AssignProjectToFolderUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ManageFolders/CreateFolderUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateFolderUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateFolderUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateFolderUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ManageFolders/DeleteFolderUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteFolderUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteFolderUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DeleteFolderUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ManageFolders/FolderSummary.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderSummary.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderSummary.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderSummary.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ManageFolders/ListFoldersUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListFoldersUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListFoldersUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ListFoldersUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ManageFolders/RenameFolderUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/RenameFolderUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/RenameFolderUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/RenameFolderUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/MergeProject/MergeProjectRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeProjectRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeProjectRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeProjectRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/MergeProject/MergeProjectResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeProjectResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeProjectResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeProjectResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/MergeProject/MergeProjectUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeProjectUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeProjectUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeProjectUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ProcessDocument/ProcessDocumentRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessDocumentRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessDocumentRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessDocumentRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ProcessDocument/ProcessDocumentResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessDocumentResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessDocumentResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessDocumentResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ProcessDocument/ProcessDocumentUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessDocumentUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessDocumentUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessDocumentUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ProcessImageBatch/ProcessImageBatchRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessImageBatchRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessImageBatchRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessImageBatchRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ProcessImageBatch/ProcessImageBatchResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessImageBatchResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessImageBatchResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessImageBatchResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ProcessImageBatch/ProcessImageBatchUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessImageBatchUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessImageBatchUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessImageBatchUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ProcessTextBatch/ProcessTextBatchRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessTextBatchRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessTextBatchRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessTextBatchRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ProcessTextBatch/ProcessTextBatchResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessTextBatchResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessTextBatchResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessTextBatchResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/ProcessTextBatch/ProcessTextBatchUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessTextBatchUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessTextBatchUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessTextBatchUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/Protocols/UseCaseProtocols.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UseCaseProtocols.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UseCaseProtocols.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UseCaseProtocols.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/SaveAudioEntry/SaveAudioEntryRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/SaveAudioEntry/SaveAudioEntryResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/SaveAudioEntry/SaveAudioEntryUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveAudioEntryUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/UpdateProject/UpdateProjectRequest.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UpdateProjectRequest.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UpdateProjectRequest.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UpdateProjectRequest.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/UpdateProject/UpdateProjectResponse.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UpdateProjectResponse.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UpdateProjectResponse.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UpdateProjectResponse.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Application/UseCases/UpdateProject/UpdateProjectUseCase.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UpdateProjectUseCase.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UpdateProjectUseCase.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/UpdateProjectUseCase.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioEditing/Entities/AudioSegment.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioSegment.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioSegment.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioSegment.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioEditing/Ports/AudioEditorPort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEditorPort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEditorPort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEditorPort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioEditing/Ports/AudioPlayerPort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioPlayerPort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioPlayerPort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioPlayerPort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioEditing/ValueObjects/TimeRange.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TimeRange.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TimeRange.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TimeRange.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/Entities/Voice.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Voice.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Voice.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Voice.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/Ports/ClonedVoiceRepositoryPort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceRepositoryPort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceRepositoryPort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceRepositoryPort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/Ports/TTSPort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSPort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSPort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSPort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/ValueObjects/AudioData.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioData.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioData.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioData.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/ValueObjects/ClonedVoiceProfile.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceProfile.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceProfile.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceProfile.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/ValueObjects/SpeechEmotion.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SpeechEmotion.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SpeechEmotion.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SpeechEmotion.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/ValueObjects/Text.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Text.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Text.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Text.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/ValueObjects/VoiceAccent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceAccent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceAccent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceAccent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/AudioGeneration/ValueObjects/VoiceConfiguration.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceConfiguration.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceConfiguration.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceConfiguration.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/Ports/DocumentParserPort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DocumentParserPort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DocumentParserPort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DocumentParserPort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/Ports/OCRPort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/OCRPort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/OCRPort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/OCRPort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/Ports/PDFGeneratorPort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PDFGeneratorPort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PDFGeneratorPort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PDFGeneratorPort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/Ports/ScreenCapturePort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ScreenCapturePort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ScreenCapturePort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ScreenCapturePort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/Services/TextNormalizer.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TextNormalizer.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TextNormalizer.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TextNormalizer.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/ValueObjects/CapturedImage.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CapturedImage.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CapturedImage.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CapturedImage.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/ValueObjects/DocumentSection.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DocumentSection.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DocumentSection.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DocumentSection.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/ValueObjects/ImageData.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImageData.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImageData.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImageData.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/DocumentProcessing/ValueObjects/RecognizedText.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/RecognizedText.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/RecognizedText.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/RecognizedText.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Entities/AudioEntry.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEntry.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEntry.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEntry.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Entities/Folder.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Folder.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Folder.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Folder.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Entities/Project.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Project.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Project.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Project.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/AudioGeneratedEvent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioGeneratedEvent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioGeneratedEvent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioGeneratedEvent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/DomainEvent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DomainEvent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DomainEvent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DomainEvent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/EntryAddedEvent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryAddedEvent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryAddedEvent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryAddedEvent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/EntryRemovedEvent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryRemovedEvent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryRemovedEvent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryRemovedEvent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/EntryUpdatedEvent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryUpdatedEvent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryUpdatedEvent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryUpdatedEvent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/ProjectCreatedEvent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectCreatedEvent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectCreatedEvent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectCreatedEvent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/ProjectDeletedEvent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectDeletedEvent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectDeletedEvent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectDeletedEvent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/ProjectRenamedEvent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectRenamedEvent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectRenamedEvent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectRenamedEvent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Events/ProjectTextUpdatedEvent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectTextUpdatedEvent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectTextUpdatedEvent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectTextUpdatedEvent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Ports/FolderRepositoryPort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderRepositoryPort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderRepositoryPort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderRepositoryPort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/Ports/ProjectRepositoryPort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectRepositoryPort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectRepositoryPort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectRepositoryPort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/ValueObjects/EntryId.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryId.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryId.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EntryId.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/ValueObjects/FolderName.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderName.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderName.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderName.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/ValueObjects/ProjectId.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectId.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectId.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectId.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/ValueObjects/ProjectName.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectName.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectName.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectName.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/ProjectManagement/ValueObjects/ProjectStatus.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectStatus.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectStatus.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectStatus.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Shared/Errors/DomainError.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DomainError.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DomainError.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DomainError.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Shared/Ports/AudioStoragePort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioStoragePort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioStoragePort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioStoragePort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Shared/Ports/FileStoragePort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileStoragePort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileStoragePort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileStoragePort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Shared/ValueObjects/AudioFormat.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioFormat.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioFormat.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioFormat.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Shared/ValueObjects/AudioQuality.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioQuality.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioQuality.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioQuality.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Shared/ValueObjects/Identifier+Identifiable.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Identifier+Identifiable.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Identifier+Identifiable.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Identifier+Identifiable.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Shared/ValueObjects/Identifier.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Identifier.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Identifier.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Identifier.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Translation/Ports/TranslationPort.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TranslationPort.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TranslationPort.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TranslationPort.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Domain/Translation/ValueObjects/TranslatedText.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TranslatedText.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TranslatedText.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TranslatedText.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Audio/AVAudioPlayerAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AVAudioPlayerAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AVAudioPlayerAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AVAudioPlayerAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Audio/AVFoundationEditorAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AVFoundationEditorAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AVFoundationEditorAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AVFoundationEditorAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/DocumentProcessing/DocumentParserError.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DocumentParserError.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DocumentParserError.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/DocumentParserError.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/DocumentProcessing/EPUBParserAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EPUBParserAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EPUBParserAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EPUBParserAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/DocumentProcessing/OCRError.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/OCRError.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/OCRError.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/OCRError.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/DocumentProcessing/PDFKitGeneratorAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PDFKitGeneratorAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PDFKitGeneratorAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PDFKitGeneratorAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/DocumentProcessing/PDFParserAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PDFParserAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PDFParserAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PDFParserAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/DocumentProcessing/ScreenCaptureError.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ScreenCaptureError.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ScreenCaptureError.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ScreenCaptureError.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/DocumentProcessing/ScreenCaptureService.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ScreenCaptureService.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ScreenCaptureService.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ScreenCaptureService.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/DocumentProcessing/VisionOCRAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VisionOCRAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VisionOCRAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VisionOCRAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Persistence/FileSystem/FileSystemAudioStorage.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemAudioStorage.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemAudioStorage.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemAudioStorage.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Persistence/FileSystem/FileSystemClonedVoiceRepository.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemClonedVoiceRepository.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemClonedVoiceRepository.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemClonedVoiceRepository.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Persistence/FileSystem/FileSystemFolderRepository.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemFolderRepository.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemFolderRepository.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemFolderRepository.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Persistence/FileSystem/FileSystemProjectRepository.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemProjectRepository.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemProjectRepository.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemProjectRepository.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Persistence/FileSystem/FileSystemStorage.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemStorage.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemStorage.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FileSystemStorage.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Persistence/FileSystem/Mappers/FolderJSON.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderJSON.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderJSON.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderJSON.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Persistence/FileSystem/Mappers/FolderMapper.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderMapper.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderMapper.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderMapper.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Persistence/FileSystem/Mappers/ProjectJSON.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectJSON.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectJSON.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectJSON.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/Persistence/FileSystem/Mappers/ProjectMapper.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectMapper.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectMapper.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectMapper.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/ChatterboxTTSAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxTTSAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxTTSAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxTTSAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/AudioTrimmer.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioTrimmer.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioTrimmer.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioTrimmer.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/EspeakPhonemizer.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EspeakPhonemizer.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EspeakPhonemizer.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EspeakPhonemizer.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/KokoroModelStore.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroModelStore.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroModelStore.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroModelStore.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/KokoroONNXAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroONNXAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroONNXAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroONNXAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/KokoroONNXEngine.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroONNXEngine.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroONNXEngine.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroONNXEngine.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/KokoroTokenizer.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroTokenizer.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroTokenizer.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroTokenizer.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/NpyParser.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/NpyParser.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/NpyParser.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/NpyParser.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/VoiceEmbeddingStore.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceEmbeddingStore.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceEmbeddingStore.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceEmbeddingStore.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroONNX/WAVEncoder.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/WAVEncoder.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/WAVEncoder.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/WAVEncoder.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroServerManager.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroServerManager.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroServerManager.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroServerManager.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/KokoroTTSAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroTTSAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroTTSAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroTTSAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/NativeTTSAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/NativeTTSAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/NativeTTSAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/NativeTTSAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/ProcessProtocol.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessProtocol.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessProtocol.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProcessProtocol.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/Qwen3ServerManager.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Qwen3ServerManager.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Qwen3ServerManager.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Qwen3ServerManager.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/Qwen3TTSAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Qwen3TTSAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Qwen3TTSAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/Qwen3TTSAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/TTSAdapterProxy.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSAdapterProxy.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSAdapterProxy.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSAdapterProxy.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/TTSServerCoordinator.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSServerCoordinator.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSServerCoordinator.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSServerCoordinator.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/TTSServerStatus.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSServerStatus.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSServerStatus.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSServerStatus.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/URLSessionProtocol.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/URLSessionProtocol.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/URLSessionProtocol.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/URLSessionProtocol.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Adapters/TTS/VoxCPMTTSAdapter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoxCPMTTSAdapter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoxCPMTTSAdapter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoxCPMTTSAdapter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Configuration/StorageConfiguration.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/StorageConfiguration.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/StorageConfiguration.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/StorageConfiguration.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/Infrastructure/Errors/InfrastructureError.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/InfrastructureError.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/InfrastructureError.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/InfrastructureError.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Presenters/EditorPresenter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EditorPresenter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EditorPresenter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EditorPresenter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Presenters/GenerationManager.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerationManager.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerationManager.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerationManager.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Presenters/PlayerPresenter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlayerPresenter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlayerPresenter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlayerPresenter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Presenters/ProjectListPresenter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectListPresenter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectListPresenter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectListPresenter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Presenters/SettingsPresenter.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SettingsPresenter.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SettingsPresenter.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SettingsPresenter.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Theme/AppColors.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AppColors.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AppColors.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AppColors.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/ViewModels/EditorViewModel.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EditorViewModel.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EditorViewModel.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EditorViewModel.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/ViewModels/GenerationJob.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerationJob.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerationJob.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerationJob.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/ViewModels/PlayerViewModel.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlayerViewModel.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlayerViewModel.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlayerViewModel.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/ViewModels/ProjectListViewModel.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectListViewModel.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectListViewModel.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectListViewModel.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/ViewModels/SettingsViewModel.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SettingsViewModel.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SettingsViewModel.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SettingsViewModel.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/AccentSelectorView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AccentSelectorView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AccentSelectorView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AccentSelectorView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/AudioEntryCard.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEntryCard.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEntryCard.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/AudioEntryCard.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/ChatterboxOptionsView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxOptionsView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxOptionsView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxOptionsView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/EmotionSelectorView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EmotionSelectorView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EmotionSelectorView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EmotionSelectorView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/FolderSidebarView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderSidebarView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderSidebarView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/FolderSidebarView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/GenerationProgressPanel.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerationProgressPanel.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerationProgressPanel.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GenerationProgressPanel.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/Help/EmotionTagsHelpContent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EmotionTagsHelpContent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EmotionTagsHelpContent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EmotionTagsHelpContent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/Help/ExportHelpContent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ExportHelpContent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ExportHelpContent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ExportHelpContent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/Help/HelpView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/HelpView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/HelpView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/HelpView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/Help/ShortcutsHelpContent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ShortcutsHelpContent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ShortcutsHelpContent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ShortcutsHelpContent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/Help/VoiceCloningHelpContent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceCloningHelpContent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceCloningHelpContent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceCloningHelpContent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/Help/VoicesHelpContent.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoicesHelpContent.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoicesHelpContent.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoicesHelpContent.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/ImageDetailView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImageDetailView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImageDetailView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImageDetailView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/ImportTextSheet.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImportTextSheet.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImportTextSheet.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ImportTextSheet.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/MergeOptionsSheet.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeOptionsSheet.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeOptionsSheet.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/MergeOptionsSheet.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/PlaybackControlsView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlaybackControlsView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlaybackControlsView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlaybackControlsView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/ProjectCardView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectCardView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectCardView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectCardView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/SaveCloneProfileSheet.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveCloneProfileSheet.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveCloneProfileSheet.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SaveCloneProfileSheet.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/ServerStatusView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ServerStatusView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ServerStatusView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ServerStatusView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/VoiceCloneView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceCloneView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceCloneView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceCloneView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/VoiceSelectorView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceSelectorView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceSelectorView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoiceSelectorView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/VoxCPMOptionsView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoxCPMOptionsView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoxCPMOptionsView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/VoxCPMOptionsView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/WaveformView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/WaveformView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/WaveformView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/WaveformView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/CreateProjectView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CreateProjectView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/EditorView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EditorView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EditorView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/EditorView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/KokoroModelStatusView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroModelStatusView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroModelStatusView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/KokoroModelStatusView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/PlayerView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlayerView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlayerView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/PlayerView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/ProjectDetailView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectDetailView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectDetailView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectDetailView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/ProjectListView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectListView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectListView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ProjectListView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/ServerSetupView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ServerSetupView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ServerSetupView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ServerSetupView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/SettingsView.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SettingsView.o"
+  },
+  "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  }
+}

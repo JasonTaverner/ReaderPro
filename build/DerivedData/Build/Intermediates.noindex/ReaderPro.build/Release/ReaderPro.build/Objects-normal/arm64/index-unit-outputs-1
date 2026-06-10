@@ -20,6 +20,8 @@
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessResponse.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessUseCase.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CapturedImage.o
+/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxOptionsView.o
+/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxTTSAdapter.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceProfile.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceProfileDTO.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceRepositoryPort.o
@@ -156,6 +158,8 @@
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ShortcutsHelpContent.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SpeechEmotion.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/StorageConfiguration.o
+/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SupertonicOptionsView.o
+/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SupertonicTTSAdapter.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSAdapterProxy.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSPort.o
 /ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSServerCoordinator.o

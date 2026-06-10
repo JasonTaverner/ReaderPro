@@ -153,6 +153,7 @@ struct ImportTextSheet: View {
                 splitModeButton(.paragraph, title: "By Paragraphs", icon: "text.alignleft")
                 splitModeButton(.sentence, title: "By Sentences", icon: "text.quote")
                 splitModeButton(.words(count: wordCount), title: "By Words", icon: "textformat.123")
+                splitModeButton(.singleEntry, title: "Whole Chapter", icon: "book.closed")
             }
 
             // Word count slider (only visible when words mode is selected)
@@ -176,6 +177,16 @@ struct ImportTextSheet: View {
                 .padding()
                 .background(Color(nsColor: .controlBackgroundColor))
                 .cornerRadius(8)
+            }
+
+            // Nota del modo capítulo entero (long-form)
+            if case .singleEntry = selectedMode {
+                Label("The whole text becomes ONE entry, generated in a single pass (with internal segmentation). Expect roughly 1 minute of generation per minute of audio — ideal to leave running in the background.", systemImage: "info.circle")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .padding(8)
+                    .background(Color(nsColor: .controlBackgroundColor))
+                    .cornerRadius(8)
             }
         }
     }
@@ -293,6 +304,8 @@ struct ImportTextSheet: View {
         case (.sentence, .sentence):
             return true
         case (.words, .words):
+            return true
+        case (.singleEntry, .singleEntry):
             return true
         default:
             return false

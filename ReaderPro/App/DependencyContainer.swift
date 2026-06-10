@@ -28,6 +28,8 @@ final class DependencyContainer {
             kokoroONNXAdapter: kokoroONNXAdapterInstance,
             qwen3Adapter: qwen3TTSAdapter,
             voxcpmAdapter: voxcpmTTSAdapter,
+            chatterboxAdapter: chatterboxTTSAdapter,
+            supertonicAdapter: supertonicTTSAdapter,
             adapterProxy: ttsAdapterProxy,
             initialProvider: defaultProvider
         )
@@ -116,6 +118,20 @@ final class DependencyContainer {
         let urlString = UserDefaults.standard.string(forKey: "qwen3ServerURL") ?? "http://127.0.0.1:8890"
         let url = URL(string: urlString) ?? URL(string: "http://127.0.0.1:8890")!
         return VoxCPMTTSAdapter(baseURL: url)
+    }()
+
+    /// Chatterbox comparte el servidor MLX de Qwen3 (misma URL y manager)
+    private lazy var chatterboxTTSAdapter: ChatterboxTTSAdapter = {
+        let urlString = UserDefaults.standard.string(forKey: "qwen3ServerURL") ?? "http://127.0.0.1:8890"
+        let url = URL(string: urlString) ?? URL(string: "http://127.0.0.1:8890")!
+        return ChatterboxTTSAdapter(baseURL: url)
+    }()
+
+    /// Supertonic comparte el servidor MLX de Qwen3 (misma URL y manager)
+    private lazy var supertonicTTSAdapter: SupertonicTTSAdapter = {
+        let urlString = UserDefaults.standard.string(forKey: "qwen3ServerURL") ?? "http://127.0.0.1:8890"
+        let url = URL(string: urlString) ?? URL(string: "http://127.0.0.1:8890")!
+        return SupertonicTTSAdapter(baseURL: url)
     }()
 
     /// Kokoro ONNX local adapter (nil if resources not available)

@@ -51,6 +51,10 @@ final class EditorPresenter: ObservableObject {
     static let voxcpmCfgKey = "voxcpmCfgValue"
     static let voxcpmStepsKey = "voxcpmSteps"
     static let voxcpmContinuationKey = "voxcpmContinuation"
+    static let chatterboxLanguageKey = "chatterboxLanguage"
+    static let chatterboxExaggerationKey = "chatterboxExaggeration"
+    static let chatterboxCfgWeightKey = "chatterboxCfgWeight"
+    static let supertonicLanguageKey = "supertonicLanguage"
 
     /// Timer para actualizar el estado de reproducción
     private var updateTimer: Timer?
@@ -153,13 +157,21 @@ final class EditorPresenter: ObservableObject {
     /// Llamado cuando la vista aparece
     /// - Parameter projectId: ID del proyecto a editar, o nil para crear uno nuevo
     func onAppear(projectId: Identifier<Project>?) async {
-        // Si ya estamos en este proyecto y no es nuevo, no resetear todo (evita parpadeo)
+        // Si ya estamos en este proyecto, no resetear todo (evita parpadeo)…
         if let currentId = viewModel.projectId, let newId = projectId?.value.uuidString, currentId == newId {
-            return
+            // …pero SOLO si la carga anterior completó o sigue en curso. Si SwiftUI
+            // canceló el .task a mitad de carga, el proyecto quedaba vacío (sin
+            // entradas ni audio) hasta pasar por otro proyecto y volver.
+            if viewModel.projectLoaded || viewModel.isLoading {
+                return
+            }
         }
 
         viewModel.reset()
         viewModel.isLoading = true
+        // Reservar el id YA: una segunda aparición concurrente de la vista no debe
+        // lanzar otra carga en paralelo (el guard de arriba la frena por isLoading)
+        viewModel.projectId = projectId?.value.uuidString
         viewModel.error = nil
         viewModel.activeProvider = ttsCoordinator?.activeProvider.rawValue ?? "kokoro"
 
@@ -171,7 +183,13 @@ final class EditorPresenter: ObservableObject {
             // 1. Load project data (fast, ~17ms)
             if let projectId = projectId {
                 try await loadProject(projectId)
+                viewModel.projectLoaded = true
             }
+        } catch is CancellationError {
+            // La vista se recreó y SwiftUI canceló esta carga: projectLoaded queda
+            // en false y la siguiente aparición recargará desde cero
+            viewModel.isLoading = false
+            return
         } catch {
             viewModel.error = error.localizedDescription
         }
@@ -266,11 +284,15 @@ final class EditorPresenter: ObservableObject {
             )
             let response = try await saveAudioEntryUseCase.execute(request)
 
+            // Seleccionar la entrada nueva YA, antes del reload: si el usuario pega
+            // texto en la ventana entre la creación y el reload, el binding del
+            // editor debe apuntar a la entrada nueva (antes apuntaba a la pestaña
+            // anterior y el texto pegado acababa en el sitio equivocado)
+            viewModel.entryTexts[response.entryId] = "New entry"
+            viewModel.selectedEntryTab = response.entryId
+
             // Reload entries
             try await reloadEntries(projectId)
-
-            // Select the new entry tab
-            viewModel.selectedEntryTab = response.entryId
 
         } catch {
             print("[EditorPresenter] addNewEntry failed: \(error)")
@@ -1279,6 +1301,8 @@ final class EditorPresenter: ObservableObject {
 
         let speed = try VoiceConfiguration.Speed(viewModel.speed)
         let isVoxCPM = voiceDTO.provider == Voice.TTSProvider.voxcpm.rawValue
+        let isChatterbox = voiceDTO.provider == Voice.TTSProvider.chatterbox.rawValue
+        let isSupertonic = voiceDTO.provider == Voice.TTSProvider.supertonic.rawValue
 
         // Build instruct from emotion preset or custom text
         // (para VoxCPM2, las instrucciones de estilo vienen de su propio panel)
@@ -1334,6 +1358,10 @@ final class EditorPresenter: ObservableObject {
         UserDefaults.standard.set(viewModel.voxcpmCfgValue, forKey: Self.voxcpmCfgKey)
         UserDefaults.standard.set(viewModel.voxcpmSteps, forKey: Self.voxcpmStepsKey)
         UserDefaults.standard.set(viewModel.voxcpmContinuation, forKey: Self.voxcpmContinuationKey)
+        UserDefaults.standard.set(viewModel.chatterboxLanguage, forKey: Self.chatterboxLanguageKey)
+        UserDefaults.standard.set(viewModel.chatterboxExaggeration, forKey: Self.chatterboxExaggerationKey)
+        UserDefaults.standard.set(viewModel.chatterboxCfgWeight, forKey: Self.chatterboxCfgWeightKey)
+        UserDefaults.standard.set(viewModel.supertonicLanguage, forKey: Self.supertonicLanguageKey)
 
         let voiceConfig = VoiceConfiguration(
             voiceId: voiceId,
@@ -1348,7 +1376,11 @@ final class EditorPresenter: ObservableObject {
             cloneAccentInstruct: useCloning ? viewModel.cloneTargetAccent?.instruct : nil,
             voxcpmCfgValue: isVoxCPM ? viewModel.voxcpmCfgValue : nil,
             voxcpmSteps: isVoxCPM ? Int(viewModel.voxcpmSteps) : nil,
-            voxcpmContinuation: isVoxCPM && useCloning && viewModel.voxcpmContinuation
+            voxcpmContinuation: isVoxCPM && useCloning && viewModel.voxcpmContinuation,
+            chatterboxLanguage: isChatterbox ? viewModel.chatterboxLanguage : nil,
+            chatterboxExaggeration: isChatterbox ? viewModel.chatterboxExaggeration : nil,
+            chatterboxCfgWeight: isChatterbox ? viewModel.chatterboxCfgWeight : nil,
+            supertonicLanguage: isSupertonic ? viewModel.supertonicLanguage : nil
         )
 
         let voice = Voice(
@@ -1383,6 +1415,14 @@ final class EditorPresenter: ObservableObject {
             viewModel.voxcpmSteps = UserDefaults.standard.double(forKey: Self.voxcpmStepsKey)
         }
         viewModel.voxcpmContinuation = UserDefaults.standard.bool(forKey: Self.voxcpmContinuationKey)
+        viewModel.chatterboxLanguage = UserDefaults.standard.string(forKey: Self.chatterboxLanguageKey) ?? "es"
+        if UserDefaults.standard.object(forKey: Self.chatterboxExaggerationKey) != nil {
+            viewModel.chatterboxExaggeration = UserDefaults.standard.double(forKey: Self.chatterboxExaggerationKey)
+        }
+        if UserDefaults.standard.object(forKey: Self.chatterboxCfgWeightKey) != nil {
+            viewModel.chatterboxCfgWeight = UserDefaults.standard.double(forKey: Self.chatterboxCfgWeightKey)
+        }
+        viewModel.supertonicLanguage = UserDefaults.standard.string(forKey: Self.supertonicLanguageKey) ?? "es"
 
         // Qwen3 voice defaults
         if let accent = UserDefaults.standard.string(forKey: SettingsPresenter.defaultQwen3AccentKey) {

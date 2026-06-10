@@ -6,10 +6,10 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>B0E10EE9-77CE-441B-AE5A-92733459D858</key>
+		<key>9FABE4B4-64A4-40D6-B119-1DB95715C368</key>
 		<dict>
 			<key>auxiliaryLogUniqueIdentifier</key>
-			<string>35687852-74B1-4349-BE9E-36BF4291EE3B</string>
+			<string>491FE91C-A6FD-4203-83E5-7F06B5FB22A6</string>
 			<key>auxiliaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
@@ -21,7 +21,7 @@
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>138</integer>
+				<integer>141</integer>
 			</dict>
 			<key>className</key>
 			<string>IDESchemeActionsInvocationRecord</string>
@@ -30,7 +30,70 @@
 			<key>domainType</key>
 			<string>com.apple.dt.unit.cocoaUnitTest</string>
 			<key>fileName</key>
-			<string>Test-ReaderPro-2026.06.10_16-04-32-+0200.xcresult</string>
+			<string>Test-ReaderPro-2026.06.10_21-40-43-+0200.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalCodeCoverage</key>
+				<real>0.08596099146688338</real>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>101</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>ReaderPro project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>ReaderPro</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Test ReaderPro</string>
+			<key>timeStartedRecording</key>
+			<real>802813243.41641295</real>
+			<key>timeStoppedRecording</key>
+			<real>802813254.806059</real>
+			<key>title</key>
+			<string>Test ReaderPro</string>
+			<key>uniqueIdentifier</key>
+			<string>9FABE4B4-64A4-40D6-B119-1DB95715C368</string>
+		</dict>
+		<key>A5109D9D-D041-4BC8-9359-9D8989FA7058</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>67A7FC26-FBF1-4279-BE63-D28816BFF296</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>141</integer>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-ReaderPro-2026.06.10_21-39-42-+0200.xcresult</string>
 			<key>hasAuxiliaryLog</key>
 			<true/>
 			<key>hasCoverageData</key>
@@ -42,15 +105,15 @@
 				<key>highLevelStatus</key>
 				<string>T</string>
 				<key>totalCodeCoverage</key>
-				<real>0.54705894609630568</real>
+				<real>0.08596099146688338</real>
 				<key>totalNumberOfAnalyzerIssues</key>
 				<integer>0</integer>
 				<key>totalNumberOfErrors</key>
 				<integer>0</integer>
 				<key>totalNumberOfTestFailures</key>
-				<integer>16</integer>
+				<integer>1</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>100</integer>
+				<integer>101</integer>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>ReaderPro project</string>
@@ -61,13 +124,13 @@
 			<key>signature</key>
 			<string>Test ReaderPro</string>
 			<key>timeStartedRecording</key>
-			<real>802793072.03661096</real>
+			<real>802813182.40628397</real>
 			<key>timeStoppedRecording</key>
-			<real>802793155.20057404</real>
+			<real>802813200.93241405</real>
 			<key>title</key>
 			<string>Test ReaderPro</string>
 			<key>uniqueIdentifier</key>
-			<string>B0E10EE9-77CE-441B-AE5A-92733459D858</string>
+			<string>A5109D9D-D041-4BC8-9359-9D8989FA7058</string>
 		</dict>
 	</dict>
 </dict>

@@ -131,6 +131,11 @@ final class ProcessTextBatchUseCase: ProcessTextBatchUseCaseProtocol {
             return splitBySentence(text)
         case .words(let count):
             return splitByWords(text, count: count)
+        case .singleEntry:
+            // Long-form: el texto entero como una única entrada; el servidor TTS
+            // lo segmenta internamente con la misma voz y concatena
+            let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            return trimmed.isEmpty ? [] : [trimmed]
         }
     }
 

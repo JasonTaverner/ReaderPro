@@ -290,15 +290,15 @@ final class AudioEntryTests: XCTestCase {
     // MARK: - Edge Cases
 
     func test_createAudioEntry_withVeryLongText_shouldSucceed() throws {
-        // Arrange - 6000 caracteres (límite de TextContent)
-        let longString = String(repeating: "a", count: 6000)
+        // Arrange - 50000 caracteres (límite de TextContent, modo long-form)
+        let longString = String(repeating: "a", count: 50000)
         let text = try TextContent(longString)
 
         // Act
         let entry = AudioEntry(text: text)
 
         // Assert
-        XCTAssertEqual(entry.text.value.count, 6000)
+        XCTAssertEqual(entry.text.value.count, 50000)
     }
 
     func test_setAudioPath_withEmptyString_shouldStore() throws {

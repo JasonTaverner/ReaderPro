@@ -80,6 +80,12 @@ MODEL_TYPE_BASE_FAST = "base_fast"
 MODEL_TYPE_VOXCPM = "voxcpm"
 VOXCPM_MODEL_ID = "mlx-community/VoxCPM2-8bit"
 
+MODEL_TYPE_CHATTERBOX = "chatterbox"
+CHATTERBOX_MODEL_ID = "mlx-community/chatterbox-8bit"
+
+MODEL_TYPE_SUPERTONIC = "supertonic"
+SUPERTONIC_MODEL_ID = "Supertone/supertonic-3"
+
 # Registro declarativo de modelos (ver docs/GESTION_MEMORIA.md y ROADMAP_IA.md).
 # Para añadir un modelo nuevo: una entrada aquí + (si su familia necesita kwargs
 # distintos) una rama en synthesize_speech/clone_voice. Nada más.
@@ -104,6 +110,9 @@ MODEL_REGISTRY = {
         "sample_rate": 24000,
         "capabilities": ["clone"],
         "usage": "Voice cloning (ICL mode)",
+        "tokens_per_char": 0.8,   # Qwen3 genera ~12 tokens/s de audio
+        "max_gen_tokens": 2048,
+        "max_segment_chars": 600,
     },
     MODEL_TYPE_BASE_FAST: {
         "id": BASE_MODEL_FAST_ID,
@@ -111,6 +120,9 @@ MODEL_REGISTRY = {
         "sample_rate": 24000,
         "capabilities": ["clone"],
         "usage": "Voice cloning fast (0.6B, lower quality)",
+        "tokens_per_char": 0.8,
+        "max_gen_tokens": 2048,
+        "max_segment_chars": 600,
     },
     MODEL_TYPE_VOXCPM: {
         "id": VOXCPM_MODEL_ID,
@@ -118,6 +130,26 @@ MODEL_REGISTRY = {
         "sample_rate": 48000,
         "capabilities": ["clone", "default_voice"],
         "usage": "Premium 2B model: top Spanish quality, hi-fi output, zero-shot cloning",
+        "tokens_per_char": 2.0,
+        "max_gen_tokens": 2000,
+        "max_segment_chars": 500,
+    },
+    MODEL_TYPE_CHATTERBOX: {
+        "id": CHATTERBOX_MODEL_ID,
+        "family": "chatterbox",
+        "sample_rate": 24000,
+        "capabilities": ["clone", "default_voice"],
+        "usage": "Multilingual 500M (MIT): real-time speed, 23 languages, zero-shot cloning",
+        "tokens_per_char": 2.5,   # Chatterbox genera ~25 tokens/s: con la tasa de
+        "max_gen_tokens": 1000,   # Qwen (0.8 t/c) el audio se trunca a ~40% del texto
+        "max_segment_chars": 300, # 300 chars ~ 22 s < límite de ~40 s del modelo
+    },
+    MODEL_TYPE_SUPERTONIC: {
+        "id": SUPERTONIC_MODEL_ID,
+        "family": "supertonic",
+        "sample_rate": 44100,
+        "capabilities": ["default_voice", "presets", "speed"],
+        "usage": "Ultra-fast ONNX (4x real time): 10 preset voices, 31 languages, expression tags",
     },
 }
 
@@ -174,12 +206,17 @@ class ModelManager:
             raise ValueError(f"Unknown model type: {model_type}")
 
         try:
-            from mlx_audio.tts.generate import load_model
-
             logger.info(f"Loading {model_type} model: {model_id}")
             start_time = time.time()
 
-            self._current_model = load_model(model_id)
+            family = MODEL_REGISTRY.get(model_type, {}).get("family")
+            if family == "supertonic":
+                # Supertonic usa su propio SDK (ONNX Runtime), no mlx-audio
+                from supertonic import TTS
+                self._current_model = TTS(auto_download=True)
+            else:
+                from mlx_audio.tts.generate import load_model
+                self._current_model = load_model(model_id)
             self._current_type = model_type
             self._load_count += 1
 
@@ -387,6 +424,8 @@ def synthesize_speech(
     mode: str = "custom_voice",
     cfg_value: float | None = None,
     inference_timesteps: int | None = None,
+    exaggeration: float | None = None,
+    cfg_weight: float | None = None,
 ) -> bytes:
     """
     Synthesize speech from text using Qwen3-TTS via MLX.
@@ -451,6 +490,71 @@ def synthesize_speech(
 
             elapsed = time.time() - start_time
             logger.info(f"VoxCPM synthesis completed in {elapsed:.2f}s")
+            _progress.finish()
+            return wav_data
+
+        if mode == "supertonic":
+            # Supertonic: voces preset (M1-M5, F1-F5), trocea internamente y
+            # respeta speed en generación
+            logger.info(f"[DIAG] Supertonic request: voice={speaker}, lang={lang}, speed={speed}, text={len(text)} chars")
+            model = _model_manager.get_model(MODEL_TYPE_SUPERTONIC)
+            start_time = time.time()
+            _progress.update(0, "Generating with Supertonic...")
+
+            style = model.get_voice_style(voice_name=speaker or "M1")
+            st_kwargs = {"voice_style": style, "speed": speed}
+            if lang:
+                st_kwargs["lang"] = lang
+            if inference_timesteps is not None:
+                st_kwargs["total_steps"] = int(inference_timesteps)
+
+            wav, _dur = model.synthesize(text, **st_kwargs)
+
+            sr = MODEL_REGISTRY[MODEL_TYPE_SUPERTONIC]["sample_rate"]
+            buf = io.BytesIO()
+            sf.write(buf, np.asarray(wav).flatten(), sr, format="WAV", subtype="PCM_16")
+            wav_data = buf.getvalue()
+
+            elapsed = time.time() - start_time
+            logger.info(f"Supertonic synthesis completed in {elapsed:.2f}s")
+            _progress.finish()
+            return wav_data
+
+        if mode == "chatterbox":
+            # Chatterbox Multilingual: voz por defecto del modelo en el idioma dado
+            logger.info(f"[DIAG] Chatterbox request: lang={lang}, speed={speed}, text={len(text)} chars")
+            model = _model_manager.get_model(MODEL_TYPE_CHATTERBOX)
+            start_time = time.time()
+
+            cb_kwargs = {"lang_code": lang}
+            if exaggeration is not None:
+                cb_kwargs["exaggeration"] = float(exaggeration)
+            if cfg_weight is not None:
+                cb_kwargs["cfg_weight"] = float(cfg_weight)
+
+            with tempfile.TemporaryDirectory() as tmpdir:
+                _capture = TqdmCapture(_progress, sys.stderr)
+                sys.stderr = _capture
+                try:
+                    generate_audio(
+                        text=text,
+                        model=model,
+                        speed=speed,
+                        output_path=tmpdir,
+                        file_prefix="speech",
+                        audio_format="wav",
+                        join_audio=True,
+                        verbose=True,
+                        play=False,
+                        **cb_kwargs,
+                    )
+                finally:
+                    sys.stderr = _capture._original
+
+                wav_data = _read_wav_from_dir(tmpdir, "speech")
+
+            elapsed = time.time() - start_time
+            logger.info(f"Chatterbox synthesis completed in {elapsed:.2f}s")
             _progress.finish()
             return wav_data
 
@@ -734,6 +838,8 @@ def clone_voice(
     cfg_value: float | None = None,
     inference_timesteps: int | None = None,
     continuation: bool = False,
+    exaggeration: float | None = None,
+    cfg_weight: float | None = None,
 ) -> bytes:
     """
     Synthesize speech using a cloned voice from reference audio.
@@ -798,7 +904,8 @@ def clone_voice(
     # The ICL generation path does NOT split text internally — it processes
     # the whole text in one pass and frequently emits EOS after a single
     # paragraph, producing only partial audio.
-    segments = _split_text_for_cloning(text)
+    registry_entry = MODEL_REGISTRY[model_type]
+    segments = _split_text_for_cloning(text, max_chars=registry_entry.get("max_segment_chars", 600))
     logger.info(f"Split text into {len(segments)} segments for ICL cloning")
 
     _progress.start(len(segments), "clone")
@@ -829,10 +936,11 @@ def clone_voice(
 
             try:
                 with tempfile.TemporaryDirectory() as tmpdir:
-                    # Calculate dynamic max_new_tokens based on text length
-                    # (~0.8 audio tokens per char is a rough estimate)
-                    estimated_tokens = max(int(len(segment) * 0.8), 100)
-                    max_tokens = min(estimated_tokens, 2048)
+                    # Presupuesto de tokens de audio por familia (cada modelo
+                    # genera a una tasa distinta de tokens por segundo de audio)
+                    tokens_per_char = registry_entry.get("tokens_per_char", 0.8)
+                    estimated_tokens = max(int(len(segment) * tokens_per_char), 150)
+                    max_tokens = min(estimated_tokens, registry_entry.get("max_gen_tokens", 2048))
 
                     gen_kwargs = dict(
                         text=segment,
@@ -848,6 +956,15 @@ def clone_voice(
                         play=False,
                         max_new_tokens=max_tokens,
                     )
+
+                    if family == "chatterbox":
+                        # Chatterbox: clonación zero-shot solo con ref_audio (sin
+                        # transcripción); expresividad y cfg propios del modelo
+                        gen_kwargs.pop("ref_text", None)
+                        if exaggeration is not None:
+                            gen_kwargs["exaggeration"] = float(exaggeration)
+                        if cfg_weight is not None:
+                            gen_kwargs["cfg_weight"] = float(cfg_weight)
 
                     if family == "voxcpm":
                         # VoxCPM2: instrucciones de estilo + control de calidad.
@@ -1145,8 +1262,8 @@ def synthesize():
     if not text:
         return jsonify({"error": "Missing 'text' field"}), 400
 
-    if len(text) > 10000:
-        return jsonify({"error": "Text too long (max 10000 characters)"}), 400
+    if len(text) > 60000:
+        return jsonify({"error": "Text too long (max 60000 characters)"}), 400
 
     speaker = data.get("speaker", "Vivian")
     language = data.get("language", "auto")
@@ -1159,8 +1276,8 @@ def synthesize():
     logger.info(f"[DIAG] /synthesize text ({len(text)} chars): {text[:80]!r}")
 
     # Validate mode
-    if mode not in ("custom_voice", "voice_design", "voxcpm"):
-        return jsonify({"error": f"Invalid mode '{mode}'. Must be 'custom_voice', 'voice_design' or 'voxcpm'"}), 400
+    if mode not in ("custom_voice", "voice_design", "voxcpm", "chatterbox", "supertonic"):
+        return jsonify({"error": f"Invalid mode '{mode}'. Must be 'custom_voice', 'voice_design', 'voxcpm', 'chatterbox' or 'supertonic'"}), 400
 
     # VoiceDesign requires instruct
     if mode == "voice_design" and not instruct:
@@ -1181,6 +1298,8 @@ def synthesize():
             mode=mode,
             cfg_value=data.get("cfg_value"),
             inference_timesteps=data.get("inference_timesteps"),
+            exaggeration=data.get("exaggeration"),
+            cfg_weight=data.get("cfg_weight"),
         )
 
         return Response(
@@ -1223,8 +1342,8 @@ def clone():
     if not text:
         return jsonify({"error": "Missing 'text' field"}), 400
 
-    if len(text) > 10000:
-        return jsonify({"error": "Text too long (max 10000 characters)"}), 400
+    if len(text) > 60000:
+        return jsonify({"error": "Text too long (max 60000 characters)"}), 400
 
     language = request.form.get("language", "auto")
     ref_text = request.form.get("ref_text")  # Transcript of reference audio (optional)
@@ -1236,6 +1355,8 @@ def clone():
     clone_cfg_value = request.form.get("cfg_value", type=float)  # voxcpm only
     clone_steps = request.form.get("inference_timesteps", type=int)  # voxcpm only
     clone_continuation = request.form.get("continuation", "false").lower() == "true"  # voxcpm only
+    clone_exaggeration = request.form.get("exaggeration", type=float)  # chatterbox only
+    clone_cfg_weight = request.form.get("cfg_weight", type=float)  # chatterbox only
 
     try:
         speed = float(speed)
@@ -1284,6 +1405,8 @@ def clone():
             cfg_value=clone_cfg_value,
             inference_timesteps=clone_steps,
             continuation=clone_continuation,
+            exaggeration=clone_exaggeration,
+            cfg_weight=clone_cfg_weight,
         )
 
         return Response(

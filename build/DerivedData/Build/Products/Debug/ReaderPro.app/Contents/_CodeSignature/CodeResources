@@ -1577,10 +1577,10 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			q09T5ReW8mjeUcGHKNY5aFqUduA=
+			CDKeKOAm1LNYG97wAL1tdiK19fA=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"ab4f53e51796f268de51c18728d639685a9476e0"</string>
+			<string>cdhash H"08329e28e026d4b3581bdef000bd6d7622b5f5f0"</string>
 		</dict>
 		<key>MacOS/__preview.dylib</key>
 		<dict>
@@ -1595,10 +1595,10 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			UbpyX990XEY3AGz7FG6+Nn8UNRk=
+			3oU0RVSu2bpAHOvHCP4aomL19Z4=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"51ba725fdf745c4637006cfb146ebe367f143519"</string>
+			<string>cdhash H"de85344554aed9ba401cebc708fe1aa262f5f59e"</string>
 		</dict>
 		<key>Resources/AppIcon.icns</key>
 		<dict>

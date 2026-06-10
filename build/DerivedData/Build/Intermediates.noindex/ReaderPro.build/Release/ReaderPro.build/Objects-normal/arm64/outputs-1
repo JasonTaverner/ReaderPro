@@ -20,6 +20,8 @@
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessResponse.o
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CaptureAndProcessUseCase.o
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/CapturedImage.o
+/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxOptionsView.o
+/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ChatterboxTTSAdapter.o
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceProfile.o
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceProfileDTO.o
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ClonedVoiceRepositoryPort.o
@@ -156,6 +158,8 @@
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/ShortcutsHelpContent.o
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SpeechEmotion.o
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/StorageConfiguration.o
+/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SupertonicOptionsView.o
+/Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/SupertonicTTSAdapter.o
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSAdapterProxy.o
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSPort.o
 /Users/jesuscruz/repos2/ReaderPro/build/DerivedData/Build/Intermediates.noindex/ReaderPro.build/Release/ReaderPro.build/Objects-normal/arm64/TTSServerCoordinator.o

@@ -45,6 +45,10 @@ extension ProjectSummary {
             return "Qwen3"
         case .voxcpm:
             return "VoxCPM2"
+        case .chatterbox:
+            return "Chatterbox"
+        case .supertonic:
+            return "Supertonic"
         }
     }
 }
