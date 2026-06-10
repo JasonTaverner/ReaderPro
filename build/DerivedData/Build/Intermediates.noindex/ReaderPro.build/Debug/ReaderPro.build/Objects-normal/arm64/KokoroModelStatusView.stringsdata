@@ -1,0 +1,40 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/KokoroModelStatusView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Kokoro voice model installed",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "Downloading Kokoro voice model… %lld%% (~350 MB, one time only)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Voice model download failed: %@",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retry download",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 30
+        }
+      }
+    ]
+  },
+  "version": 1
+}

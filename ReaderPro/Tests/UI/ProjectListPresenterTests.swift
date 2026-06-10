@@ -32,7 +32,12 @@ final class ProjectListPresenterTests: XCTestCase {
             generateAudioUseCase: mockGenerateAudio,
             createProjectUseCase: mockCreateProject,
             audioStorage: mockAudioStorage,
-            projectRepository: mockProjectRepository
+            projectRepository: mockProjectRepository,
+            createFolderUseCase: MockCreateFolderUseCase(),
+            listFoldersUseCase: MockListFoldersUseCase(),
+            renameFolderUseCase: MockRenameFolderUseCase(),
+            deleteFolderUseCase: MockDeleteFolderUseCase(),
+            assignProjectToFolderUseCase: MockAssignProjectToFolderUseCase()
         )
     }
 

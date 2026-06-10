@@ -5,6 +5,7 @@ protocol ProcessProtocol: AnyObject {
     var executableURL: URL? { get set }
     var arguments: [String]? { get set }
     var environment: [String: String]? { get set }
+    var standardInput: Any? { get set }
     var terminationHandler: (@Sendable (any ProcessProtocol) -> Void)? { get set }
     var isRunning: Bool { get }
     var terminationStatus: Int32 { get }
@@ -46,6 +47,11 @@ final class ProcessWrapper: ProcessProtocol {
     var environment: [String: String]? {
         get { process.environment }
         set { process.environment = newValue }
+    }
+
+    var standardInput: Any? {
+        get { process.standardInput }
+        set { process.standardInput = newValue }
     }
 
     var terminationHandler: (@Sendable (any ProcessProtocol) -> Void)? {

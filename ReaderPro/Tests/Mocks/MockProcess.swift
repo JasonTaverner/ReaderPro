@@ -6,10 +6,12 @@ final class MockProcess: ProcessProtocol {
     var executableURL: URL?
     var arguments: [String]?
     var environment: [String: String]?
+    var standardInput: Any?
     var terminationHandler: (@Sendable (any ProcessProtocol) -> Void)?
 
     var runCalled = false
     var terminateCalled = false
+    var interruptCalled = false
     var errorToThrow: Error?
     var simulateIsRunning = false
 
@@ -18,6 +20,8 @@ final class MockProcess: ProcessProtocol {
     }
 
     var terminationStatus: Int32 = 0
+
+    var processIdentifier: Int32 = 12345
 
     func run() throws {
         runCalled = true
@@ -29,6 +33,11 @@ final class MockProcess: ProcessProtocol {
 
     func terminate() {
         terminateCalled = true
+        simulateIsRunning = false
+    }
+
+    func interrupt() {
+        interruptCalled = true
         simulateIsRunning = false
     }
 }

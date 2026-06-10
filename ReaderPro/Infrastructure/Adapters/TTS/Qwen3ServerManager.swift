@@ -26,6 +26,10 @@ final class Qwen3ServerManager: ObservableObject {
     // MARK: - Internal State
 
     private var serverProcess: ProcessProtocol?
+    /// Pipe conectado al stdin del servidor: si esta app muere (incluso con
+    /// force-quit o crash), el kernel lo cierra y el servidor se apaga solo
+    /// (--exit-with-parent). Debe retenerse mientras el proceso viva.
+    private var serverStdinPipe: Pipe?
     private var healthTimer: Timer?
 
     // MARK: - Initialization
@@ -59,6 +63,10 @@ final class Qwen3ServerManager: ObservableObject {
         if case .connected = status { return }
         if case .starting = status { return }
 
+        // Reservar el estado ANTES de cualquier await: dos llamadas concurrentes
+        // pasaban ambas los guards y lanzaban el proceso dos veces
+        status = .starting
+
         // 1. Check if already running
         let healthy = await isHealthy()
         if healthy {
@@ -69,7 +77,6 @@ final class Qwen3ServerManager: ObservableObject {
         }
 
         // 2. Try to launch
-        status = .starting
         let portArg = "\(baseURL.port ?? 8890)"
         print("[Qwen3Server] Server not responding, attempting to launch...")
 
@@ -78,7 +85,7 @@ final class Qwen3ServerManager: ObservableObject {
             print("[Qwen3Server] Found bundled executable at: \(execPath)")
             let launched = await launchProcess(
                 executablePath: execPath,
-                arguments: ["--port", portArg]
+                arguments: ["--port", portArg, "--exit-with-parent"]
             )
             if launched { return }
             print("[Qwen3Server] Bundled executable failed, trying Python fallback...")
@@ -99,7 +106,7 @@ final class Qwen3ServerManager: ObservableObject {
 
         let launched = await launchProcess(
             executablePath: pythonPath,
-            arguments: [scriptPath, "--port", portArg]
+            arguments: [scriptPath, "--port", portArg, "--exit-with-parent"]
         )
         if !launched {
             status = .error("Server failed to start within \(Int(startupTimeout))s. Model may still be loading.")
@@ -113,6 +120,10 @@ final class Qwen3ServerManager: ObservableObject {
     func stopServer() {
         healthTimer?.invalidate()
         healthTimer = nil
+
+        // Cerrar stdin del hijo: con --exit-with-parent esto ya provoca su salida
+        try? serverStdinPipe?.fileHandleForWriting.close()
+        serverStdinPipe = nil
 
         var killedOwnProcess = false
 
@@ -245,9 +256,15 @@ final class Qwen3ServerManager: ObservableObject {
             }
         }
 
+        // stdin con pipe: el servidor (--exit-with-parent) se apaga al detectar
+        // EOF, lo que ocurre automaticamente si esta app muere por cualquier via
+        let stdinPipe = Pipe()
+        process.standardInput = stdinPipe
+
         do {
             try process.run()
             serverProcess = process
+            serverStdinPipe = stdinPipe
             print("[Qwen3Server] Process launched (\(executablePath)), waiting for health...")
         } catch {
             print("[Qwen3Server] Failed to launch \(executablePath): \(error)")

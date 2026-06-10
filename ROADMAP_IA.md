@@ -22,6 +22,10 @@ Criterios para añadir un modelo:
 
 ---
 
+> **Regla transversal**: todo modelo o servidor nuevo debe cumplir las reglas de
+> [`docs/GESTION_MEMORIA.md`](docs/GESTION_MEMORIA.md) (un modelo a la vez, carga
+> perezosa, descarga por inactividad, ningún proceso sobrevive a la app).
+
 ## Fase 0 — Correcciones y base (en curso)
 
 - [x] Fix espeak-ng: pasar el directorio padre de `espeak-ng-data` a `espeak_Initialize`

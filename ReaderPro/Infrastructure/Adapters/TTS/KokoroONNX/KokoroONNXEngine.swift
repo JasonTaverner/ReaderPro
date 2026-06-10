@@ -6,6 +6,10 @@ protocol KokoroONNXEngineProtocol {
     /// Load the ONNX model
     func loadModel() throws
 
+    /// Release the ONNX session to free memory (~500 MB).
+    /// The model reloads lazily on the next synthesize call.
+    func unloadModel()
+
     /// Run inference with the given inputs
     /// - Parameters:
     ///   - tokens: Padded token IDs [0, t1, t2, ..., 0] shape [1, N]
@@ -115,6 +119,13 @@ final class KokoroONNXEngine: KokoroONNXEngineProtocol {
         } catch {
             throw EngineError.sessionCreationFailed(error.localizedDescription)
         }
+    }
+
+    func unloadModel() {
+        guard session != nil else { return }
+        session = nil
+        environment = nil
+        print("[KokoroONNX] Model unloaded to free memory")
     }
 
     func infer(tokens: [Int64], style: [Float32], speed: Float32) throws -> [Float32] {

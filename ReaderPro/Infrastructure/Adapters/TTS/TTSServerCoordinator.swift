@@ -152,6 +152,13 @@ final class TTSServerCoordinator: ObservableObject {
     /// Cambia el proveedor y arranca su servidor
     func switchProvider(to provider: Voice.TTSProvider) async {
         activeProvider = provider
+
+        // Liberar el modelo Kokoro ONNX in-process (~500 MB) si el nuevo
+        // proveedor no lo usa; se recarga solo en la siguiente sintesis
+        if provider != .kokoro {
+            kokoroONNXAdapter?.engine.unloadModel()
+        }
+
         await startActiveServer()
     }
 

@@ -427,6 +427,12 @@ final class EditorPresenter: ObservableObject {
         }
     }
 
+    /// Conveniencia (usada por los tests): genera el texto del proyecto con un
+    /// job desechable, sin pasar por GenerationManager
+    func generateAudio() async {
+        await generateAudio(job: GenerationJob(type: .projectText, projectName: viewModel.name))
+    }
+
     /// Genera audio y lo guarda como nueva AudioEntry en el proyecto
     private func generateAudio(job: GenerationJob) async {
         viewModel.error = nil

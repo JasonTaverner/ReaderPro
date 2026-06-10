@@ -98,6 +98,12 @@ class ModelManager:
         self._current_model = None
         self._current_type: str | None = None
         self._load_count = 0
+        self._last_used = time.time()
+
+    @property
+    def idle_seconds(self) -> float:
+        """Seconds since the model was last requested."""
+        return time.time() - self._last_used
 
     @property
     def current_type(self) -> str | None:
@@ -114,6 +120,8 @@ class ModelManager:
         If a different model is currently loaded, it will be unloaded first
         to free memory before loading the new one.
         """
+        self._last_used = time.time()
+
         if self._current_type == model_type and self._current_model is not None:
             return self._current_model
 
@@ -1383,6 +1391,46 @@ def print_system_info():
     print("=" * 55)
 
 
+def start_parent_watchdog():
+    """Exit when the parent app dies, even on crash or force-quit.
+
+    ReaderPro launches this server with a pipe connected to stdin. If the app
+    dies for ANY reason (quit, crash, kill -9), the kernel closes the pipe and
+    stdin reaches EOF here — we exit immediately so no orphaned process keeps
+    multiple GB of model weights in RAM.
+    """
+
+    def _watch():
+        try:
+            sys.stdin.buffer.read()  # blocks until EOF (parent died)
+        except Exception:
+            pass
+        logger.info("Parent app closed (stdin EOF) - shutting down to free memory")
+        os._exit(0)
+
+    threading.Thread(target=_watch, daemon=True, name="parent-watchdog").start()
+
+
+def start_idle_unloader(idle_timeout: float):
+    """Unload the model after idle_timeout seconds without requests.
+
+    Keeps RAM free while the app stays open but the user is not generating
+    audio. The next request reloads the model transparently (lazy loading).
+    """
+
+    def _check():
+        while True:
+            time.sleep(30)
+            if _model_manager.is_loaded and _model_manager.idle_seconds > idle_timeout:
+                logger.info(
+                    f"Model idle for {_model_manager.idle_seconds:.0f}s "
+                    f"(limit {idle_timeout:.0f}s) - unloading to free memory"
+                )
+                _model_manager.unload()
+
+    threading.Thread(target=_check, daemon=True, name="idle-unloader").start()
+
+
 def main():
     global VOICE_DESIGN_MODEL_ID
     parser = argparse.ArgumentParser(
@@ -1431,11 +1479,27 @@ API Usage:
         default=VOICE_DESIGN_MODEL_ID,
         help=f"VoiceDesign model ID (default: {VOICE_DESIGN_MODEL_ID})",
     )
+    parser.add_argument(
+        "--exit-with-parent",
+        action="store_true",
+        help="Exit when stdin reaches EOF (parent process died). Used by the ReaderPro app.",
+    )
+    parser.add_argument(
+        "--idle-timeout",
+        type=float,
+        default=600.0,
+        help="Unload the model after N seconds without requests (0 = never, default: 600)",
+    )
 
     args = parser.parse_args()
 
     # Allow overriding VoiceDesign model from CLI
     VOICE_DESIGN_MODEL_ID = args.voice_design_model
+
+    if args.exit_with_parent:
+        start_parent_watchdog()
+    if args.idle_timeout > 0:
+        start_idle_unloader(args.idle_timeout)
 
     print(
         f"""

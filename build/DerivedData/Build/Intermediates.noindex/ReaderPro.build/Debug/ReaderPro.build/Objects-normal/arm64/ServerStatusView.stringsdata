@@ -1,0 +1,32 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/ServerStatusView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "TTS Provider",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 12
+        }
+      },
+      {
+        "comment": "",
+        "key": "Kokoro Mode",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retry Connection",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 60
+        }
+      }
+    ]
+  },
+  "version": 1
+}

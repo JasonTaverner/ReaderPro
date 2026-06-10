@@ -26,6 +26,7 @@ import json
 import logging
 import os
 import sys
+import threading
 import time
 from pathlib import Path
 
@@ -461,6 +462,26 @@ def index():
 # Main
 # =============================================================================
 
+def start_parent_watchdog():
+    """Exit when the parent app dies, even on crash or force-quit.
+
+    ReaderPro launches this server with a pipe connected to stdin. If the app
+    dies for ANY reason (quit, crash, kill -9), the kernel closes the pipe and
+    stdin reaches EOF here — we exit immediately so no orphaned process keeps
+    the model weights in RAM.
+    """
+
+    def _watch():
+        try:
+            sys.stdin.buffer.read()  # blocks until EOF (parent died)
+        except Exception:
+            pass
+        logger.info("Parent app closed (stdin EOF) - shutting down to free memory")
+        os._exit(0)
+
+    threading.Thread(target=_watch, daemon=True, name="parent-watchdog").start()
+
+
 def main():
     global DEFAULT_MODEL_PATHS
 
@@ -492,8 +513,13 @@ API Usage:
     parser.add_argument('--port', type=int, default=8880, help='Port to listen on (default: 8880)')
     parser.add_argument('--debug', action='store_true', help='Enable debug mode')
     parser.add_argument('--model-dir', type=str, help='Directory containing kokoro*.onnx and voices*.bin files')
+    parser.add_argument('--exit-with-parent', action='store_true',
+                        help='Exit when stdin reaches EOF (parent process died). Used by the ReaderPro app.')
 
     args = parser.parse_args()
+
+    if args.exit_with_parent:
+        start_parent_watchdog()
 
     # Add custom model directory to search paths if specified
     if args.model_dir:

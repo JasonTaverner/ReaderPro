@@ -24,6 +24,11 @@ final class MockKokoroONNXEngine: KokoroONNXEngineProtocol {
         _isLoaded = true
     }
 
+    var unloadModelCalled = false
+    func unloadModel() {
+        unloadModelCalled = true
+    }
+
     func infer(tokens: [Int64], style: [Float32], speed: Float32) throws -> [Float32] {
         inferCalled = true
         lastTokens = tokens

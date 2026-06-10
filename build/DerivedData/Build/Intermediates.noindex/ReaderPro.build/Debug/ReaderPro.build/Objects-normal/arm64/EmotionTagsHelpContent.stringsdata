@@ -1,0 +1,80 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/Help/EmotionTagsHelpContent.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Controlar emociones con tags",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 7
+        }
+      },
+      {
+        "comment": "",
+        "key": "Puedes cambiar la emocion de la voz en diferentes partes del texto usando tags especiales.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 11
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ejemplo",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tags de emocion disponibles",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pausas",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Puedes anadir pausas en el audio:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "Consejos",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "Escribes:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "Resultado:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 115
+        }
+      }
+    ]
+  },
+  "version": 1
+}

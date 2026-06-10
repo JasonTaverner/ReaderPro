@@ -1,0 +1,40 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/UI/Views/Components/PlaybackControlsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Skip backward 10 seconds",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pause",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Play",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Skip forward 10 seconds",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 53
+        }
+      }
+    ]
+  },
+  "version": 1
+}

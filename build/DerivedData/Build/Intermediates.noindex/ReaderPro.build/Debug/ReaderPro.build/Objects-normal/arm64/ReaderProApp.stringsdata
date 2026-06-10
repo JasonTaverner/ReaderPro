@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jesuscruz/repos2/ReaderPro/ReaderPro/App/ReaderProApp.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "New Project",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 33
+        }
+      }
+    ]
+  },
+  "version": 1
+}
