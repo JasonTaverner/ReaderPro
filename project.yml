@@ -63,6 +63,7 @@ targets:
         ENABLE_APP_SANDBOX: NO
         SWIFT_EMIT_LOC_STRINGS: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: "ReaderPro usa el micrófono para los comandos de dictado por voz (transcribir lo que dices a texto)."
     entitlements:
       path: ReaderPro/ReaderPro.entitlements
       properties:

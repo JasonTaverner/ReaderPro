@@ -155,7 +155,7 @@ final class KokoroServerManagerTests: XCTestCase {
 
         // Assert
         if case .error(let msg) = sut.status {
-            XCTAssertTrue(msg.contains("python3"), "Error should mention python3, got: \(msg)")
+            XCTAssertTrue(msg.contains("Python 3"), "Error should mention Python 3, got: \(msg)")
         } else {
             XCTFail("Expected error status, got: \(sut.status)")
         }
@@ -202,8 +202,8 @@ final class KokoroServerManagerTests: XCTestCase {
         // Act
         sut.stopServer()
 
-        // Assert
-        XCTAssertTrue(mockProcess.terminateCalled)
+        // Assert: stopServer usa kill(-pid)+interrupt() en lugar de terminate()
+        XCTAssertTrue(mockProcess.interruptCalled)
     }
 
     func test_stopServer_shouldSetDisconnected() async {

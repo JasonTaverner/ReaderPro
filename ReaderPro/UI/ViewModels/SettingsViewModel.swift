@@ -67,6 +67,35 @@ final class SettingsViewModel: ObservableObject {
     /// Default saved cloned voice profile ID ("" for none/manual)
     @Published var defaultCloneProfileId: String = ""
 
+    // MARK: - Atajos globales
+
+    /// Comando "leer el portapapeles" activado
+    @Published var clipboardReadEnabled: Bool = true
+    /// Combinación de teclas del comando (rawValue de GlobalHotKeyCombo)
+    @Published var clipboardReadHotKey: String = "ctrl_opt_r"
+    /// Proveedor TTS que usa este comando
+    @Published var clipboardReadProvider: String = "supertonic"
+
+    /// Comando "crear entrada desde el portapapeles" activado
+    @Published var clipboardEntryEnabled: Bool = true
+    /// Combinación de teclas del comando
+    @Published var clipboardEntryHotKey: String = "ctrl_opt_l"
+    /// Proveedor TTS para generar el audio de la entrada
+    @Published var clipboardEntryProvider: String = "supertonic"
+    /// Proyecto destino: "inbox" | "last"
+    @Published var clipboardEntryTarget: String = "inbox"
+    /// Generar el audio automáticamente al crear la entrada
+    @Published var clipboardEntryGenerateAudio: Bool = true
+
+    /// Dictado → portapapeles activado
+    @Published var dictationClipboardEnabled: Bool = true
+    @Published var dictationClipboardHotKey: String = "ctrl_opt_t"
+    /// Dictado → entrada activado
+    @Published var dictationEntryEnabled: Bool = true
+    @Published var dictationEntryHotKey: String = "ctrl_opt_e"
+    /// Idioma del dictado (whisper)
+    @Published var dictationLanguage: String = "es"
+
     /// Available cloned voice profiles for the picker
     @Published var clonedVoiceProfiles: [ClonedVoiceProfileDTO] = []
 

@@ -138,6 +138,43 @@ final class TTSServerCoordinator: ObservableObject {
         kokoroONNXAdapter != nil
     }
 
+    /// Adaptador para un proveedor concreto (sin cambiar el proveedor activo).
+    /// Usado por los comandos globales, que pueden usar un modelo distinto al activo.
+    func adapter(for provider: Voice.TTSProvider) -> TTSPort {
+        switch provider {
+        case .native:
+            return nativeAdapter
+        case .kokoro:
+            if kokoroMode == .localONNX, let onnx = kokoroONNXAdapter {
+                return onnx
+            }
+            return kokoroAdapter
+        case .qwen3:
+            return qwen3Adapter
+        case .voxcpm:
+            return voxcpmAdapter
+        case .chatterbox:
+            return chatterboxAdapter
+        case .supertonic:
+            return supertonicAdapter
+        }
+    }
+
+    /// Asegura que el servidor que necesita un proveedor está arrancado
+    /// (sin cambiar el proveedor activo)
+    func ensureServerRunning(for provider: Voice.TTSProvider) async {
+        switch provider {
+        case .qwen3, .voxcpm, .chatterbox, .supertonic:
+            await qwen3Manager.startServer()
+        case .kokoro:
+            if kokoroMode == .remoteServer {
+                await kokoroManager.startServer()
+            }
+        case .native:
+            break
+        }
+    }
+
     /// Arranca el servidor del proveedor activo
     func startActiveServer() async {
         switch activeProvider {

@@ -15,6 +15,11 @@ final class FileSystemAudioStorage: AudioStoragePort {
     private let baseDirectoryURL: URL
     private let fileManager: FileManager
 
+    /// Serializa asignación de número secuencial + escritura: dos saves
+    /// concurrentes con entryNumber nil escaneaban el directorio a la vez,
+    /// obtenían el mismo número y un fichero sobreescribía al otro
+    private let saveLock = NSLock()
+
     var baseDirectory: String {
         baseDirectoryURL.path
     }
@@ -54,6 +59,9 @@ final class FileSystemAudioStorage: AudioStoragePort {
         }
 
         // 2. Determine filename: use provided number or auto-detect next
+        saveLock.lock()
+        defer { saveLock.unlock() }
+
         let number: Int
         if let entryNumber = entryNumber {
             number = entryNumber

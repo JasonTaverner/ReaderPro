@@ -170,6 +170,10 @@ final class EditorPresenter: ObservableObject {
             }
         }
 
+        // Guardar cambios pendientes del proyecto ANTERIOR antes de resetear
+        // (el onDisappear de su vista puede llegar tarde o no llegar a guardar)
+        await flushPendingAutoSave()
+
         viewModel.reset()
         viewModel.isLoading = true
         // Reservar el id YA: una segunda aparición concurrente de la vista no debe
@@ -221,7 +225,20 @@ final class EditorPresenter: ObservableObject {
     }
 
     /// Llamado cuando la vista desaparece
-    func onDisappear() async {
+    func onDisappear(projectId: Identifier<Project>? = nil) async {
+        // SwiftUI a veces dispara el onDisappear de la vista ANTERIOR después del
+        // onAppear de la nueva: si este presenter ya carga OTRO proyecto, este
+        // onDisappear tardío no debe borrar su estado (proyectos que aparecían
+        // vacíos hasta navegar a otro y volver)
+        if let ownerId = projectId?.value.uuidString,
+           let currentId = viewModel.projectId,
+           ownerId != currentId {
+            return
+        }
+
+        // Guardar cambios pendientes del debounce ANTES de soltar nada
+        await flushPendingAutoSave()
+
         autoSaveTimer?.invalidate()
         autoSaveTimer = nil
         stopUpdateTimer()
@@ -257,6 +274,9 @@ final class EditorPresenter: ObservableObject {
     /// Selects an entry tab (nil = project text)
     func selectEntryTab(_ entryId: String?) {
         viewModel.selectedEntryTab = entryId
+        // Persistir sin esperar al debounce: cambiar de pestaña con texto recién
+        // escrito no debe dejar cambios en el aire
+        Task { await flushPendingAutoSave() }
     }
 
     /// Updates the text of a specific entry (local cache + auto-save)
@@ -296,6 +316,12 @@ final class EditorPresenter: ObservableObject {
 
             // Reload entries
             try await reloadEntries(projectId)
+
+            // Si el usuario ya escribió/pegó texto mientras se recargaba, el autosave
+            // disparado durante el reload no encontró la entrada en entries: reprogramar
+            if let edited = viewModel.entryTexts[response.entryId], edited != "New entry" {
+                scheduleAutoSave()
+            }
 
         } catch {
             print("[EditorPresenter] addNewEntry failed: \(error)")
@@ -1484,6 +1510,17 @@ final class EditorPresenter: ObservableObject {
 
     /// Schedules auto-save with debounce
     /// Resets timer on each call, saves when timer expires
+    /// Guarda INMEDIATAMENTE los cambios pendientes del autosave (si los hay).
+    /// Cierra las ventanas en las que el debounce de 2 s perdía texto: salir del
+    /// proyecto, cambiar de pestaña o un onDisappear tardío de SwiftUI.
+    func flushPendingAutoSave() async {
+        guard autoSaveTimer != nil else { return }
+        autoSaveTimer?.invalidate()
+        autoSaveTimer = nil
+        guard !viewModel.isNewProject, viewModel.projectId != nil else { return }
+        await performAutoSave()
+    }
+
     private func scheduleAutoSave() {
         // Cancel existing timer
         autoSaveTimer?.invalidate()
@@ -1571,6 +1608,8 @@ final class EditorPresenter: ObservableObject {
         let response = try await getProjectUseCase.execute(request)
 
         viewModel.projectId = projectId.value.uuidString
+        // Recordar el último proyecto abierto (destino "last" de los comandos globales)
+        UserDefaults.standard.set(projectId.value.uuidString, forKey: ClipboardEntryService.lastOpenedProjectKey)
         viewModel.folderName = response.folderName
         viewModel.name = response.name
         viewModel.text = response.text
@@ -1666,6 +1705,16 @@ final class EditorPresenter: ObservableObject {
                     )
                 }
             }
+        }
+    }
+
+    /// Recarga las entradas si el proyecto indicado está abierto en el editor
+    /// (usado por los comandos globales al crear entradas desde fuera de la UI)
+    func refreshEntriesIfShowing(projectId: String) {
+        guard viewModel.projectId == projectId,
+              let uuid = UUID(uuidString: projectId) else { return }
+        Task { @MainActor [weak self] in
+            try? await self?.reloadEntries(Identifier<Project>(uuid))
         }
     }
 

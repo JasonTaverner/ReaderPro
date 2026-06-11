@@ -127,6 +127,55 @@ final class DependencyContainer {
         return ChatterboxTTSAdapter(baseURL: url)
     }()
 
+    private var _clipboardReaderService: ClipboardReaderService?
+
+    /// Comando global "leer el portapapeles" (atajo de teclado del sistema)
+    @MainActor
+    var clipboardReaderService: ClipboardReaderService {
+        if let existing = _clipboardReaderService { return existing }
+        let service = ClipboardReaderService(
+            coordinator: ttsCoordinator,
+            clonedVoiceRepository: clonedVoiceRepository
+        )
+        _clipboardReaderService = service
+        return service
+    }
+
+    private var _clipboardEntryService: ClipboardEntryService?
+
+    /// Comando global "crear entrada desde el portapapeles"
+    @MainActor
+    var clipboardEntryService: ClipboardEntryService {
+        if let existing = _clipboardEntryService { return existing }
+        let service = ClipboardEntryService(
+            coordinator: ttsCoordinator,
+            clonedVoiceRepository: clonedVoiceRepository,
+            projectRepository: projectRepository,
+            createProjectUseCase: createProjectUseCase,
+            saveAudioEntryUseCase: saveAudioEntryUseCase,
+            generateAudioForEntryUseCase: generateAudioForEntryUseCase
+        )
+        _clipboardEntryService = service
+        return service
+    }
+
+    private var _voiceDictationService: VoiceDictationService?
+
+    /// Comandos globales de dictado por voz (STT con el whisper del servidor)
+    @MainActor
+    var voiceDictationService: VoiceDictationService {
+        if let existing = _voiceDictationService { return existing }
+        let urlString = UserDefaults.standard.string(forKey: "qwen3ServerURL") ?? "http://127.0.0.1:8890"
+        let url = URL(string: urlString) ?? URL(string: "http://127.0.0.1:8890")!
+        let service = VoiceDictationService(
+            coordinator: ttsCoordinator,
+            entryService: clipboardEntryService,
+            serverBaseURL: url
+        )
+        _voiceDictationService = service
+        return service
+    }
+
     /// Alineación palabra-audio para el resaltado karaoke (mismo servidor MLX)
     private lazy var alignmentServiceInstance: AlignmentService = {
         let urlString = UserDefaults.standard.string(forKey: "qwen3ServerURL") ?? "http://127.0.0.1:8890"
@@ -292,6 +341,7 @@ final class DependencyContainer {
         MergeProjectUseCase(
             projectRepository: projectRepository,
             audioEditor: audioEditorAdapter,
+            baseDirectory: storageConfiguration.baseDirectory.path,
             pdfGenerator: pdfGeneratorAdapter,
             fileStorage: fileStorage
         )

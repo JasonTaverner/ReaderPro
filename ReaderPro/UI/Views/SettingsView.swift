@@ -55,6 +55,10 @@ struct SettingsView: View {
                     defaultProviderSection
                 }
 
+                Section("Global Shortcuts") {
+                    globalShortcutsSection
+                }
+
                 if presenter.viewModel.defaultProvider != "native" {
                     Section("Server Configuration") {
                         serverConfigSection
@@ -168,6 +172,283 @@ struct SettingsView: View {
                 .foregroundColor(Color.appTextSecondary)
         }
         .padding(.vertical, 4)
+    }
+
+    // MARK: - Global Shortcuts Section
+
+    /// Atajos seleccionados que colisionan entre comandos activos
+    private var duplicatedShortcuts: [String] {
+        var combos: [String] = []
+        if presenter.viewModel.clipboardReadEnabled { combos.append(presenter.viewModel.clipboardReadHotKey) }
+        if presenter.viewModel.clipboardEntryEnabled { combos.append(presenter.viewModel.clipboardEntryHotKey) }
+        if presenter.viewModel.dictationClipboardEnabled { combos.append(presenter.viewModel.dictationClipboardHotKey) }
+        if presenter.viewModel.dictationEntryEnabled { combos.append(presenter.viewModel.dictationEntryHotKey) }
+        var seen = Set<String>()
+        var dups = Set<String>()
+        for c in combos {
+            if !seen.insert(c).inserted { dups.insert(c) }
+        }
+        return dups.compactMap { GlobalHotKeyCombo(rawValue: $0)?.displayName }
+    }
+
+    private var globalShortcutsSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            if !duplicatedShortcuts.isEmpty {
+                Label("Shortcut conflict: \(duplicatedShortcuts.joined(separator: ", ")) is assigned to more than one command — only the first registered will work. Pick a different shortcut for each.", systemImage: "exclamationmark.triangle.fill")
+                    .font(.caption)
+                    .foregroundColor(.orange)
+            }
+
+            Toggle("Read clipboard aloud (system-wide shortcut)", isOn: clipboardReadEnabledBinding)
+
+            if presenter.viewModel.clipboardReadEnabled {
+                HStack {
+                    Text("Shortcut")
+                        .font(.subheadline)
+                        .foregroundColor(Color.appTextPrimary)
+                        .frame(width: 80, alignment: .leading)
+                    Picker("", selection: clipboardReadHotKeyBinding) {
+                        ForEach(GlobalHotKeyCombo.allCases) { combo in
+                            Text(combo.displayName).tag(combo.rawValue)
+                        }
+                    }
+                    .labelsHidden()
+                    .frame(maxWidth: 160)
+                }
+
+                HStack {
+                    Text("Model")
+                        .font(.subheadline)
+                        .foregroundColor(Color.appTextPrimary)
+                        .frame(width: 80, alignment: .leading)
+                    Picker("", selection: clipboardReadProviderBinding) {
+                        Text("System (macOS)").tag("native")
+                        Text("Kokoro").tag("kokoro")
+                        Text("Qwen3").tag("qwen3")
+                        Text("VoxCPM2").tag("voxcpm")
+                        Text("Chatterbox").tag("chatterbox")
+                        Text("Supertonic").tag("supertonic")
+                    }
+                    .labelsHidden()
+                    .frame(maxWidth: 200)
+                }
+
+                Text("Press the shortcut anywhere in macOS to read the copied text aloud; press again to stop. Cloning-capable models use your default saved voice profile.")
+                    .font(.caption)
+                    .foregroundColor(Color.appTextSecondary)
+            }
+
+            Divider()
+
+            Toggle("Create entry from clipboard (system-wide shortcut)", isOn: clipboardEntryEnabledBinding)
+
+            if presenter.viewModel.clipboardEntryEnabled {
+                HStack {
+                    Text("Shortcut")
+                        .font(.subheadline)
+                        .foregroundColor(Color.appTextPrimary)
+                        .frame(width: 80, alignment: .leading)
+                    Picker("", selection: clipboardEntryHotKeyBinding) {
+                        ForEach(GlobalHotKeyCombo.allCases) { combo in
+                            Text(combo.displayName).tag(combo.rawValue)
+                        }
+                    }
+                    .labelsHidden()
+                    .frame(maxWidth: 160)
+                }
+
+                HStack {
+                    Text("Target")
+                        .font(.subheadline)
+                        .foregroundColor(Color.appTextPrimary)
+                        .frame(width: 80, alignment: .leading)
+                    Picker("", selection: clipboardEntryTargetBinding) {
+                        Text("Clipboard Inbox project").tag("inbox")
+                        Text("Last opened project").tag("last")
+                    }
+                    .labelsHidden()
+                    .frame(maxWidth: 220)
+                }
+
+                Toggle("Generate audio automatically", isOn: clipboardEntryGenerateAudioBinding)
+
+                if presenter.viewModel.clipboardEntryGenerateAudio {
+                    HStack {
+                        Text("Model")
+                            .font(.subheadline)
+                            .foregroundColor(Color.appTextPrimary)
+                            .frame(width: 80, alignment: .leading)
+                        Picker("", selection: clipboardEntryProviderBinding) {
+                            Text("System (macOS)").tag("native")
+                            Text("Kokoro").tag("kokoro")
+                            Text("Qwen3").tag("qwen3")
+                            Text("VoxCPM2").tag("voxcpm")
+                            Text("Chatterbox").tag("chatterbox")
+                            Text("Supertonic").tag("supertonic")
+                        }
+                        .labelsHidden()
+                        .frame(maxWidth: 200)
+                    }
+                }
+
+                Text("Creates a new entry with the copied text (a 'Pop' sound confirms it; 'Glass' when its audio is ready). Use different shortcuts for each command.")
+                    .font(.caption)
+                    .foregroundColor(Color.appTextSecondary)
+            }
+
+            Divider()
+
+            Toggle("Dictate to clipboard (voice → text)", isOn: dictationClipboardEnabledBinding)
+
+            if presenter.viewModel.dictationClipboardEnabled {
+                HStack {
+                    Text("Shortcut")
+                        .font(.subheadline)
+                        .foregroundColor(Color.appTextPrimary)
+                        .frame(width: 80, alignment: .leading)
+                    Picker("", selection: dictationClipboardHotKeyBinding) {
+                        ForEach(GlobalHotKeyCombo.allCases) { combo in
+                            Text(combo.displayName).tag(combo.rawValue)
+                        }
+                    }
+                    .labelsHidden()
+                    .frame(maxWidth: 160)
+                }
+            }
+
+            Toggle("Dictate to new entry (voice → entry)", isOn: dictationEntryEnabledBinding)
+
+            if presenter.viewModel.dictationEntryEnabled {
+                HStack {
+                    Text("Shortcut")
+                        .font(.subheadline)
+                        .foregroundColor(Color.appTextPrimary)
+                        .frame(width: 80, alignment: .leading)
+                    Picker("", selection: dictationEntryHotKeyBinding) {
+                        ForEach(GlobalHotKeyCombo.allCases) { combo in
+                            Text(combo.displayName).tag(combo.rawValue)
+                        }
+                    }
+                    .labelsHidden()
+                    .frame(maxWidth: 160)
+                }
+            }
+
+            if presenter.viewModel.dictationClipboardEnabled || presenter.viewModel.dictationEntryEnabled {
+                HStack {
+                    Text("Language")
+                        .font(.subheadline)
+                        .foregroundColor(Color.appTextPrimary)
+                        .frame(width: 80, alignment: .leading)
+                    Picker("", selection: dictationLanguageBinding) {
+                        Text("🇪🇸 Español").tag("es")
+                        Text("🇬🇧 English").tag("en")
+                        Text("🇫🇷 Français").tag("fr")
+                        Text("🇩🇪 Deutsch").tag("de")
+                        Text("🇮🇹 Italiano").tag("it")
+                        Text("🇵🇹 Português").tag("pt")
+                    }
+                    .labelsHidden()
+                    .frame(maxWidth: 160)
+                }
+
+                Text("Press the shortcut to START recording ('Tink'), speak, and press again to STOP ('Pop'). The text is transcribed locally; 'Glass' confirms it's on the clipboard. New entries go to the same target project as the clipboard command.")
+                    .font(.caption)
+                    .foregroundColor(Color.appTextSecondary)
+            }
+        }
+        .padding(.vertical, 4)
+    }
+
+    private var dictationClipboardEnabledBinding: Binding<Bool> {
+        Binding(
+            get: { presenter.viewModel.dictationClipboardEnabled },
+            set: { presenter.setDictationClipboardEnabled($0) }
+        )
+    }
+
+    private var dictationClipboardHotKeyBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.dictationClipboardHotKey },
+            set: { presenter.setDictationClipboardHotKey($0) }
+        )
+    }
+
+    private var dictationEntryEnabledBinding: Binding<Bool> {
+        Binding(
+            get: { presenter.viewModel.dictationEntryEnabled },
+            set: { presenter.setDictationEntryEnabled($0) }
+        )
+    }
+
+    private var dictationEntryHotKeyBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.dictationEntryHotKey },
+            set: { presenter.setDictationEntryHotKey($0) }
+        )
+    }
+
+    private var dictationLanguageBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.dictationLanguage },
+            set: { presenter.setDictationLanguage($0) }
+        )
+    }
+
+    private var clipboardEntryEnabledBinding: Binding<Bool> {
+        Binding(
+            get: { presenter.viewModel.clipboardEntryEnabled },
+            set: { presenter.setClipboardEntryEnabled($0) }
+        )
+    }
+
+    private var clipboardEntryHotKeyBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.clipboardEntryHotKey },
+            set: { presenter.setClipboardEntryHotKey($0) }
+        )
+    }
+
+    private var clipboardEntryProviderBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.clipboardEntryProvider },
+            set: { presenter.setClipboardEntryProvider($0) }
+        )
+    }
+
+    private var clipboardEntryTargetBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.clipboardEntryTarget },
+            set: { presenter.setClipboardEntryTarget($0) }
+        )
+    }
+
+    private var clipboardEntryGenerateAudioBinding: Binding<Bool> {
+        Binding(
+            get: { presenter.viewModel.clipboardEntryGenerateAudio },
+            set: { presenter.setClipboardEntryGenerateAudio($0) }
+        )
+    }
+
+    private var clipboardReadEnabledBinding: Binding<Bool> {
+        Binding(
+            get: { presenter.viewModel.clipboardReadEnabled },
+            set: { presenter.setClipboardReadEnabled($0) }
+        )
+    }
+
+    private var clipboardReadHotKeyBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.clipboardReadHotKey },
+            set: { presenter.setClipboardReadHotKey($0) }
+        )
+    }
+
+    private var clipboardReadProviderBinding: Binding<String> {
+        Binding(
+            get: { presenter.viewModel.clipboardReadProvider },
+            set: { presenter.setClipboardReadProvider($0) }
+        )
     }
 
     // MARK: - Server Configuration Section

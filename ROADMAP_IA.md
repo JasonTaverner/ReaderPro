@@ -32,6 +32,24 @@ Criterios para añadir un modelo:
       + flag `DONT_EXIT` (10-6-2026).
 - [x] Empaquetado autocontenido + descarga automática de modelos Kokoro
       (`KokoroModelStore`, `_scripts/package_app.sh`) (10-6-2026).
+- [x] **Servidor MLX empaquetado con PyInstaller** (11-6-2026): el ZIP de
+      distribución ya incluye Qwen3/VoxCPM2/Chatterbox/Supertonic y el
+      /transcribe de Whisper SIN Python en la máquina destino.
+      `_scripts/pyinstaller/build_qwen3_server.sh` (onedir 883 MB, torch
+      excluido — solo era fallback para pesos .pth; los mlx-community usan
+      safetensors) → `package_app.sh` lo copia a
+      `Resources/servers/qwen3_server/` (ruta nº 1 de `findBundledExecutable`).
+      ZIP final: 333 MB (`--no-servers` para el ligero de ~20 MB). Verificado
+      desde el binario y desde dentro del .app firmado: health, síntesis de
+      las 4 familias, clonación (model=chatterbox) y transcripción.
+- [x] **Deuda de tests pre-refactor saldada** (11-6-2026): suite 890/890 en
+      verde. 15 tests actualizados al comportamiento actual (stopEntry/playNext
+      conservan id/índice para la UI, onDisappear hace flush del autosave,
+      isGenerating viene del bridge de GenerationManager, mensajes de los
+      server managers, etc.) y 3 bugs reales que esos tests destapaban:
+      carrera del número secuencial en saves concurrentes de audio
+      (`FileSystemAudioStorage.saveLock`), Title Case indebido en el instruct
+      de VoiceDesign y doble `Date()` en `Project.init`.
 - [ ] Probar síntesis Kokoro end-to-end desde la app (generar audio de una entrada en español).
 - [x] **Generalizar el servidor MLX** (10-6-2026): `MODEL_REGISTRY` declarativo en
       `qwen3_mlx_server.py` (se mantuvo el nombre del fichero por compatibilidad con
@@ -163,6 +181,36 @@ y la prosodia "se reinicia" en cada fragmento.
 | KugelAudio-0-open 7B | MIT y buen español, pero 9 GB sin cuantización documentada: no cabe. Candidato futuro para Macs 32 GB+ |
 | Dia, CSM-1B, Marvis, Kyutai, Zonos, VibeVoice, OuteTTS, Maya1 | Sin español (o abandonados) |
 | MeloTTS, Piper | Calidad inferior a Kokoro: sería retroceder |
+
+## Roadmap de la app (features pendientes)
+
+> Añadido 10-6-2026 a petición del usuario. Todos los atajos/comandos globales
+> serán CONFIGURABLES desde Ajustes (tecla y modelo TTS/STT que usa cada uno).
+
+1. ~~**Exportación M4B con capítulos**~~ ✅ (11-6-2026): opción "Audiobook (M4B)" en
+   Export/Merge — cada entrada es un capítulo navegable (título = primeras palabras
+   del texto), AAC mono 96 kbps, contenedor MP4 con pista de capítulos tx3g canónica
+   (la que leen Apple Books/iPhone; verificada con AVAsset.loadChapterMetadataGroups).
+   `M4BExporter` + `AudioEditorPort.exportAudiobook`. Lecciones: .m4a no acepta pistas
+   de capítulos (usar .mp4); audio y capítulos deben bombearse EN PARALELO al writer.
+2. ~~**Atajo global: leer el portapapeles**~~ ✅ (10-6-2026): atajo de sistema vía
+   Carbon (sin permisos especiales), toggle leer/parar, configurable en Ajustes →
+   Global Shortcuts (combinación ⌃⌥R/⌃⌥L/⌃⌥P/⌃⌥Space/⌃⌥⌘R + modelo por comando;
+   los modelos con clonación usan el perfil de voz por defecto). `GlobalHotKeyManager`
+   + `ClipboardReaderService` reutilizables para los comandos 3-5.
+3. ~~**Atajo global: crear entrada desde el portapapeles**~~ ✅ (10-6-2026): atajo
+   ⌃⌥L (configurable), destino elegible (proyecto "Clipboard Inbox" autocreado o
+   último proyecto abierto), generación de audio automática opcional con modelo
+   propio del comando; sonidos de confirmación (Pop al crear, Glass al terminar
+   el audio) y refresco del editor si el proyecto está abierto.
+4. ~~**Dictado → portapapeles**~~ ✅ (10-6-2026): ⌃⌥D (configurable) — toggle
+   grabar/parar con sonidos (Tink/Pop/Glass), STT local vía /transcribe con idioma
+   configurable, permiso de micrófono declarado, tope de 5 min, grabaciones <0,5 s
+   ignoradas (pulsaciones accidentales).
+5. ~~**Dictado → entrada**~~ ✅ (10-6-2026): ⌃⌥E (configurable) — transcribe y crea
+   entrada SIN audio en el mismo proyecto destino del comando de portapapeles.
+6. **Port nativo ONNX de Supertonic** — ya anotado como milestone en la Fase 4:
+   liberarlo de Python y meterlo en el paquete autocontenido.
 
 ## Orden recomendado y criterio de éxito
 

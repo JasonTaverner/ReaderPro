@@ -175,19 +175,23 @@ final class EditorPresenterTests: XCTestCase {
     }
 
     func test_onAppear_shouldSetLoadingDuringOperation() async {
-        // Arrange
-        mockTTSPort.delayResponse = true
+        // Arrange: isLoading solo cubre la carga del proyecto (las voces se
+        // cargan después, con la UI ya visible), así que retrasamos GetProject
+        let projectId = Identifier<Project>()
+        mockGetProject.projectToReturn = createTestProjectWithEntries(id: projectId, entryCount: 1)
+        mockGetProject.delayResponse = true
 
         // Act
-        let task = Task { await sut.onAppear(projectId: nil) }
+        let task = Task { await sut.onAppear(projectId: projectId) }
 
-        // Assert (verificar durante la carga)
+        // Assert (verificar durante la carga del proyecto, que tarda 100ms)
         try? await Task.sleep(nanoseconds: 10_000_000) // 10ms
         XCTAssertTrue(sut.viewModel.isLoading)
 
         // Cleanup
-        mockTTSPort.delayResponse = false
+        mockGetProject.delayResponse = false
         await task.value
+        XCTAssertFalse(sut.viewModel.isLoading)
     }
 
     // MARK: - UpdateText Tests
@@ -470,9 +474,6 @@ final class EditorPresenterTests: XCTestCase {
 
     func test_generateAudio_withoutProjectId_shouldSaveFirst() async {
         // Arrange
-        sut.updateName("Test")
-        sut.updateText("Content")
-
         let projectId = Identifier<Project>()
         mockCreateProject.responseToReturn = CreateProjectResponse(
             projectId: projectId,
@@ -487,6 +488,10 @@ final class EditorPresenterTests: XCTestCase {
         ]
         await sut.onAppear(projectId: nil)
 
+        // onAppear resetea el viewModel: fijar nombre y texto DESPUÉS
+        sut.updateName("Test")
+        sut.updateText("Content")
+
         // Configure project reload after save
         let projectWithEntry = createTestProjectWithEntries(id: projectId, entryCount: 1)
         mockGetProject.projectToReturn = projectWithEntry
@@ -499,22 +504,29 @@ final class EditorPresenterTests: XCTestCase {
         XCTAssertTrue(mockSaveAudioEntry.executeCalled)
     }
 
-    func test_generateAudio_shouldSetIsGeneratingTrue() async {
-        // Arrange
+    func test_startGeneration_shouldSetIsGeneratingTrue() async {
+        // Arrange: isGenerating es un bridge de GenerationManager.isActive, así
+        // que hay que generar por el camino real de la UI (startGeneration), no
+        // por el generateAudio() de conveniencia que usa un job desechable
         let projectId = Identifier<Project>()
         setupForGenerateAudio(projectId: projectId)
         mockSaveAudioEntry.delayResponse = true
 
         // Act
-        let task = Task { await sut.generateAudio() }
+        sut.startGeneration()
 
-        // Assert
-        try? await Task.sleep(nanoseconds: 50_000_000) // 50ms
+        // Assert: esperar a que el bridge propague el cambio (publica en RunLoop.main)
+        for _ in 0..<100 where !sut.viewModel.isGenerating {
+            try? await Task.sleep(nanoseconds: 10_000_000) // 10ms
+        }
         XCTAssertTrue(sut.viewModel.isGenerating)
 
-        // Cleanup
+        // Cleanup: dejar terminar el job para no contaminar el singleton compartido
         mockSaveAudioEntry.delayResponse = false
-        await task.value
+        for _ in 0..<100 where sut.viewModel.isGenerating {
+            try? await Task.sleep(nanoseconds: 10_000_000)
+        }
+        XCTAssertFalse(sut.viewModel.isGenerating)
     }
 
     func test_generateAudio_whenTTSFails_shouldShowError() async {
@@ -1017,7 +1029,7 @@ final class EditorPresenterTests: XCTestCase {
         XCTAssertNotNil(sut.viewModel.error)
     }
 
-    func test_onDisappear_shouldCancelPendingAutoSave() async {
+    func test_onDisappear_shouldFlushPendingAutoSave() async {
         // Arrange
         let projectId = Identifier<Project>()
         sut.viewModel.projectId = projectId.value.uuidString
@@ -1026,14 +1038,12 @@ final class EditorPresenterTests: XCTestCase {
         sut.updateText("Pending save")
         XCTAssertEqual(sut.viewModel.autoSaveState, .pending)
 
-        // Act
+        // Act: onDisappear ya no cancela el autosave pendiente, lo guarda
+        // inmediatamente (flushPendingAutoSave) para no perder texto
         await sut.onDisappear()
 
-        // Wait past debounce interval - save should NOT fire
-        try? await Task.sleep(nanoseconds: 2_500_000_000)
-
         // Assert
-        XCTAssertFalse(mockUpdateProject.executeCalled)
+        XCTAssertTrue(mockUpdateProject.executeCalled)
     }
 
     func test_autoSave_multipleChanges_shouldDebounce() async throws {
@@ -1178,15 +1188,17 @@ final class EditorPresenterTests: XCTestCase {
         XCTAssertTrue(mockAudioPlayer.playCalled)
     }
 
-    func test_stopEntry_shouldClearPlayingEntryId() async {
+    func test_stopEntry_shouldKeepPlayingEntryIdForUI() async {
         // Arrange
         sut.viewModel.playingEntryId = "some-entry-id"
 
         // Act
         await sut.stopEntry()
 
-        // Assert
-        XCTAssertNil(sut.viewModel.playingEntryId)
+        // Assert: stopEntry detiene el player pero CONSERVA el id para que la
+        // UI del reproductor siga visible
+        XCTAssertTrue(mockAudioPlayer.stopCalled)
+        XCTAssertEqual(sut.viewModel.playingEntryId, "some-entry-id")
     }
 
     // MARK: - GenerateAudio Helper

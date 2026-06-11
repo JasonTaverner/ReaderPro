@@ -384,7 +384,7 @@ final class MergeProjectUseCaseTests: XCTestCase {
 
     func test_execute_withImagesMerge_shouldReturnPDFPageCount() async throws {
         // Arrange
-        let project = try makeProjectWithEntries(imageCount: 4)
+        let project = try makeProjectWithEntries(count: 4, imageCount: 4)
         mockProjectRepository.projectToReturn = project
 
         let request = MergeProjectRequest(projectId: project.id, mergeType: .images)

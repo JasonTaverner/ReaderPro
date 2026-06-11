@@ -58,6 +58,15 @@ struct MergeOptionsSheet: View {
                     enabled: hasAudioEntries
                 )
 
+                // Option: Audiobook (M4B con capítulos)
+                mergeOptionButton(
+                    type: .audiobook,
+                    title: "Audiobook (M4B)",
+                    subtitle: "One chapter per entry — ready for Apple Books / iPhone",
+                    icon: "book.closed.circle",
+                    enabled: hasAudioEntries
+                )
+
                 // Option: Images
                 mergeOptionButton(
                     type: .images,
@@ -87,7 +96,7 @@ struct MergeOptionsSheet: View {
             }
 
             // Silence Duration (only if audio selected)
-            if selectedType == .audio || selectedType == .all {
+            if selectedType == .audio || selectedType == .all || selectedType == .audiobook {
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
                         Text("Silence between audio files:")
@@ -193,7 +202,7 @@ struct MergeOptionsSheet: View {
 
     private var canExport: Bool {
         switch selectedType {
-        case .audio:
+        case .audio, .audiobook:
             return hasAudioEntries
         case .images:
             return hasImageEntries

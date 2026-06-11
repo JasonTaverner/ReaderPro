@@ -99,8 +99,8 @@ final class Qwen3ServerManagerTests: XCTestCase {
         // Act
         sut.stopServer()
 
-        // Assert
-        XCTAssertTrue(mockProcess.terminateCalled)
+        // Assert: stopServer usa kill(-pid)+interrupt() en lugar de terminate()
+        XCTAssertTrue(mockProcess.interruptCalled)
     }
 
     func test_stopServer_whenNoProcess_shouldNotCrash() {

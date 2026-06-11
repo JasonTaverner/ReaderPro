@@ -9,6 +9,12 @@ ReaderPro.xcodeproj/*
 .claude/*
 
 # PyInstaller build artifacts
-scripts/pyinstaller/dist/
-scripts/pyinstaller/build/
-scripts/pyinstaller/*.spec
+_scripts/pyinstaller/dist/
+_scripts/pyinstaller/build/
+_scripts/pyinstaller/*.spec
+
+# Release artifacts
+dist/
+
+# Xcode build output
+build/

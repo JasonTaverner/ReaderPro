@@ -96,7 +96,7 @@ enum VoiceAccent: String, CaseIterable, Equatable {
         // Append emotion/style if provided, otherwise default
         if let emotion = emotion, !emotion.isEmpty {
             let suffix = emotion.lowercased().hasPrefix("speak")
-                ? " \(emotion.capitalized)."
+                ? " \(emotion.prefix(1).uppercased() + emotion.dropFirst())."
                 : " Speaking \(emotion.lowercased())."
             return voiceDesc + suffix
         } else {

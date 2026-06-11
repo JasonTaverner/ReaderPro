@@ -86,6 +86,10 @@ CHATTERBOX_MODEL_ID = "mlx-community/chatterbox-8bit"
 MODEL_TYPE_SUPERTONIC = "supertonic"
 SUPERTONIC_MODEL_ID = "Supertone/supertonic-3"
 
+# Whisper para /transcribe y /align (dictado y resaltado karaoke).
+# large-v3-turbo: calidad casi large-v3 con ~8x su velocidad (~1,6 GB).
+WHISPER_MODEL_ID = "mlx-community/whisper-large-v3-turbo"
+
 # Registro declarativo de modelos (ver docs/GESTION_MEMORIA.md y ROADMAP_IA.md).
 # Para añadir un modelo nuevo: una entrada aquí + (si su familia necesita kwargs
 # distintos) una rama en synthesize_speech/clone_voice. Nada más.
@@ -1458,14 +1462,17 @@ def transcribe():
 
     try:
         audio_file.save(tmp_path)
-        logger.info(f"Transcribing audio: {tmp_path}")
+        language = request.form.get("language") or None
+        logger.info(f"Transcribing audio: {tmp_path} (language={language})")
 
         import mlx_whisper
 
         result = mlx_whisper.transcribe(
             tmp_path,
-            path_or_hf_repo="mlx-community/whisper-base-mlx",
+            path_or_hf_repo=WHISPER_MODEL_ID,
+            language=language,
         )
+        _release_whisper()
 
         text = result.get("text", "").strip()
         logger.info(f"Transcription result ({len(text)} chars): {text[:120]!r}")
@@ -1521,10 +1528,11 @@ def align():
 
         result = mlx_whisper.transcribe(
             tmp_path,
-            path_or_hf_repo="mlx-community/whisper-base-mlx",
+            path_or_hf_repo=WHISPER_MODEL_ID,
             word_timestamps=True,
             language=language,
         )
+        _release_whisper()
 
         # Palabras de whisper con sus tiempos
         whisper_words = []
@@ -1766,6 +1774,20 @@ def print_system_info():
     print("=" * 55)
 
 
+def _release_whisper():
+    """Libera el modelo whisper cacheado por mlx-whisper (ModelHolder global):
+    con large-v3-turbo son ~1,6 GB que no deben quedar residentes entre dictados."""
+    try:
+        from mlx_whisper.transcribe import ModelHolder
+        ModelHolder.model = None
+        ModelHolder.model_path = None
+        import gc
+        gc.collect()
+        mx.clear_cache()
+    except Exception:
+        pass
+
+
 def start_parent_watchdog():
     """Exit when the parent app dies, even on crash or force-quit.
 
@@ -1807,7 +1829,7 @@ def start_idle_unloader(idle_timeout: float):
 
 
 def main():
-    global VOICE_DESIGN_MODEL_ID
+    global VOICE_DESIGN_MODEL_ID, WHISPER_MODEL_ID
     parser = argparse.ArgumentParser(
         description="Qwen3-TTS MLX Server for ReaderPro",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -1860,6 +1882,11 @@ API Usage:
         help="Exit when stdin reaches EOF (parent process died). Used by the ReaderPro app.",
     )
     parser.add_argument(
+        "--whisper-model",
+        default=WHISPER_MODEL_ID,
+        help=f"Whisper model for /transcribe and /align (default: {WHISPER_MODEL_ID})",
+    )
+    parser.add_argument(
         "--idle-timeout",
         type=float,
         default=600.0,
@@ -1870,6 +1897,7 @@ API Usage:
 
     # Allow overriding VoiceDesign model from CLI
     VOICE_DESIGN_MODEL_ID = args.voice_design_model
+    WHISPER_MODEL_ID = args.whisper_model
 
     if args.exit_with_parent:
         start_parent_watchdog()

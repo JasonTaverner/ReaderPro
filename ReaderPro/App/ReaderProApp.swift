@@ -56,6 +56,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Task { @MainActor in
             await DependencyContainer.shared.ttsCoordinator.startActiveServer()
         }
+
+        // Registrar los atajos globales configurados
+        Task { @MainActor in
+            DependencyContainer.shared.clipboardReaderService.applySettings()
+            DependencyContainer.shared.clipboardEntryService.applySettings()
+            DependencyContainer.shared.voiceDictationService.applySettings()
+        }
     }
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {

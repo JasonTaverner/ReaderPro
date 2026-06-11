@@ -10,6 +10,8 @@ final class MergeProjectUseCase {
 
     private let projectRepository: ProjectRepositoryPort
     private let audioEditor: AudioEditorPort
+    /// Directorio base de la biblioteca, para resolver paths absolutos del audiolibro
+    private let baseDirectory: String
     private let pdfGenerator: PDFGeneratorPort
     private let fileStorage: FileStoragePort
 
@@ -18,11 +20,13 @@ final class MergeProjectUseCase {
     init(
         projectRepository: ProjectRepositoryPort,
         audioEditor: AudioEditorPort,
+        baseDirectory: String = "",
         pdfGenerator: PDFGeneratorPort,
         fileStorage: FileStoragePort
     ) {
         self.projectRepository = projectRepository
         self.audioEditor = audioEditor
+        self.baseDirectory = baseDirectory
         self.pdfGenerator = pdfGenerator
         self.fileStorage = fileStorage
     }
@@ -59,6 +63,13 @@ final class MergeProjectUseCase {
         case .audio:
             (mergedAudioPath, totalAudioDuration) = try await mergeAudio(
                 entries: project.entries,
+                exportsDirectory: exportsDirectory,
+                silenceDuration: request.silenceBetweenAudios
+            )
+
+        case .audiobook:
+            (mergedAudioPath, totalAudioDuration) = try await mergeAudiobook(
+                project: project,
                 exportsDirectory: exportsDirectory,
                 silenceDuration: request.silenceBetweenAudios
             )
@@ -142,6 +153,44 @@ final class MergeProjectUseCase {
         let duration = try await audioEditor.getDuration(audioPath: mergedPath)
 
         return (mergedPath, duration)
+    }
+
+    /// Exporta el proyecto como audiolibro .m4b con capítulos navegables
+    private func mergeAudiobook(
+        project: Project,
+        exportsDirectory: String,
+        silenceDuration: TimeInterval
+    ) async throws -> (String?, TimeInterval?) {
+        let base = URL(fileURLWithPath: baseDirectory, isDirectory: true)
+
+        // Capítulo por entrada con audio; el título sale del texto de la entrada
+        var chapters: [AudiobookChapter] = []
+        for (index, entry) in project.entries.enumerated() {
+            guard let audioPath = entry.audioPath else { continue }
+            let words = entry.text.value
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+                .split(separator: " ").prefix(7).joined(separator: " ")
+            let title = words.isEmpty ? "Capítulo \(index + 1)" : "\(index + 1). \(words)"
+            chapters.append(AudiobookChapter(
+                audioURL: base.appendingPathComponent(audioPath),
+                title: title
+            ))
+        }
+
+        guard !chapters.isEmpty else { return (nil, nil) }
+
+        let safeName = project.name.value.replacingOccurrences(of: "/", with: "-")
+        let outputRelative = "\(exportsDirectory)/\(safeName).m4b"
+        let outputAbsolute = base.appendingPathComponent(outputRelative).path
+
+        let duration = try await audioEditor.exportAudiobook(
+            chapters: chapters,
+            outputPath: outputAbsolute,
+            silenceDuration: silenceDuration,
+            bookTitle: project.name.value
+        )
+
+        return (outputRelative, duration)
     }
 
     /// Fusiona todas las imágenes de las entradas en un PDF

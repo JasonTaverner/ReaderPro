@@ -54,6 +54,17 @@ final class AVAudioPlayerAdapter: NSObject, @preconcurrency AudioPlayerPort, AVA
     }
 
     func play() async {
+        // Tras terminar la reproducción, stop() libera el player: recargar desde
+        // la última URL para que play vuelva a funcionar sin reabrir el audio
+        if player == nil, let url = audioFileURL {
+            print("[AVAudioPlayerAdapter] play(): reloading player from \(url.lastPathComponent)")
+            if let newPlayer = try? AVAudioPlayer(contentsOf: url) {
+                newPlayer.delegate = self
+                newPlayer.enableRate = true
+                newPlayer.prepareToPlay()
+                player = newPlayer
+            }
+        }
         print("[AVAudioPlayerAdapter] play() called, player exists: \(player != nil)")
         player?.play()
     }
@@ -67,7 +78,8 @@ final class AVAudioPlayerAdapter: NSObject, @preconcurrency AudioPlayerPort, AVA
         print("[AVAudioPlayerAdapter] stop() called")
         player?.stop()
         player = nil
-        audioFileURL = nil
+        // Conservar audioFileURL: permite que play() reanude el último audio
+        // (antes, tras terminar un audio, el botón play quedaba muerto)
     }
 
     func seek(to time: TimeInterval) async {

@@ -3,6 +3,7 @@ import Foundation
 /// Tipo de merge a realizar
 enum MergeType: String, CaseIterable {
     case audio      // Solo audios → audio_completo.wav
+    case audiobook  // Audiolibro .m4b con capítulos (una entrada = un capítulo)
     case images     // Solo imágenes → documento.pdf
     case text       // Solo textos → documento_completo.txt
     case all        // Todo (audio + imágenes + texto)

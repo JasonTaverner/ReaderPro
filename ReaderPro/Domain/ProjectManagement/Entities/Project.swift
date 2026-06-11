@@ -54,8 +54,9 @@ final class Project {
         self.entries = []
         self.coverImagePath = nil
         self.folderId = folderId
-        self.createdAt = Date()
-        self.updatedAt = Date()
+        let now = Date()
+        self.createdAt = now
+        self.updatedAt = now
 
         addEvent(ProjectCreatedEvent(projectId: id, name: name))
     }

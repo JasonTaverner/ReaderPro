@@ -225,6 +225,27 @@ final class SettingsPresenter: ObservableObject {
         viewModel.defaultCloneEnabled = UserDefaults.standard.bool(forKey: Self.defaultCloneEnabledKey)
         viewModel.defaultCloneProfileId = UserDefaults.standard.string(forKey: Self.defaultCloneProfileIdKey) ?? ""
 
+        // Atajos globales
+        let defaults = UserDefaults.standard
+        viewModel.clipboardReadEnabled = defaults.object(forKey: ClipboardReaderService.enabledKey) == nil
+            ? true : defaults.bool(forKey: ClipboardReaderService.enabledKey)
+        viewModel.clipboardReadHotKey = defaults.string(forKey: ClipboardReaderService.hotKeyKey) ?? "ctrl_opt_r"
+        viewModel.clipboardReadProvider = defaults.string(forKey: ClipboardReaderService.providerKey) ?? "supertonic"
+        viewModel.clipboardEntryEnabled = defaults.object(forKey: ClipboardEntryService.enabledKey) == nil
+            ? true : defaults.bool(forKey: ClipboardEntryService.enabledKey)
+        viewModel.clipboardEntryHotKey = defaults.string(forKey: ClipboardEntryService.hotKeyKey) ?? "ctrl_opt_l"
+        viewModel.clipboardEntryProvider = defaults.string(forKey: ClipboardEntryService.providerKey) ?? "supertonic"
+        viewModel.clipboardEntryTarget = defaults.string(forKey: ClipboardEntryService.targetKey) ?? "inbox"
+        viewModel.clipboardEntryGenerateAudio = defaults.object(forKey: ClipboardEntryService.generateAudioKey) == nil
+            ? true : defaults.bool(forKey: ClipboardEntryService.generateAudioKey)
+        viewModel.dictationClipboardEnabled = defaults.object(forKey: VoiceDictationService.clipboardEnabledKey) == nil
+            ? true : defaults.bool(forKey: VoiceDictationService.clipboardEnabledKey)
+        viewModel.dictationClipboardHotKey = defaults.string(forKey: VoiceDictationService.clipboardHotKeyKey) ?? "ctrl_opt_t"
+        viewModel.dictationEntryEnabled = defaults.object(forKey: VoiceDictationService.entryEnabledKey) == nil
+            ? true : defaults.bool(forKey: VoiceDictationService.entryEnabledKey)
+        viewModel.dictationEntryHotKey = defaults.string(forKey: VoiceDictationService.entryHotKeyKey) ?? "ctrl_opt_e"
+        viewModel.dictationLanguage = defaults.string(forKey: VoiceDictationService.languageKey) ?? "es"
+
         // Load cloned voice profiles for the picker
         loadClonedVoiceProfilesList()
     }
@@ -319,5 +340,80 @@ final class SettingsPresenter: ObservableObject {
         case .disconnected: return "Stopped"
         case .error(let msg): return "Error: \(msg)"
         }
+    }
+
+    // MARK: - Atajos globales
+
+    func setClipboardReadEnabled(_ enabled: Bool) {
+        viewModel.clipboardReadEnabled = enabled
+        UserDefaults.standard.set(enabled, forKey: ClipboardReaderService.enabledKey)
+        DependencyContainer.shared.clipboardReaderService.applySettings()
+    }
+
+    func setClipboardReadHotKey(_ raw: String) {
+        viewModel.clipboardReadHotKey = raw
+        UserDefaults.standard.set(raw, forKey: ClipboardReaderService.hotKeyKey)
+        DependencyContainer.shared.clipboardReaderService.applySettings()
+    }
+
+    func setClipboardReadProvider(_ raw: String) {
+        viewModel.clipboardReadProvider = raw
+        UserDefaults.standard.set(raw, forKey: ClipboardReaderService.providerKey)
+    }
+
+    func setClipboardEntryEnabled(_ enabled: Bool) {
+        viewModel.clipboardEntryEnabled = enabled
+        UserDefaults.standard.set(enabled, forKey: ClipboardEntryService.enabledKey)
+        DependencyContainer.shared.clipboardEntryService.applySettings()
+    }
+
+    func setClipboardEntryHotKey(_ raw: String) {
+        viewModel.clipboardEntryHotKey = raw
+        UserDefaults.standard.set(raw, forKey: ClipboardEntryService.hotKeyKey)
+        DependencyContainer.shared.clipboardEntryService.applySettings()
+    }
+
+    func setClipboardEntryProvider(_ raw: String) {
+        viewModel.clipboardEntryProvider = raw
+        UserDefaults.standard.set(raw, forKey: ClipboardEntryService.providerKey)
+    }
+
+    func setClipboardEntryTarget(_ raw: String) {
+        viewModel.clipboardEntryTarget = raw
+        UserDefaults.standard.set(raw, forKey: ClipboardEntryService.targetKey)
+    }
+
+    func setClipboardEntryGenerateAudio(_ enabled: Bool) {
+        viewModel.clipboardEntryGenerateAudio = enabled
+        UserDefaults.standard.set(enabled, forKey: ClipboardEntryService.generateAudioKey)
+    }
+
+    func setDictationClipboardEnabled(_ enabled: Bool) {
+        viewModel.dictationClipboardEnabled = enabled
+        UserDefaults.standard.set(enabled, forKey: VoiceDictationService.clipboardEnabledKey)
+        DependencyContainer.shared.voiceDictationService.applySettings()
+    }
+
+    func setDictationClipboardHotKey(_ raw: String) {
+        viewModel.dictationClipboardHotKey = raw
+        UserDefaults.standard.set(raw, forKey: VoiceDictationService.clipboardHotKeyKey)
+        DependencyContainer.shared.voiceDictationService.applySettings()
+    }
+
+    func setDictationEntryEnabled(_ enabled: Bool) {
+        viewModel.dictationEntryEnabled = enabled
+        UserDefaults.standard.set(enabled, forKey: VoiceDictationService.entryEnabledKey)
+        DependencyContainer.shared.voiceDictationService.applySettings()
+    }
+
+    func setDictationEntryHotKey(_ raw: String) {
+        viewModel.dictationEntryHotKey = raw
+        UserDefaults.standard.set(raw, forKey: VoiceDictationService.entryHotKeyKey)
+        DependencyContainer.shared.voiceDictationService.applySettings()
+    }
+
+    func setDictationLanguage(_ raw: String) {
+        viewModel.dictationLanguage = raw
+        UserDefaults.standard.set(raw, forKey: VoiceDictationService.languageKey)
     }
 }

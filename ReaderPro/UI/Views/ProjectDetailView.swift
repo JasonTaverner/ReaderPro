@@ -89,7 +89,7 @@ struct ProjectDetailView: View {
         }
         .onDisappear {
             Task {
-                await presenter.onDisappear()
+                await presenter.onDisappear(projectId: projectId)
             }
         }
         .disabled(presenter.viewModel.isLoading)
@@ -199,8 +199,12 @@ struct ProjectDetailView: View {
 
     private func mergeResultMessage(_ result: MergeProjectResponse) -> String {
         var message = "Exported \(result.entriesProcessed) entries"
-        if result.mergedAudioPath != nil {
-            message += "\n- Audio: audio_completo.wav"
+        if let audioPath = result.mergedAudioPath {
+            if audioPath.hasSuffix(".m4b") {
+                message += "\n- Audiobook: \((audioPath as NSString).lastPathComponent) (chapters included)"
+            } else {
+                message += "\n- Audio: audio_completo.wav"
+            }
         }
         if result.mergedPDFPath != nil {
             message += "\n- PDF: documento.pdf (\(result.pdfPageCount ?? 0) pages)"

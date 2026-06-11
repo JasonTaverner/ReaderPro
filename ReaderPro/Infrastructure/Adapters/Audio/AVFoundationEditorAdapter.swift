@@ -7,6 +7,25 @@ final class AVFoundationEditorAdapter: AudioEditorPort {
 
     // MARK: - AudioEditorPort Implementation
 
+    func exportAudiobook(
+        chapters: [AudiobookChapter],
+        outputPath: String,
+        silenceDuration: TimeInterval,
+        bookTitle: String
+    ) async throws -> TimeInterval {
+        let outputURL = URL(fileURLWithPath: outputPath)
+        try FileManager.default.createDirectory(
+            at: outputURL.deletingLastPathComponent(),
+            withIntermediateDirectories: true
+        )
+        return try await M4BExporter.export(
+            chapters: chapters,
+            outputURL: outputURL,
+            silenceDuration: silenceDuration,
+            bookTitle: bookTitle
+        )
+    }
+
     func trim(audioPath: String, timeRange: TimeRange) async throws -> String {
         let sourceURL = URL(fileURLWithPath: audioPath)
         let asset = AVURLAsset(url: sourceURL)

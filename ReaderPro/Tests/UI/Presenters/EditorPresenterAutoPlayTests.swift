@@ -111,23 +111,28 @@ final class EditorPresenterAutoPlayTests: XCTestCase {
         // Act
         await sut.playNext()
 
-        // Assert
-        XCTAssertNil(sut.viewModel.playingEntryId)
-        XCTAssertEqual(sut.viewModel.currentPlayingIndex, -1)
+        // Assert: se detiene el player pero id/índice se conservan para que
+        // la UI del reproductor siga visible
+        XCTAssertTrue(mockAudioPlayer.stopCalled)
+        XCTAssertFalse(mockAudioPlayer.playCalled)
+        XCTAssertEqual(sut.viewModel.playingEntryId, sut.viewModel.entries[2].id)
+        XCTAssertEqual(sut.viewModel.currentPlayingIndex, 2)
     }
 
-    func test_playNext_withNoPlayingEntry_shouldDoNothing() async {
+    func test_playNext_withNoPlayingEntry_shouldStartFromFirstEntry() async {
         // Arrange
         setupViewModelWithEntries(count: 3)
         sut.viewModel.playingEntryId = nil
         sut.viewModel.currentPlayingIndex = -1
+        mockAudioPlayer.durationToReturn = 10.0
 
-        // Act
+        // Act: sin nada reproduciéndose, playNext busca desde el índice 0
         await sut.playNext()
 
         // Assert
-        XCTAssertNil(sut.viewModel.playingEntryId)
-        XCTAssertFalse(mockAudioPlayer.playCalled)
+        XCTAssertEqual(sut.viewModel.playingEntryId, sut.viewModel.entries[0].id)
+        XCTAssertEqual(sut.viewModel.currentPlayingIndex, 0)
+        XCTAssertTrue(mockAudioPlayer.playCalled)
     }
 
     func test_playNext_skipsEntriesWithoutAudio() async {
@@ -224,9 +229,12 @@ final class EditorPresenterAutoPlayTests: XCTestCase {
         // Act - Simulate playback completion
         await sut.handlePlaybackCompletion()
 
-        // Assert - Should stop, not play next
-        XCTAssertNil(sut.viewModel.playingEntryId)
-        XCTAssertEqual(sut.viewModel.currentPlayingIndex, -1)
+        // Assert - Should stop (keeping id/index so the player UI stays
+        // visible), not play next
+        XCTAssertTrue(mockAudioPlayer.stopCalled)
+        XCTAssertFalse(mockAudioPlayer.playCalled)
+        XCTAssertEqual(sut.viewModel.playingEntryId, sut.viewModel.entries[0].id)
+        XCTAssertEqual(sut.viewModel.currentPlayingIndex, 0)
     }
 
     func test_onPlaybackComplete_atLastEntry_shouldStopEvenWithAutoPlay() async {
@@ -239,9 +247,12 @@ final class EditorPresenterAutoPlayTests: XCTestCase {
         // Act - Simulate playback completion
         await sut.handlePlaybackCompletion()
 
-        // Assert - Should stop since no more entries
-        XCTAssertNil(sut.viewModel.playingEntryId)
-        XCTAssertEqual(sut.viewModel.currentPlayingIndex, -1)
+        // Assert - Should stop since no more entries (id/index preserved so
+        // the player UI stays visible)
+        XCTAssertTrue(mockAudioPlayer.stopCalled)
+        XCTAssertFalse(mockAudioPlayer.playCalled)
+        XCTAssertEqual(sut.viewModel.playingEntryId, sut.viewModel.entries[2].id)
+        XCTAssertEqual(sut.viewModel.currentPlayingIndex, 2)
     }
 
     // MARK: - Current Playing Index Tests
@@ -260,7 +271,7 @@ final class EditorPresenterAutoPlayTests: XCTestCase {
         XCTAssertEqual(sut.viewModel.playingEntryId, entryId)
     }
 
-    func test_stopEntry_shouldResetCurrentPlayingIndex() async {
+    func test_stopEntry_shouldKeepCurrentPlayingIndexForUI() async {
         // Arrange
         setupViewModelWithEntries(count: 3)
         sut.viewModel.playingEntryId = sut.viewModel.entries[0].id
@@ -269,9 +280,11 @@ final class EditorPresenterAutoPlayTests: XCTestCase {
         // Act
         await sut.stopEntry()
 
-        // Assert
-        XCTAssertNil(sut.viewModel.playingEntryId)
-        XCTAssertEqual(sut.viewModel.currentPlayingIndex, -1)
+        // Assert: stopEntry detiene el player pero conserva id/índice para
+        // que la UI del reproductor siga visible
+        XCTAssertTrue(mockAudioPlayer.stopCalled)
+        XCTAssertEqual(sut.viewModel.playingEntryId, sut.viewModel.entries[0].id)
+        XCTAssertEqual(sut.viewModel.currentPlayingIndex, 0)
     }
 
     // MARK: - Helpers

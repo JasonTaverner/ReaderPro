@@ -12,6 +12,20 @@ protocol AudioEditorPort {
     /// - Throws: Error si falla el recorte
     func trim(audioPath: String, timeRange: TimeRange) async throws -> String
 
+    /// Exporta un audiolibro .m4b con capítulos navegables (Apple Books/iPhone)
+    /// - Parameters:
+    ///   - chapters: capítulos en orden (path ABSOLUTO del audio + título)
+    ///   - outputPath: path ABSOLUTO del .m4b de salida
+    ///   - silenceDuration: silencio entre capítulos
+    ///   - bookTitle: título del audiolibro (metadatos)
+    /// - Returns: duración total en segundos
+    func exportAudiobook(
+        chapters: [AudiobookChapter],
+        outputPath: String,
+        silenceDuration: TimeInterval,
+        bookTitle: String
+    ) async throws -> TimeInterval
+
     /// Une múltiples archivos de audio en uno solo
     /// - Parameter audioPaths: Lista de paths a los archivos a unir (en orden)
     /// - Returns: Path al archivo de audio resultante

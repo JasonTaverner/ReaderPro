@@ -41,6 +41,17 @@ final class MockAudioEditorPort: AudioEditorPort {
         return trimResult
     }
 
+    var exportAudiobookCalled = false
+    func exportAudiobook(
+        chapters: [AudiobookChapter],
+        outputPath: String,
+        silenceDuration: TimeInterval,
+        bookTitle: String
+    ) async throws -> TimeInterval {
+        exportAudiobookCalled = true
+        return 60.0
+    }
+
     func merge(audioPaths: [String]) async throws -> String {
         mergeCallCount += 1
         lastMergeAudioPaths = audioPaths
