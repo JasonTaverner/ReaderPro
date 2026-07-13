@@ -34,6 +34,11 @@ final class ProcessImageBatchUseCase {
         for (index, url) in imageURLs.enumerated() {
             let fileName = url.lastPathComponent
 
+            // Permitir cancelar el lote entre imágenes (las ya guardadas se conservan)
+            try Task.checkCancellation()
+
+            request.onLog?("[\(index + 1)/\(total)] Processing \(fileName)...", .info)
+
             do {
                 // 1. Read image file
                 let data = try Data(contentsOf: url)
@@ -43,6 +48,7 @@ final class ProcessImageBatchUseCase {
 
                 // 3. Run OCR
                 let recognizedText = try await ocrPort.recognizeText(from: imageData)
+                request.onLog?("OCR: \(recognizedText.text.count) characters recognized", .info)
 
                 // 4. Try to generate audio if requested and TTS is available
                 var audioData: Data? = nil
@@ -54,6 +60,7 @@ final class ProcessImageBatchUseCase {
                    let voiceConfig = request.voiceConfiguration,
                    let voice = request.voice {
                     do {
+                        request.onLog?("Generating audio for \(fileName)...", .info)
                         let textContent = try TextContent(recognizedText.text)
                         let generatedAudio = try await tts.synthesize(
                             text: textContent,
@@ -63,9 +70,17 @@ final class ProcessImageBatchUseCase {
                         audioData = generatedAudio.data
                         audioDuration = generatedAudio.duration
                         print("[ProcessImageBatch] Audio generated for: \(fileName)")
+                        let duration = generatedAudio.duration
+                        request.onLog?(
+                            String(format: "Audio generated (%d:%02d)", Int(duration) / 60, Int(duration) % 60),
+                            .success
+                        )
+                    } catch is CancellationError {
+                        throw CancellationError()
                     } catch {
                         // Audio generation failed, but continue with text + image
                         print("[ProcessImageBatch] Audio generation failed for \(fileName): \(error.localizedDescription)")
+                        request.onLog?("Audio failed for \(fileName): \(error.localizedDescription)", .warning)
                         audioGenerationFailed = true
                     }
                 }
@@ -79,6 +94,7 @@ final class ProcessImageBatchUseCase {
                     imagePath: url.path
                 )
                 let saveResponse = try await saveAudioEntryUseCase.execute(saveRequest)
+                request.onLog?("Saved entry \(saveResponse.entryNumber)", .info)
 
                 // 6. Record success
                 successfulEntries.append(
@@ -91,8 +107,11 @@ final class ProcessImageBatchUseCase {
                         audioGenerationFailed: audioGenerationFailed
                     )
                 )
+            } catch is CancellationError {
+                throw CancellationError()
             } catch {
                 // Record failure and continue
+                request.onLog?("Failed \(fileName): \(error.localizedDescription)", .error)
                 failedImages.append(
                     ProcessImageBatchResponse.FailedImage(
                         fileName: fileName,

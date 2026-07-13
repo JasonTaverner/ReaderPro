@@ -1,5 +1,13 @@
 import Foundation
 
+/// Nivel de severidad de los mensajes de log del procesamiento por lotes
+enum ProcessImageBatchLogLevel {
+    case info
+    case success
+    case warning
+    case error
+}
+
 /// Request DTO para procesar un lote de imágenes con OCR
 struct ProcessImageBatchRequest {
     let projectId: Identifier<Project>
@@ -8,6 +16,7 @@ struct ProcessImageBatchRequest {
     let voiceConfiguration: VoiceConfiguration?
     let voice: Voice?
     let onProgress: ((Int, Int) -> Void)?
+    let onLog: ((String, ProcessImageBatchLogLevel) -> Void)?
 
     init(
         projectId: Identifier<Project>,
@@ -15,7 +24,8 @@ struct ProcessImageBatchRequest {
         generateAudio: Bool = true,
         voiceConfiguration: VoiceConfiguration? = nil,
         voice: Voice? = nil,
-        onProgress: ((Int, Int) -> Void)? = nil
+        onProgress: ((Int, Int) -> Void)? = nil,
+        onLog: ((String, ProcessImageBatchLogLevel) -> Void)? = nil
     ) {
         self.projectId = projectId
         self.imageURLs = imageURLs
@@ -23,5 +33,6 @@ struct ProcessImageBatchRequest {
         self.voiceConfiguration = voiceConfiguration
         self.voice = voice
         self.onProgress = onProgress
+        self.onLog = onLog
     }
 }

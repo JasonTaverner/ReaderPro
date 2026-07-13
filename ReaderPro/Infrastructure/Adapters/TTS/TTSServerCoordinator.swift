@@ -284,11 +284,41 @@ final class TTSServerCoordinator: ObservableObject {
         return try await qwen3Adapter.transcribeAudio(url: url)
     }
 
-    /// Polls the Qwen3 server for generation progress (used during audio generation).
-    /// Returns nil if the active provider is not Qwen3 or if the request fails.
+    // MARK: - VoxCPM Incremental Clone (generación por segmentos)
+
+    /// Arranca un job de clonación incremental en el servidor MLX.
+    /// Devuelve nil si el servidor no soporta /clone_async (usar el flujo síncrono).
+    func startVoxCPMCloneJob(
+        text: TextContent,
+        voiceConfiguration: VoiceConfiguration,
+        referenceAudioURL: URL
+    ) async throws -> VoxCPMTTSAdapter.CloneJobStatus? {
+        try await voxcpmAdapter.startCloneJob(
+            text: text,
+            voiceConfiguration: voiceConfiguration,
+            referenceAudioURL: referenceAudioURL
+        )
+    }
+
+    func fetchVoxCPMCloneStatus(jobId: String) async -> VoxCPMTTSAdapter.CloneJobStatus? {
+        await voxcpmAdapter.fetchCloneJobStatus(jobId: jobId)
+    }
+
+    func fetchVoxCPMCloneResult(jobId: String) async throws -> AudioData {
+        try await voxcpmAdapter.fetchCloneResult(jobId: jobId)
+    }
+
+    /// Polls the shared MLX server for generation progress (used during audio generation).
+    /// VoxCPM2, Chatterbox y Supertonic corren en el mismo servidor que Qwen3, así que
+    /// todos reportan por el mismo endpoint /progress.
+    /// Returns nil if the active provider does not use that server or the request fails.
     func fetchGenerationProgress() async -> Qwen3TTSAdapter.GenerationProgress? {
-        guard activeProvider == .qwen3 else { return nil }
-        return await qwen3Adapter.fetchProgress()
+        switch activeProvider {
+        case .qwen3, .voxcpm, .chatterbox, .supertonic:
+            return await qwen3Adapter.fetchProgress()
+        case .kokoro, .native:
+            return nil
+        }
     }
 
     /// Sends a cancel request to the Qwen3 server to abort in-progress generation.

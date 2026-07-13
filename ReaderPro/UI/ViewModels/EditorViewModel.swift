@@ -153,6 +153,8 @@ final class EditorViewModel: ObservableObject {
     @Published var voxcpmCfgValue: Double = 2.0
     /// Pasos de difusión (5-30; 10 = default del modelo)
     @Published var voxcpmSteps: Double = 10
+    /// Usar el modelo 4-bit (≈1 GB menos de RAM, calidad ligeramente inferior)
+    @Published var voxcpmUse4Bit: Bool = false
     /// Modo continuación: hereda acento/prosodia de la referencia con máxima fuerza
     @Published var voxcpmContinuation: Bool = false
 

@@ -38,10 +38,14 @@ import io
 import logging
 import os
 import platform
+import re
+import shutil
 import sys
 import tempfile
 import threading
 import time
+import uuid
+from collections import OrderedDict
 
 import mlx.core as mx
 import numpy as np
@@ -79,6 +83,8 @@ MODEL_TYPE_BASE_FAST = "base_fast"
 
 MODEL_TYPE_VOXCPM = "voxcpm"
 VOXCPM_MODEL_ID = "mlx-community/VoxCPM2-8bit"
+MODEL_TYPE_VOXCPM_4BIT = "voxcpm_4bit"
+VOXCPM_4BIT_MODEL_ID = "mlx-community/VoxCPM2-4bit"
 
 MODEL_TYPE_CHATTERBOX = "chatterbox"
 CHATTERBOX_MODEL_ID = "mlx-community/chatterbox-8bit"
@@ -134,6 +140,16 @@ MODEL_REGISTRY = {
         "sample_rate": 48000,
         "capabilities": ["clone", "default_voice"],
         "usage": "Premium 2B model: top Spanish quality, hi-fi output, zero-shot cloning",
+        "tokens_per_char": 2.0,
+        "max_gen_tokens": 2000,
+        "max_segment_chars": 500,
+    },
+    MODEL_TYPE_VOXCPM_4BIT: {
+        "id": VOXCPM_4BIT_MODEL_ID,
+        "family": "voxcpm",
+        "sample_rate": 48000,
+        "capabilities": ["clone", "default_voice"],
+        "usage": "VoxCPM2 4-bit: ~1GB less RAM than 8-bit, slightly lower quality",
         "tokens_per_char": 2.0,
         "max_gen_tokens": 2000,
         "max_segment_chars": 500,
@@ -381,6 +397,13 @@ class TqdmCapture:
 
 _progress = ProgressTracker()
 
+# Serializa la generación: MLX no es thread-safe y el ModelManager descargaría
+# el modelo que otro hilo está usando. Los endpoints de generación responden
+# 503 si ya hay una generación en curso. /transcribe y /align quedan fuera a
+# propósito (usan whisper, no el modelo TTS; solo compiten por GPU).
+_generation_lock = threading.Lock()
+_BUSY_ERROR = "Server busy with another generation in progress"
+
 
 # Premium voices available in the CustomVoice model
 VOICES = {
@@ -430,6 +453,7 @@ def synthesize_speech(
     inference_timesteps: int | None = None,
     exaggeration: float | None = None,
     cfg_weight: float | None = None,
+    model_type: str | None = None,
 ) -> bytes:
     """
     Synthesize speech from text using Qwen3-TTS via MLX.
@@ -450,8 +474,9 @@ def synthesize_speech(
     # Clamp speed
     speed = max(0.5, min(2.0, speed))
 
-    # Map language for mlx-audio (use lang_code parameter)
-    lang = _map_language(language)
+    # Resuelve el idioma para mlx-audio: los códigos explícitos pasan tal
+    # cual y "auto" se detecta del texto (antes caía siempre a 'en')
+    lang = _resolve_language(language, text)
 
     _progress.start(1, mode)
 
@@ -459,8 +484,16 @@ def synthesize_speech(
         if mode == "voxcpm":
             # VoxCPM: síntesis directa con la voz por defecto del modelo
             # (sin speaker ni instruct; para clonar, usar /clone con model=voxcpm)
-            logger.info(f"[DIAG] VoxCPM request: lang={lang}, speed={speed}, text={len(text)} chars")
-            model = _model_manager.get_model(MODEL_TYPE_VOXCPM)
+            voxcpm_type = (
+                model_type
+                if model_type in (MODEL_TYPE_VOXCPM, MODEL_TYPE_VOXCPM_4BIT)
+                else MODEL_TYPE_VOXCPM
+            )
+            logger.info(
+                f"[DIAG] VoxCPM request: model={voxcpm_type}, lang={lang}, "
+                f"speed={speed}, text={len(text)} chars"
+            )
+            model = _model_manager.get_model(voxcpm_type)
             start_time = time.time()
 
             voxcpm_kwargs = {}
@@ -729,12 +762,65 @@ def _split_text_for_cloning(text: str, max_chars: int = 600) -> list[str]:
 
 # Cache for optimized reference audio paths, keyed by SHA-256 of original file.
 # Avoids re-trimming / resampling the same reference audio on every segment.
-_optimized_audio_cache: dict[str, str] = {}
+# Acotada (LRU): al desalojar una entrada se borra su .wav del tmp.
+_MAX_OPTIMIZED_AUDIO_CACHE = 8
+_optimized_audio_cache: OrderedDict[str, str] = OrderedDict()
 
 # Cache for voice clone prompts (ICL embeddings), keyed by (audio_hash, ref_text).
 # This avoids recomputing the voice embedding for every segment when cloning
 # the same reference audio multiple times.
-_voice_prompt_cache: dict[str, object] = {}
+# Acotada (LRU): los prompts pueden ocupar varios MB cada uno.
+_MAX_VOICE_PROMPT_CACHE = 4
+_voice_prompt_cache: OrderedDict[str, object] = OrderedDict()
+
+
+def _cache_put(cache: OrderedDict, key, value, max_size: int, on_evict=None):
+    """Inserta en una caché LRU acotada, desalojando las entradas más viejas."""
+    if key in cache:
+        cache.move_to_end(key)
+    cache[key] = value
+    while len(cache) > max_size:
+        _, old_value = cache.popitem(last=False)
+        if on_evict is not None:
+            try:
+                on_evict(old_value)
+            except Exception:
+                pass
+
+
+def _unlink_quiet(path: str):
+    try:
+        if os.path.exists(path):
+            os.unlink(path)
+    except OSError:
+        pass
+
+
+def _cleanup_stale_temp_files():
+    """Borra restos de sesiones anteriores en el directorio temporal.
+
+    Tanto los optimized_ref_*.wav como los directorios clone_job_* se
+    regeneran bajo demanda, así que todo lo que exista al arrancar es huérfano.
+    """
+    tmp = tempfile.gettempdir()
+    try:
+        names = os.listdir(tmp)
+    except OSError:
+        return
+    removed = 0
+    for name in names:
+        path = os.path.join(tmp, name)
+        try:
+            if name.startswith("optimized_ref_") and name.endswith(".wav"):
+                os.unlink(path)
+                removed += 1
+            elif name.startswith("clone_job_") and os.path.isdir(path):
+                shutil.rmtree(path, ignore_errors=True)
+                removed += 1
+        except OSError:
+            pass
+    if removed:
+        logger.info(f"Cleaned {removed} stale temp file(s) from previous sessions")
 
 
 def _hash_file(path: str) -> str:
@@ -760,6 +846,7 @@ def _optimize_reference_audio(audio_path: str, max_duration: float = 10.0) -> st
     if file_hash in _optimized_audio_cache:
         cached = _optimized_audio_cache[file_hash]
         if os.path.exists(cached):
+            _optimized_audio_cache.move_to_end(file_hash)
             logger.info(f"Using cached optimized reference audio: {cached}")
             return cached
 
@@ -793,7 +880,10 @@ def _optimize_reference_audio(audio_path: str, max_duration: float = 10.0) -> st
         tempfile.gettempdir(), f"optimized_ref_{file_hash[:12]}.wav"
     )
     sf.write(optimized_path, audio, sr, format="WAV", subtype="PCM_16")
-    _optimized_audio_cache[file_hash] = optimized_path
+    _cache_put(
+        _optimized_audio_cache, file_hash, optimized_path,
+        _MAX_OPTIMIZED_AUDIO_CACHE, on_evict=_unlink_quiet,
+    )
     logger.info(f"Optimized reference audio saved to {optimized_path}")
     return optimized_path
 
@@ -809,6 +899,7 @@ def _get_cached_voice_prompt(model, ref_audio_path: str, ref_text: str | None):
     cache_key = f"{audio_hash}_{ref_text or ''}"
 
     if cache_key in _voice_prompt_cache:
+        _voice_prompt_cache.move_to_end(cache_key)
         logger.info(f"[Cache HIT] Reusing cached voice prompt: {audio_hash}")
         return _voice_prompt_cache[cache_key]
 
@@ -820,7 +911,7 @@ def _get_cached_voice_prompt(model, ref_audio_path: str, ref_text: str | None):
                 ref_audio=ref_audio_path,
                 ref_text=ref_text,
             )
-            _voice_prompt_cache[cache_key] = prompt
+            _cache_put(_voice_prompt_cache, cache_key, prompt, _MAX_VOICE_PROMPT_CACHE)
             logger.info(f"[Cache] Voice prompt cached: {audio_hash}")
             return prompt
     except Exception as e:
@@ -844,6 +935,7 @@ def clone_voice(
     continuation: bool = False,
     exaggeration: float | None = None,
     cfg_weight: float | None = None,
+    segment_sink=None,
 ) -> bytes:
     """
     Synthesize speech using a cloned voice from reference audio.
@@ -866,6 +958,8 @@ def clone_voice(
         x_vector_only: If True, use x-vector only mode (faster, slightly less accurate)
         fast_model: If True, use the lighter 0.6B Base model instead of 1.7B
         accent_instruct: Optional accent instruction to steer pronunciation (e.g. "Speak with Castilian Spanish accent")
+        segment_sink: Optional callable(index, wav_bytes) invocado con el WAV
+            de cada segmento en cuanto se genera (reproducción incremental)
 
     Returns:
         WAV audio data as bytes
@@ -884,11 +978,12 @@ def clone_voice(
     reference_audio_path = _optimize_reference_audio(reference_audio_path)
 
     speed = max(0.5, min(2.0, speed))
-    lang = _map_language(language)
+    lang = _resolve_language(language, text)
 
     logger.info(
         f"Cloning voice: ref={reference_audio_path}, lang={lang}, "
         f"speed={speed}, ref_text={ref_text!r}, text_length={len(text)}, "
+        f"model={model_type}, inference_timesteps={inference_timesteps}, "
         f"x_vector_only={x_vector_only}, fast_model={fast_model}, "
         f"accent_instruct={accent_instruct!r}"
     )
@@ -1023,6 +1118,15 @@ def clone_voice(
                 sample_rate = sr
                 all_audio_samples.append(audio_samples)
 
+                # Entregar el segmento al consumidor incremental (si lo hay).
+                # Índice = segmentos completados con éxito - 1, para que el
+                # cliente siempre vea una secuencia contigua aunque falle alguno.
+                if segment_sink is not None:
+                    try:
+                        segment_sink(len(all_audio_samples) - 1, wav_data)
+                    except Exception as sink_err:
+                        logger.warning(f"segment_sink failed: {sink_err}")
+
                 seg_duration = len(audio_samples) / sr
                 _progress.update(
                     seg_idx + 1,
@@ -1135,11 +1239,93 @@ def _resolve_voice_key(speaker: str) -> str:
     return "Vivian"
 
 
-def _map_language(language: str) -> str:
-    """Map language code for mlx-audio. 'auto' maps to 'en' as default."""
-    if language == "auto" or not language:
+# Stopwords muy frecuentes por idioma para la detección heurística.
+# Suficiente para textos de lectura normales (páginas OCR, artículos, libros).
+_LANG_STOPWORDS = {
+    "es": {"el", "la", "los", "las", "de", "del", "que", "y", "en", "un",
+           "una", "es", "no", "se", "por", "con", "para", "su", "al", "como",
+           "más", "pero", "sus", "le", "ya", "este", "esta", "cuando", "hay"},
+    "en": {"the", "of", "and", "to", "in", "is", "it", "that", "was", "for",
+           "on", "are", "with", "as", "his", "they", "at", "be", "this",
+           "have", "from", "or", "had", "by", "not", "but", "what", "were"},
+    "fr": {"le", "la", "les", "de", "des", "du", "et", "en", "un", "une",
+           "est", "que", "qui", "dans", "pour", "pas", "sur", "avec", "au",
+           "ce", "il", "elle", "nous", "vous", "mais", "ou", "si", "leur"},
+    "de": {"der", "die", "das", "und", "in", "den", "von", "zu", "mit",
+           "sich", "des", "auf", "für", "ist", "im", "dem", "nicht", "ein",
+           "eine", "als", "auch", "es", "an", "werden", "aus", "er", "hat"},
+    "it": {"il", "la", "le", "di", "che", "e", "in", "un", "una", "per",
+           "con", "non", "del", "della", "si", "da", "come", "più", "ma",
+           "gli", "lo", "sono", "nel", "alla", "anche", "questo", "quando"},
+    "pt": {"o", "a", "os", "as", "de", "do", "da", "dos", "das", "que", "e",
+           "em", "um", "uma", "para", "com", "não", "por", "se", "na", "no",
+           "mais", "como", "mas", "foi", "ao", "ele", "isso", "sua", "ou"},
+}
+
+# Caracteres que solo (o casi solo) aparecen en un idioma concreto
+_LANG_DISTINCTIVE_CHARS = {
+    "es": "¿¡ñ",
+    "de": "ß",
+    "pt": "ãõ",
+}
+
+
+def _detect_language_from_text(text: str) -> str:
+    """Heurística ligera de detección de idioma (sin dependencias).
+
+    Primero discrimina por escritura (kana, hangul, han, cirílico) y después
+    puntúa stopwords y caracteres distintivos para las lenguas latinas.
+    """
+    sample = text[:2000]
+
+    kana = hangul = han = cyrillic = 0
+    for ch in sample:
+        cp = ord(ch)
+        if 0x3040 <= cp <= 0x30FF:
+            kana += 1
+        elif 0xAC00 <= cp <= 0xD7A3:
+            hangul += 1
+        elif 0x4E00 <= cp <= 0x9FFF:
+            han += 1
+        elif 0x0400 <= cp <= 0x04FF:
+            cyrillic += 1
+    if kana > 5:
+        return "ja"
+    if hangul > 5:
+        return "ko"
+    if han > 5:
+        return "zh"
+    if cyrillic > 5:
+        return "ru"
+
+    words = re.findall(r"[a-záéíóúüñàèìòùâêîôûäöëïçãõß]+", sample.lower())
+    if not words:
         return "en"
-    return language
+    scores = {
+        lang: sum(1 for w in words if w in stopwords)
+        for lang, stopwords in _LANG_STOPWORDS.items()
+    }
+    for lang, chars in _LANG_DISTINCTIVE_CHARS.items():
+        scores[lang] += sum(3 for ch in sample if ch in chars)
+
+    best_lang, best_score = max(scores.items(), key=lambda kv: kv[1])
+    # Exigir una señal mínima para no clasificar ruido
+    return best_lang if best_score >= 3 else "en"
+
+
+def _resolve_language(language: str, text: str) -> str:
+    """Resuelve el código de idioma final para mlx-audio.
+
+    Un código explícito se respeta tal cual; "auto" (o vacío) se detecta del
+    texto. Antes 'auto' caía siempre a 'en', así que texto español se generaba
+    con lang_code inglés en las familias que sí usan el idioma (qwen3,
+    chatterbox, supertonic; VoxCPM2 lo ignora y autodetecta por su cuenta).
+    """
+    if language and language != "auto":
+        return language
+    detected = _detect_language_from_text(text)
+    logger.info(f"Language 'auto' resolved to '{detected}' from text content")
+    return detected
 
 
 # =============================================================================
@@ -1292,6 +1478,9 @@ def synthesize():
     except (TypeError, ValueError):
         speed = DEFAULT_SPEED
 
+    if not _generation_lock.acquire(blocking=False):
+        return jsonify({"error": _BUSY_ERROR}), 503
+
     try:
         wav_data = synthesize_speech(
             text=text,
@@ -1304,6 +1493,7 @@ def synthesize():
             inference_timesteps=data.get("inference_timesteps"),
             exaggeration=data.get("exaggeration"),
             cfg_weight=data.get("cfg_weight"),
+            model_type=data.get("model"),
         )
 
         return Response(
@@ -1318,6 +1508,8 @@ def synthesize():
     except Exception as e:
         logger.exception("Synthesis failed")
         return jsonify({"error": str(e)}), 500
+    finally:
+        _generation_lock.release()
 
 
 @app.route("/clone", methods=["POST"])
@@ -1334,84 +1526,45 @@ def clone():
         - x_vector_only: "true"/"false" — faster cloning with less accuracy (optional, default: false)
         - fast_model: "true"/"false" — use lighter 0.6B model (optional, default: false)
         - accent_instruct: Accent steering instruction (optional, e.g. "Speak with Castilian Spanish accent from Spain")
+        - model: Clone model override: "base" | "base_fast" | "voxcpm" | "voxcpm_4bit" (optional)
 
     Returns:
         audio/wav binary data
     """
-    if "audio" not in request.files:
-        return jsonify({"error": "Missing 'audio' file"}), 400
+    params, error = _parse_clone_request()
+    if error:
+        return error
 
-    audio_file = request.files["audio"]
-    text = request.form.get("text")
-    if not text:
-        return jsonify({"error": "Missing 'text' field"}), 400
+    logger.info(
+        f"Clone params: model={params['model_type']}, "
+        f"inference_timesteps={params['inference_timesteps']}, "
+        f"x_vector_only={params['x_vector_only']}, fast_model={params['fast_model']}, "
+        f"accent_instruct={params['accent_instruct']!r}"
+    )
 
-    if len(text) > 60000:
-        return jsonify({"error": "Text too long (max 60000 characters)"}), 400
+    if not _generation_lock.acquire(blocking=False):
+        return jsonify({"error": _BUSY_ERROR}), 503
 
-    language = request.form.get("language", "auto")
-    ref_text = request.form.get("ref_text")  # Transcript of reference audio (optional)
-    speed = request.form.get("speed", str(DEFAULT_SPEED))
-    x_vector_only = request.form.get("x_vector_only", "false").lower() == "true"
-    fast_model = request.form.get("fast_model", "false").lower() == "true"
-    accent_instruct = request.form.get("accent_instruct")  # Accent steering (optional)
-    clone_model = request.form.get("model")  # base | base_fast | voxcpm (optional)
-    clone_cfg_value = request.form.get("cfg_value", type=float)  # voxcpm only
-    clone_steps = request.form.get("inference_timesteps", type=int)  # voxcpm only
-    clone_continuation = request.form.get("continuation", "false").lower() == "true"  # voxcpm only
-    clone_exaggeration = request.form.get("exaggeration", type=float)  # chatterbox only
-    clone_cfg_weight = request.form.get("cfg_weight", type=float)  # chatterbox only
-
+    tmp_path = None
     try:
-        speed = float(speed)
-    except (TypeError, ValueError):
-        speed = DEFAULT_SPEED
-
-    logger.info(f"Clone params: x_vector_only={x_vector_only}, fast_model={fast_model}, accent_instruct={accent_instruct!r}")
-
-    # Save reference audio to temp file
-    suffix = os.path.splitext(audio_file.filename or "ref.wav")[1] or ".wav"
-    # Use mkstemp to get a path and close the fd immediately to avoid locks
-    fd, tmp_path = tempfile.mkstemp(suffix=suffix)
-    os.close(fd)
-    
-    try:
+        audio_file = request.files["audio"]
+        # Use mkstemp to get a path and close the fd immediately to avoid locks
+        suffix = os.path.splitext(audio_file.filename or "ref.wav")[1] or ".wav"
+        fd, tmp_path = tempfile.mkstemp(suffix=suffix)
+        os.close(fd)
         logger.info(f"Saving uploaded reference audio to {tmp_path}")
         audio_file.save(tmp_path)
-        
-        # Validate duration (minimum 3 seconds, maximum 30 seconds recommended)
-        try:
-            info = sf.info(tmp_path)
-            if info.duration < 3.0:
-                return jsonify({"error": f"Reference audio too short ({info.duration:.1f}s). Minimum 3 seconds required."}), 400
-            
-            if info.duration > 60.0:
-                logger.warning(f"Reference audio very long ({info.duration:.1f}s). This may cause [Errno 5] or memory issues.")
-                # We don't block it, but we log it clearly.
-                
-            logger.info(f"Reference audio validated: duration={info.duration:.1f}s, format={info.format}")
-        except Exception as sf_err:
-            logger.error(f"Soundfile failed to read reference audio: {sf_err}")
-            return jsonify({"error": f"Invalid audio format or corrupt file: {str(sf_err)}"}), 400
 
-        logger.info(f"Starting voice cloning: text_len={len(text)}, lang={language}, speed={speed}")
+        error = _validate_reference_audio(tmp_path)
+        if error:
+            return error
 
-        wav_data = clone_voice(
-            text=text,
-            reference_audio_path=tmp_path,
-            language=language,
-            ref_text=ref_text,
-            speed=speed,
-            x_vector_only=x_vector_only,
-            fast_model=fast_model,
-            accent_instruct=accent_instruct,
-            model_type=clone_model,
-            cfg_value=clone_cfg_value,
-            inference_timesteps=clone_steps,
-            continuation=clone_continuation,
-            exaggeration=clone_exaggeration,
-            cfg_weight=clone_cfg_weight,
+        logger.info(
+            f"Starting voice cloning: text_len={len(params['text'])}, "
+            f"lang={params['language']}, speed={params['speed']}"
         )
+
+        wav_data = clone_voice(reference_audio_path=tmp_path, **params)
 
         return Response(
             wav_data,
@@ -1431,12 +1584,281 @@ def clone():
         return jsonify({"error": f"Qwen3 MLX clone error: {error_msg}"}), 500
 
     finally:
-        try:
-            if os.path.exists(tmp_path):
-                os.unlink(tmp_path)
-                logger.info(f"Temporary file {tmp_path} cleaned up")
-        except OSError:
-            pass
+        _generation_lock.release()
+        if tmp_path:
+            _unlink_quiet(tmp_path)
+
+
+# ---------------------------------------------------------------------------
+# Async clone jobs (reproducción incremental)
+# ---------------------------------------------------------------------------
+
+
+def _parse_clone_request():
+    """Valida y extrae los campos comunes de /clone y /clone_async.
+
+    Returns:
+        (params, error): params son kwargs listos para clone_voice (sin
+        reference_audio_path); error es la respuesta Flask si algo falla.
+    """
+    if "audio" not in request.files:
+        return None, (jsonify({"error": "Missing 'audio' file"}), 400)
+
+    text = request.form.get("text")
+    if not text:
+        return None, (jsonify({"error": "Missing 'text' field"}), 400)
+    if len(text) > 60000:
+        return None, (jsonify({"error": "Text too long (max 60000 characters)"}), 400)
+
+    speed = request.form.get("speed", str(DEFAULT_SPEED))
+    try:
+        speed = float(speed)
+    except (TypeError, ValueError):
+        speed = DEFAULT_SPEED
+
+    params = dict(
+        text=text,
+        language=request.form.get("language", "auto"),
+        ref_text=request.form.get("ref_text"),
+        speed=speed,
+        x_vector_only=request.form.get("x_vector_only", "false").lower() == "true",
+        fast_model=request.form.get("fast_model", "false").lower() == "true",
+        accent_instruct=request.form.get("accent_instruct"),
+        model_type=request.form.get("model"),  # base | base_fast | voxcpm | voxcpm_4bit
+        cfg_value=request.form.get("cfg_value", type=float),
+        inference_timesteps=request.form.get("inference_timesteps", type=int),
+        continuation=request.form.get("continuation", "false").lower() == "true",
+        exaggeration=request.form.get("exaggeration", type=float),
+        cfg_weight=request.form.get("cfg_weight", type=float),
+    )
+    return params, None
+
+
+def _validate_reference_audio(path: str):
+    """Comprueba que el audio de referencia es legible y dura >= 3 s.
+
+    Returns la respuesta de error Flask, o None si es válido.
+    """
+    try:
+        info = sf.info(path)
+    except Exception as sf_err:
+        logger.error(f"Soundfile failed to read reference audio: {sf_err}")
+        return jsonify({"error": f"Invalid audio format or corrupt file: {str(sf_err)}"}), 400
+
+    if info.duration < 3.0:
+        return jsonify({"error": f"Reference audio too short ({info.duration:.1f}s). Minimum 3 seconds required."}), 400
+    if info.duration > 60.0:
+        logger.warning(f"Reference audio very long ({info.duration:.1f}s). This may cause [Errno 5] or memory issues.")
+    logger.info(f"Reference audio validated: duration={info.duration:.1f}s, format={info.format}")
+    return None
+
+
+class CloneJob:
+    """Clonación en segundo plano cuyos segmentos WAV se sirven según se
+    generan, para que el cliente empiece a reproducir sin esperar al total."""
+
+    def __init__(self):
+        self.id = uuid.uuid4().hex[:12]
+        self.dir = tempfile.mkdtemp(prefix="clone_job_")
+        self.state = "running"  # running | done | error | cancelled
+        self.error: str | None = None
+        self.segments_total = 0
+        self.segments_done = 0
+        self.sample_rate = 0
+        self.created_at = time.time()
+        self._lock = threading.Lock()
+
+    def segment_path(self, index: int) -> str:
+        return os.path.join(self.dir, f"segment_{index:03d}.wav")
+
+    def result_path(self) -> str:
+        return os.path.join(self.dir, "full.wav")
+
+    def add_segment(self, index: int, wav_bytes: bytes):
+        # Escritura atómica: nunca se sirve un WAV a medio escribir
+        part = self.segment_path(index) + ".part"
+        with open(part, "wb") as f:
+            f.write(wav_bytes)
+        os.replace(part, self.segment_path(index))
+        with self._lock:
+            self.segments_done = max(self.segments_done, index + 1)
+
+    def write_result(self, wav_bytes: bytes):
+        part = self.result_path() + ".part"
+        with open(part, "wb") as f:
+            f.write(wav_bytes)
+        os.replace(part, self.result_path())
+
+    def to_dict(self) -> dict:
+        with self._lock:
+            done = self.segments_done
+        return {
+            "job_id": self.id,
+            "state": self.state,
+            "segments_done": done,
+            "segments_total": self.segments_total,
+            "segments_available": list(range(done)),
+            "sample_rate": self.sample_rate,
+            "error": self.error,
+        }
+
+    def cleanup(self):
+        shutil.rmtree(self.dir, ignore_errors=True)
+
+
+# Solo se conserva el último job (app de un solo usuario); al registrar uno
+# nuevo se limpian los ficheros del anterior.
+_clone_jobs: dict[str, CloneJob] = {}
+_clone_jobs_lock = threading.Lock()
+
+
+def _register_clone_job(job: "CloneJob"):
+    with _clone_jobs_lock:
+        for old in _clone_jobs.values():
+            old.cleanup()
+        _clone_jobs.clear()
+        _clone_jobs[job.id] = job
+
+
+def _get_clone_job(job_id: str) -> "CloneJob | None":
+    with _clone_jobs_lock:
+        return _clone_jobs.get(job_id)
+
+
+def _run_clone_job(job: "CloneJob", ref_path: str, params: dict):
+    """Ejecuta un job de clonación en su propio hilo.
+
+    Escribe cada segmento en el directorio del job según se genera y, al
+    terminar, el WAV completo (idéntico al de /clone). Libera
+    _generation_lock, que adquirió el handler de /clone_async.
+    """
+    try:
+        wav_data = clone_voice(
+            reference_audio_path=ref_path,
+            segment_sink=job.add_segment,
+            **params,
+        )
+        job.write_result(wav_data)
+        # Si algún segmento falló, el total real es el nº de completados
+        job.segments_total = job.segments_done
+        job.state = "done"
+        logger.info(f"Clone job {job.id} done: {job.segments_done} segments")
+    except Exception as e:
+        msg = str(e)
+        if "cancelled" in msg.lower():
+            job.state = "cancelled"
+            logger.info(f"Clone job {job.id} cancelled")
+        else:
+            job.state = "error"
+            job.error = msg
+            logger.exception(f"Clone job {job.id} failed")
+    finally:
+        _generation_lock.release()
+
+
+@app.route("/clone_async", methods=["POST"])
+def clone_async():
+    """Arranca una clonación en segundo plano y devuelve un job_id (202).
+
+    Mismos campos multipart que /clone. Cada segmento queda disponible en
+    cuanto se genera:
+        GET /clone_status/<job_id>       → estado + segmentos disponibles
+        GET /clone_segment/<job_id>/<n>  → WAV del segmento n
+        GET /clone_result/<job_id>       → WAV completo (cuando state=done)
+    La cancelación es la misma que en /clone: POST /cancel.
+    """
+    params, error = _parse_clone_request()
+    if error:
+        return error
+
+    if not _generation_lock.acquire(blocking=False):
+        return jsonify({"error": _BUSY_ERROR}), 503
+
+    job = None
+    thread_started = False
+    try:
+        job = CloneJob()
+
+        audio_file = request.files["audio"]
+        suffix = os.path.splitext(audio_file.filename or "ref.wav")[1] or ".wav"
+        ref_path = os.path.join(job.dir, f"reference{suffix}")
+        audio_file.save(ref_path)
+
+        validation_error = _validate_reference_audio(ref_path)
+        if validation_error:
+            return validation_error
+
+        # Total estimado con el mismo troceo que hará clone_voice
+        model_type = params["model_type"] or (
+            MODEL_TYPE_BASE_FAST if params["fast_model"] else MODEL_TYPE_BASE
+        )
+        registry_entry = MODEL_REGISTRY.get(model_type) or MODEL_REGISTRY[MODEL_TYPE_BASE]
+        job.segments_total = len(_split_text_for_cloning(
+            params["text"], max_chars=registry_entry.get("max_segment_chars", 600)
+        ))
+        job.sample_rate = registry_entry.get("sample_rate", DEFAULT_SAMPLE_RATE)
+
+        _register_clone_job(job)
+        threading.Thread(
+            target=_run_clone_job,
+            args=(job, ref_path, params),
+            daemon=True,
+            name=f"clone-job-{job.id}",
+        ).start()
+        thread_started = True  # el hilo es ahora el dueño de _generation_lock
+
+        logger.info(
+            f"Clone job {job.id} started: ~{job.segments_total} segments, "
+            f"model={params['model_type']}, text_len={len(params['text'])}"
+        )
+        return jsonify(job.to_dict()), 202
+    except Exception as e:
+        logger.exception("Failed to start clone job")
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if not thread_started:
+            _generation_lock.release()
+            if job is not None:
+                job.cleanup()
+
+
+@app.route("/clone_status/<job_id>", methods=["GET"])
+def clone_status(job_id: str):
+    job = _get_clone_job(job_id)
+    if job is None:
+        return jsonify({"error": "Unknown job"}), 404
+    return jsonify(job.to_dict())
+
+
+@app.route("/clone_segment/<job_id>/<int:index>", methods=["GET"])
+def clone_segment(job_id: str, index: int):
+    job = _get_clone_job(job_id)
+    if job is None:
+        return jsonify({"error": "Unknown job"}), 404
+    path = job.segment_path(index)
+    if index < 0 or index >= job.to_dict()["segments_done"] or not os.path.exists(path):
+        return jsonify({"error": f"Segment {index} not ready"}), 404
+    with open(path, "rb") as f:
+        data = f.read()
+    return Response(data, mimetype="audio/wav")
+
+
+@app.route("/clone_result/<job_id>", methods=["GET"])
+def clone_result(job_id: str):
+    job = _get_clone_job(job_id)
+    if job is None:
+        return jsonify({"error": "Unknown job"}), 404
+    if job.state == "error":
+        return jsonify({"error": job.error or "Generation failed"}), 500
+    if not os.path.exists(job.result_path()):
+        return jsonify({"error": "Result not ready", "state": job.state}), 409
+    with open(job.result_path(), "rb") as f:
+        data = f.read()
+    return Response(
+        data,
+        mimetype="audio/wav",
+        headers={"Content-Disposition": "attachment; filename=speech.wav"},
+    )
 
 
 @app.route("/transcribe", methods=["POST"])
@@ -1635,6 +2057,9 @@ def benchmark():
     """
     test_text = "This is a benchmark test for measuring generation speed on Apple Silicon."
 
+    if not _generation_lock.acquire(blocking=False):
+        return jsonify({"error": _BUSY_ERROR}), 503
+
     start = time.time()
     try:
         model = get_custom_voice_model()
@@ -1687,6 +2112,8 @@ def benchmark():
             "elapsed": round(elapsed, 2),
             "device": str(mx.default_device()),
         }), 500
+    finally:
+        _generation_lock.release()
 
 
 @app.route("/unload", methods=["POST"])
@@ -1697,22 +2124,26 @@ def unload():
     Returns:
         JSON with status and freed model type.
     """
-    status = _model_manager.status()
-    previous = status["loaded_model"]
+    if not _generation_lock.acquire(blocking=False):
+        return jsonify({"error": _BUSY_ERROR}), 503
+    try:
+        status = _model_manager.status()
+        previous = status["loaded_model"]
 
-    if _model_manager.unload():
-        logger.info(f"Model unloaded via /unload endpoint (was: {previous})")
-        return jsonify({
-            "status": "ok",
-            "unloaded": previous,
-            "message": f"Model '{previous}' unloaded, memory freed",
-        })
-    else:
+        if _model_manager.unload():
+            logger.info(f"Model unloaded via /unload endpoint (was: {previous})")
+            return jsonify({
+                "status": "ok",
+                "unloaded": previous,
+                "message": f"Model '{previous}' unloaded, memory freed",
+            })
         return jsonify({
             "status": "ok",
             "unloaded": None,
             "message": "No model was loaded",
         })
+    finally:
+        _generation_lock.release()
 
 
 @app.route("/", methods=["GET"])
@@ -1733,6 +2164,10 @@ def index():
                 "GET /progress": "Current generation progress (poll while synthesizing)",
                 "POST /synthesize": "Text to speech (custom_voice or voice_design mode)",
                 "POST /clone": "Voice cloning from reference audio",
+                "POST /clone_async": "Start clone job; segments served as they are generated",
+                "GET /clone_status/<job_id>": "Async clone job state + available segments",
+                "GET /clone_segment/<job_id>/<n>": "WAV of segment n (incremental playback)",
+                "GET /clone_result/<job_id>": "Full WAV once the job is done",
                 "POST /transcribe": "Transcribe audio to text (mlx-whisper)",
                 "POST /benchmark": "Measure generation speed (tokens/s)",
                 "POST /unload": "Unload current model to free memory",
@@ -1924,6 +2359,7 @@ API Usage:
 ║    GET  /progress    - Generation progress (poll)             ║
 ║    POST /synthesize  - TTS (custom_voice / voice_design)      ║
 ║    POST /clone       - Voice cloning via ICL (Base model)     ║
+║    POST /clone_async - Incremental clone (segment streaming)  ║
 ║    POST /transcribe  - Audio to text (mlx-whisper)            ║
 ║    POST /benchmark   - Measure generation speed               ║
 ║    POST /unload      - Free memory (unload current model)     ║
@@ -1934,6 +2370,7 @@ API Usage:
     )
 
     print_system_info()
+    _cleanup_stale_temp_files()
     logger.info("Server ready! Models will load on demand (no pre-loading).")
 
     app.run(host=args.host, port=args.port, debug=args.debug, threaded=True)

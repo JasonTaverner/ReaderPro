@@ -51,6 +51,7 @@ final class EditorPresenter: ObservableObject {
     static let voxcpmInstructKey = "voxcpmInstruct"
     static let voxcpmCfgKey = "voxcpmCfgValue"
     static let voxcpmStepsKey = "voxcpmSteps"
+    static let voxcpm4BitKey = "voxcpmUse4Bit"
     static let voxcpmContinuationKey = "voxcpmContinuation"
     static let chatterboxLanguageKey = "chatterboxLanguage"
     static let chatterboxExaggerationKey = "chatterboxExaggeration"
@@ -518,6 +519,17 @@ final class EditorPresenter: ObservableObject {
             // 3. Check cancellation before expensive TTS call
             try Task.checkCancellation()
 
+            // 3.5 Clonación VoxCPM de texto largo → generación incremental
+            // por segmentos en el servidor
+            if await generateAudioStreaming(
+                job: job,
+                projectId: projectId,
+                textContent: textContent,
+                voiceConfig: voiceConfig
+            ) {
+                return
+            }
+
             // 4. Sintetizar audio via TTS
             job.status = .processing
             job.statusMessage = "Synthesizing audio..."
@@ -532,32 +544,8 @@ final class EditorPresenter: ObservableObject {
             // 5. Check cancellation before saving
             try Task.checkCancellation()
 
-            // 6. Guardar como nueva entrada usando SaveAudioEntryUseCase
-            job.status = .finalizing
-            job.statusMessage = "Saving audio entry..."
-            job.appendLog("Saving audio entry...")
-            let entryRequest = SaveAudioEntryRequest(
-                projectId: projectId,
-                text: viewModel.text,
-                audioData: audioData.data,
-                audioDuration: audioData.duration
-            )
-            let entryResponse = try await saveAudioEntryUseCase.execute(entryRequest)
-            print("[EditorPresenter] Entry saved: \(entryResponse.entryId), audio: \(entryResponse.audioPath)")
-
-            // 7. Recargar entries del proyecto para mantener sync con persistencia
-            try await reloadEntries(projectId)
-
-            // 8. Mostrar éxito
-            let duration = audioData.duration
-            let minutes = Int(duration) / 60
-            let seconds = Int(duration) % 60
-            viewModel.generatedAudioDuration = String(format: "%d:%02d", minutes, seconds)
-            viewModel.showAudioGeneratedSuccess = true
-
-            job.status = .completed
-            job.statusMessage = "Audio generated successfully"
-            job.appendLog("Audio generated (\(minutes):\(String(format: "%02d", seconds)))", level: .success)
+            // 6-8. Guardar entrada, recargar y mostrar éxito
+            try await saveGeneratedEntry(job: job, projectId: projectId, audioData: audioData)
 
         } catch is CancellationError {
             print("[EditorPresenter] Generate audio cancelled")
@@ -568,6 +556,162 @@ final class EditorPresenter: ObservableObject {
             job.status = .failed
             job.errorMessage = error.localizedDescription
             job.appendLog("Error: \(error.localizedDescription)", level: .error)
+        }
+    }
+
+    /// Guarda el audio generado como nueva entrada, recarga y muestra éxito.
+    /// Compartido por el flujo síncrono y el incremental.
+    private func saveGeneratedEntry(
+        job: GenerationJob,
+        projectId: Identifier<Project>,
+        audioData: AudioData
+    ) async throws {
+        job.status = .finalizing
+        job.statusMessage = "Saving audio entry..."
+        job.appendLog("Saving audio entry...")
+        let entryRequest = SaveAudioEntryRequest(
+            projectId: projectId,
+            text: viewModel.text,
+            audioData: audioData.data,
+            audioDuration: audioData.duration
+        )
+        let entryResponse = try await saveAudioEntryUseCase.execute(entryRequest)
+        print("[EditorPresenter] Entry saved: \(entryResponse.entryId), audio: \(entryResponse.audioPath)")
+
+        // Recargar entries del proyecto para mantener sync con persistencia
+        try await reloadEntries(projectId)
+
+        // Mostrar éxito
+        let duration = audioData.duration
+        let minutes = Int(duration) / 60
+        let seconds = Int(duration) % 60
+        viewModel.generatedAudioDuration = String(format: "%d:%02d", minutes, seconds)
+        viewModel.showAudioGeneratedSuccess = true
+
+        job.status = .completed
+        job.statusMessage = "Audio generated successfully"
+        job.appendLog("Audio generated (\(minutes):\(String(format: "%02d", seconds)))", level: .success)
+    }
+
+    // MARK: - Incremental Clone Generation (streaming)
+
+    /// Umbral para usar generación incremental: por debajo, un clon síncrono
+    /// cabe en ~1 segmento (max_segment_chars=500 en el servidor) y no compensa
+    private static let streamingCharThreshold = 600
+
+    /// Intenta generar con el flujo incremental (VoxCPM + clonación + texto
+    /// largo). Devuelve false si no aplica o el servidor no soporta
+    /// /clone_async — el llamador continúa entonces con el flujo síncrono.
+    private func generateAudioStreaming(
+        job: GenerationJob,
+        projectId: Identifier<Project>,
+        textContent: TextContent,
+        voiceConfig: VoiceConfiguration
+    ) async -> Bool {
+        guard let coordinator = ttsCoordinator,
+              coordinator.activeProvider == .voxcpm,
+              let referenceURL = voiceConfig.referenceAudioURL,
+              textContent.value.count > Self.streamingCharThreshold else {
+            return false
+        }
+
+        job.status = .processing
+        job.statusMessage = "Starting incremental generation..."
+        job.appendLog("Incremental generation by segments")
+
+        let started: VoxCPMTTSAdapter.CloneJobStatus?
+        do {
+            started = try await coordinator.startVoxCPMCloneJob(
+                text: textContent,
+                voiceConfiguration: voiceConfig,
+                referenceAudioURL: referenceURL
+            )
+        } catch {
+            // Un error aquí NO significa que el servidor carezca de /clone_async
+            // (esa señal es el retorno nil); reintentar con el clon síncrono
+            // duplicaría el trabajo en el servidor. Marcar el job y no continuar.
+            if Task.isCancelled || error is CancellationError {
+                print("[EditorPresenter] clone_async start cancelled")
+                job.status = .cancelled
+            } else {
+                print("[EditorPresenter] clone_async failed to start: \(error)")
+                viewModel.error = error.localizedDescription
+                job.status = .failed
+                job.errorMessage = error.localizedDescription
+                job.appendLog("Error: \(error.localizedDescription)", level: .error)
+            }
+            return true
+        }
+        guard let serverJob = started else {
+            print("[EditorPresenter] Server without /clone_async; falling back to sync clone")
+            return false
+        }
+
+        do {
+            try await runStreamingLoop(job: job, coordinator: coordinator, serverJobId: serverJob.jobId)
+
+            // Generación completa: guardar la entrada con el WAV completo
+            let audioData = try await coordinator.fetchVoxCPMCloneResult(jobId: serverJob.jobId)
+            try Task.checkCancellation()
+            try await saveGeneratedEntry(job: job, projectId: projectId, audioData: audioData)
+        } catch is CancellationError {
+            print("[EditorPresenter] Streaming generation cancelled")
+            job.status = .cancelled
+        } catch {
+            print("[EditorPresenter] Streaming generation failed: \(error)")
+            viewModel.error = error.localizedDescription
+            job.status = .failed
+            job.errorMessage = error.localizedDescription
+            job.appendLog("Error: \(error.localizedDescription)", level: .error)
+        }
+        return true
+    }
+
+    /// Poll del job: registra en el log los segmentos completados.
+    /// Termina cuando el job es terminal en el servidor.
+    private func runStreamingLoop(
+        job: GenerationJob,
+        coordinator: TTSServerCoordinator,
+        serverJobId: String
+    ) async throws {
+        var consecutiveFailures = 0
+        var segmentsLogged = 0
+
+        while true {
+            try Task.checkCancellation()
+
+            guard let status = await coordinator.fetchVoxCPMCloneStatus(jobId: serverJobId) else {
+                consecutiveFailures += 1
+                if consecutiveFailures > 15 {
+                    throw InfrastructureError.ttsRequestFailed(
+                        "Lost contact with the TTS server during incremental generation"
+                    )
+                }
+                try await Task.sleep(nanoseconds: 2_000_000_000)
+                continue
+            }
+            consecutiveFailures = 0
+
+            // Registrar los segmentos completados desde el último poll
+            while segmentsLogged < status.segmentsDone {
+                segmentsLogged += 1
+                job.appendLog("Segment \(segmentsLogged)/\(max(status.segmentsTotal, segmentsLogged)) ready")
+            }
+
+            if status.isTerminal {
+                switch status.state {
+                case "done":
+                    return
+                case "cancelled":
+                    throw CancellationError()
+                default:
+                    throw InfrastructureError.ttsRequestFailed(
+                        status.error ?? "Incremental generation failed"
+                    )
+                }
+            }
+
+            try await Task.sleep(nanoseconds: 2_000_000_000)
         }
     }
 
@@ -621,19 +765,18 @@ final class EditorPresenter: ObservableObject {
 
     // MARK: - Batch Image Import
 
-    /// Abre un panel de selección de imágenes, ejecuta OCR en lote y guarda como AudioEntries
-    /// Intenta generar audio automáticamente con Kokoro TTS
+    /// Abre un panel de selección de imágenes y procesa el lote (OCR + audio)
+    /// como job en segundo plano vía GenerationManager: el progreso y el log
+    /// se ven en el panel inferior y la app sigue usable mientras tanto
     func importImages() async {
         // 1. Open file picker
         let imageURLs = openImagePicker()
         guard !imageURLs.isEmpty else { return }
 
-        viewModel.isImportingImages = true
-        viewModel.importProgress = (0, imageURLs.count)
         viewModel.error = nil
 
         do {
-            // 2. Ensure project is saved
+            // 2. Ensure project is saved before launching the background job
             if viewModel.isNewProject {
                 try await createProject()
             }
@@ -642,53 +785,92 @@ final class EditorPresenter: ObservableObject {
                   let uuid = UUID(uuidString: projectIdString) else {
                 throw ApplicationError.projectNotFound
             }
-
             let projectId = Identifier<Project>(uuid)
 
-            // Remember existing entry count to find new ones later
-            let existingEntryCount = viewModel.entries.count
-
-            // 3. Build voice configuration from current settings (including VoiceDesign)
+            // 3. Capture voice configuration at launch time (including VoiceDesign)
             var voiceConfig: VoiceConfiguration? = nil
             var selectedVoice: Voice? = nil
-
             if viewModel.selectedVoiceId != nil {
                 let result = try buildCurrentVoiceConfiguration()
                 voiceConfig = result.voiceConfig
                 selectedVoice = result.voice
             }
 
-            // 4. Process batch with audio generation enabled (only if voice is configured)
+            // 4. Run the batch in the background with its log in the bottom panel
+            let projectName = viewModel.name.isEmpty ? "Untitled" : viewModel.name
+            let capturedVoiceConfig = voiceConfig
+            let capturedVoice = selectedVoice
+            generationManager.startJob(type: .imageBatch, projectName: projectName) { [weak self] job in
+                await self?.processImageBatch(
+                    job: job,
+                    projectId: projectId,
+                    imageURLs: imageURLs,
+                    voiceConfig: capturedVoiceConfig,
+                    voice: capturedVoice
+                )
+            }
+        } catch {
+            print("[EditorPresenter] Import images failed: \(error)")
+            viewModel.error = error.localizedDescription
+        }
+    }
+
+    /// Ejecuta el lote de imágenes reportando progreso y log al job del panel
+    private func processImageBatch(
+        job: GenerationJob,
+        projectId: Identifier<Project>,
+        imageURLs: [URL],
+        voiceConfig: VoiceConfiguration?,
+        voice: Voice?
+    ) async {
+        job.status = .processing
+        job.statusMessage = "Importing \(imageURLs.count) image(s)..."
+        job.appendLog("Importing \(imageURLs.count) image(s) with OCR")
+
+        let generateAudio = voiceConfig != nil && voice != nil
+        if generateAudio {
+            job.appendLog("Audio will be generated for each image")
+        } else {
+            job.appendLog("No voice selected: importing text only", level: .warning)
+        }
+
+        do {
+            // Remember existing entry count to find new ones later
+            let existingEntryCount = viewModel.entries.count
+
             let request = ProcessImageBatchRequest(
                 projectId: projectId,
                 imageURLs: imageURLs,
-                generateAudio: voiceConfig != nil && selectedVoice != nil,
+                generateAudio: generateAudio,
                 voiceConfiguration: voiceConfig,
-                voice: selectedVoice,
-                onProgress: { [weak self] current, total in
-                    Task { @MainActor [weak self] in
-                        self?.viewModel.importProgress = (current, total)
+                voice: voice,
+                onProgress: { [weak job] current, total in
+                    Task { @MainActor [weak job] in
+                        guard let job else { return }
+                        job.progress = Double(current) / Double(max(total, 1))
+                        job.statusMessage = "Processing image \(current) of \(total)..."
+                    }
+                },
+                onLog: { [weak job] message, level in
+                    Task { @MainActor [weak job] in
+                        job?.appendLog(message, level: level.asGenerationLogLevel)
                     }
                 }
             )
 
             let response = try await processImageBatchUseCase.execute(request)
+            try Task.checkCancellation()
 
-            // 6. Reload entries
-            try await reloadEntries(projectId)
-
-            // 6.5. Auto-select the first newly imported entry tab
-            if viewModel.entries.count > existingEntryCount {
-                viewModel.selectedEntryTab = viewModel.entries[existingEntryCount].id
+            // Refrescar entries solo si el usuario sigue en este proyecto;
+            // no tocar su selección de pestaña ni el texto que esté editando
+            if viewModel.projectId.flatMap(UUID.init(uuidString:)) == projectId.value {
+                try await reloadEntries(projectId)
+                if viewModel.entries.count > existingEntryCount,
+                   viewModel.selectedEntryTab == nil {
+                    viewModel.selectedEntryTab = viewModel.entries[existingEntryCount].id
+                }
             }
 
-            // 7. Update text with last recognized text
-            if let lastEntry = response.successfulEntries.last {
-                viewModel.text = lastEntry.recognizedText
-                updateEstimatedDuration()
-            }
-
-            // 8. Show result with audio generation info
             var resultMessage = "Imported \(response.successCount) image(s)"
             if response.entriesWithAudio > 0 {
                 resultMessage += " with \(response.entriesWithAudio) audio(s) generated"
@@ -701,15 +883,19 @@ final class EditorPresenter: ObservableObject {
             }
             resultMessage += "."
 
-            viewModel.importResult = resultMessage
-            viewModel.showImportResult = true
+            job.status = .completed
+            job.statusMessage = resultMessage
+            job.appendLog(resultMessage, level: .success)
 
+        } catch is CancellationError {
+            print("[EditorPresenter] Import images cancelled")
+            job.status = .cancelled
         } catch {
             print("[EditorPresenter] Import images failed: \(error)")
-            viewModel.error = error.localizedDescription
+            job.status = .failed
+            job.errorMessage = error.localizedDescription
+            job.appendLog("Error: \(error.localizedDescription)", level: .error)
         }
-
-        viewModel.isImportingImages = false
     }
 
     // MARK: - Document Import
@@ -1419,6 +1605,7 @@ final class EditorPresenter: ObservableObject {
         UserDefaults.standard.set(viewModel.voxcpmInstruct, forKey: Self.voxcpmInstructKey)
         UserDefaults.standard.set(viewModel.voxcpmCfgValue, forKey: Self.voxcpmCfgKey)
         UserDefaults.standard.set(viewModel.voxcpmSteps, forKey: Self.voxcpmStepsKey)
+        UserDefaults.standard.set(viewModel.voxcpmUse4Bit, forKey: Self.voxcpm4BitKey)
         UserDefaults.standard.set(viewModel.voxcpmContinuation, forKey: Self.voxcpmContinuationKey)
         UserDefaults.standard.set(viewModel.chatterboxLanguage, forKey: Self.chatterboxLanguageKey)
         UserDefaults.standard.set(viewModel.chatterboxExaggeration, forKey: Self.chatterboxExaggerationKey)
@@ -1436,6 +1623,7 @@ final class EditorPresenter: ObservableObject {
             cloneFastMode: useCloning ? viewModel.cloneFastMode : false,
             cloneFastModel: useCloning ? viewModel.cloneFastModel : false,
             cloneAccentInstruct: useCloning ? viewModel.cloneTargetAccent?.instruct : nil,
+            cloneModel: isVoxCPM && viewModel.voxcpmUse4Bit ? "voxcpm_4bit" : nil,
             voxcpmCfgValue: isVoxCPM ? viewModel.voxcpmCfgValue : nil,
             voxcpmSteps: isVoxCPM ? Int(viewModel.voxcpmSteps) : nil,
             voxcpmContinuation: isVoxCPM && useCloning && viewModel.voxcpmContinuation,
@@ -1476,6 +1664,7 @@ final class EditorPresenter: ObservableObject {
         if UserDefaults.standard.object(forKey: Self.voxcpmStepsKey) != nil {
             viewModel.voxcpmSteps = UserDefaults.standard.double(forKey: Self.voxcpmStepsKey)
         }
+        viewModel.voxcpmUse4Bit = UserDefaults.standard.bool(forKey: Self.voxcpm4BitKey)
         viewModel.voxcpmContinuation = UserDefaults.standard.bool(forKey: Self.voxcpmContinuationKey)
         viewModel.chatterboxLanguage = UserDefaults.standard.string(forKey: Self.chatterboxLanguageKey) ?? "es"
         if UserDefaults.standard.object(forKey: Self.chatterboxExaggerationKey) != nil {
@@ -1883,5 +2072,19 @@ final class EditorPresenter: ObservableObject {
         }
 
         viewModel.isImportingImages = false
+    }
+}
+
+// MARK: - Log Level Mapping
+
+private extension ProcessImageBatchLogLevel {
+    /// Mapea el nivel de log de la capa Application al del panel de generación
+    var asGenerationLogLevel: GenerationLogLevel {
+        switch self {
+        case .info: return .info
+        case .success: return .success
+        case .warning: return .warning
+        case .error: return .error
+        }
     }
 }

@@ -347,6 +347,7 @@ struct ProjectDetailView: View {
                         } label: {
                             Label("Delete Entry", systemImage: "trash")
                         }
+                        .disabled(GenerationManager.shared.isActive)
                     }
                 }
 
@@ -511,6 +512,7 @@ struct ProjectDetailView: View {
                     styleInstruct: voxcpmInstructBinding,
                     cfgValue: voxcpmCfgBinding,
                     qualitySteps: voxcpmStepsBinding,
+                    use4BitModel: voxcpm4BitBinding,
                     targetAccent: cloneTargetAccentBinding,
                     continuationMode: voxcpmContinuationBinding
                 )
@@ -666,9 +668,9 @@ struct ProjectDetailView: View {
             }
             .buttonStyle(SecondaryButtonStyle())
             .keyboardShortcut("s", modifiers: [.command, .shift])
-            .disabled(presenter.viewModel.isCapturing || presenter.viewModel.isImportingImages)
+            .disabled(presenter.viewModel.isCapturing || presenter.viewModel.isImportingImages || GenerationManager.shared.isActive)
 
-            // Import Images (batch OCR)
+            // Import Images (batch OCR) — corre como job de fondo en el panel inferior
             Button {
                 Task {
                     await presenter.importImages()
@@ -678,7 +680,7 @@ struct ProjectDetailView: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(SecondaryButtonStyle())
-            .disabled(presenter.viewModel.isImportingImages || presenter.viewModel.isCapturing)
+            .disabled(presenter.viewModel.isImportingImages || presenter.viewModel.isCapturing || GenerationManager.shared.isActive)
 
             // Import Document (PDF/EPUB)
             Button {
@@ -690,7 +692,7 @@ struct ProjectDetailView: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(SecondaryButtonStyle())
-            .disabled(presenter.viewModel.isImportingImages || presenter.viewModel.isCapturing)
+            .disabled(presenter.viewModel.isImportingImages || presenter.viewModel.isCapturing || GenerationManager.shared.isActive)
 
             // Import Text (batch)
             Button {
@@ -700,7 +702,7 @@ struct ProjectDetailView: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(SecondaryButtonStyle())
-            .disabled(presenter.viewModel.isImportingImages || presenter.viewModel.isCapturing)
+            .disabled(presenter.viewModel.isImportingImages || presenter.viewModel.isCapturing || GenerationManager.shared.isActive)
 
             // Generar audio de la pestaña actual (texto principal o entrada seleccionada)
             if !currentTabText.isEmpty {
@@ -818,6 +820,7 @@ struct ProjectDetailView: View {
                         } label: {
                             Label("Delete Entry", systemImage: "trash")
                         }
+                        .disabled(GenerationManager.shared.isActive)
                     }
                 }
             }
@@ -1238,6 +1241,13 @@ struct ProjectDetailView: View {
         Binding(
             get: { presenter.viewModel.voxcpmSteps },
             set: { presenter.viewModel.voxcpmSteps = $0 }
+        )
+    }
+
+    private var voxcpm4BitBinding: Binding<Bool> {
+        Binding(
+            get: { presenter.viewModel.voxcpmUse4Bit },
+            set: { presenter.viewModel.voxcpmUse4Bit = $0 }
         )
     }
 

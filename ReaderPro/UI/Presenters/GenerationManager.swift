@@ -85,19 +85,28 @@ final class GenerationManager: ObservableObject {
             // Wait before first poll
             try? await Task.sleep(nanoseconds: 1_500_000_000)
 
+            var lastServerMessage = ""
             while !Task.isCancelled {
                 guard let self = self, let job = job else { break }
                 if let progress = await self.ttsCoordinator?.fetchGenerationProgress() {
                     if progress.active {
-                        if progress.segmentsTotal > 1 {
-                            job.progress = Double(progress.segmentsDone) / Double(progress.segmentsTotal)
-                        } else {
-                            job.progress = nil
+                        // Los lotes de imágenes llevan su propio progreso y mensaje
+                        // (imagen X de Y); el progreso por segmentos del servidor
+                        // solo aplica a jobs de síntesis pura
+                        if job.type != .imageBatch {
+                            if progress.segmentsTotal > 1 {
+                                job.progress = Double(progress.segmentsDone) / Double(progress.segmentsTotal)
+                            } else {
+                                job.progress = nil
+                            }
                         }
 
                         let newMessage = progress.currentMessage
-                        if !newMessage.isEmpty && newMessage != job.statusMessage {
-                            job.statusMessage = newMessage
+                        if !newMessage.isEmpty && newMessage != lastServerMessage {
+                            lastServerMessage = newMessage
+                            if job.type != .imageBatch {
+                                job.statusMessage = newMessage
+                            }
                             job.appendLog(newMessage)
                         }
 

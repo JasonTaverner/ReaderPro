@@ -235,6 +235,7 @@ struct EditorView: View {
                     styleInstruct: voxcpmInstructBinding,
                     cfgValue: voxcpmCfgBinding,
                     qualitySteps: voxcpmStepsBinding,
+                    use4BitModel: voxcpm4BitBinding,
                     targetAccent: cloneTargetAccentBinding,
                     continuationMode: voxcpmContinuationBinding
                 )
@@ -544,6 +545,13 @@ struct EditorView: View {
         Binding(
             get: { presenter.viewModel.voxcpmSteps },
             set: { presenter.viewModel.voxcpmSteps = $0 }
+        )
+    }
+
+    private var voxcpm4BitBinding: Binding<Bool> {
+        Binding(
+            get: { presenter.viewModel.voxcpmUse4Bit },
+            set: { presenter.viewModel.voxcpmUse4Bit = $0 }
         )
     }
 
